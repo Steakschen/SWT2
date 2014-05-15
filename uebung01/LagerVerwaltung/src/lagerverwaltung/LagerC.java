@@ -18,22 +18,39 @@ public class LagerC {
     public Artikel[] artikelArray = new Artikel[lagerGroesse];
 
     
-    public LagerC(String standort, int lagerGroesse, int artikelAnzahl) {
+    public LagerC(String standort, int lagerGroesse) {
         this.standort = standort;
         this.lagerGroesse = lagerGroesse;
-        this.artikelAnzahl = artikelAnzahl;
+        this.artikelAnzahl = 0;
     }
     
     
     public void artikelAnlegen(int artikelNr, String bezeichnung, int bestand, double preis){
         artikelArray[artikelAnzahl] = new Artikel(artikelNr, bezeichnung, bestand, preis);
+        artikelAnzahl += 1;
+        
     }
     public void artikelAnlegen(int artikelNr, String bezeichnung, double preis){
         artikelArray[artikelAnzahl] = new Artikel(artikelNr, bezeichnung, preis);
+        artikelAnzahl += 1;
     }
     
-    public void artikelLöschen(){
+    public void artikelLöschen(int artikelNr){
+        int postition = findeArtikel(artikelNr);
+        if (postition > 0){
+            artikelAnzahl -=1;
+        }else{
+            System.out.println("Artikel: " +artikelNr + " nicht gefunden!");
+        }
         
+    }
+    public void artikelLöschen(String bezeichnung){
+        int postition = findeArtikel(bezeichnung);
+        if (postition > 0){
+            artikelAnzahl -=1;
+        }else{
+            System.out.println("Artikel: " +bezeichnung + " nicht gefunden!");
+        }
     }
     
     public void zugangBuchen(Artikel artikel, int menge){
@@ -59,6 +76,16 @@ public class LagerC {
         for (Artikel artikelIn : artikelArray) {
             System.out.println(artikelIn);
         }
+    }
+
+    private int findeArtikel(int artikelNr) {
+
+        return 1;
+    }
+
+    private int findeArtikel(String bezeichnung) {
+ 
+        return 1;
     }
     
 }

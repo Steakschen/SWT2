@@ -82,7 +82,7 @@ public class Lager {
 		int pos = findeArtikel(artikelName);
 		if (pos >= 0) {
 			for (int i = pos; i < artikelCounter; i++) {
-				artikel[i] = artikel[i+1]
+				artikel[i] = artikel[i+1];
 				
 			}
 			artikelCounter -= 1;
@@ -103,7 +103,7 @@ public class Lager {
 		int pos = findeArtikel(artikelNummer);
 		if (pos >= 0) {
 			for (int i = pos; i < artikelCounter; i++) {
-				artikel[i] = artikel[i+1]
+				artikel[i] = artikel[i+1];
 				
 			}
 			artikelCounter -= 1;
@@ -136,7 +136,7 @@ public class Lager {
 	* @param menge 				Menge des Zugangs
 	*/
 	public void bucheZugang (int artikelNummer, int menge) {
-		int pos = findeArtikel(artikelName);
+		int pos = findeArtikel(artikelNummer);
 		if (pos >= 0) {
 			artikel[pos].bucheZugang(menge);
 		}
