@@ -1,0 +1,5 @@
+Carsten:
+	- Implementierung der Fachklasse Artikel
+
+Moritz:
+	- Implementierung der Fachklasse Lager
