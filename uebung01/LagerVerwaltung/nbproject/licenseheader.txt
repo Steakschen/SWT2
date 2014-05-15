@@ -1,0 +1,9 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Softwaretechnik 2 
+${licensePrefix}Uebung 1
+${licensePrefix}@author Carsten Gross / Moritz Fey
+<#if licenseLast??>
+${licenseLast}
+</#if>

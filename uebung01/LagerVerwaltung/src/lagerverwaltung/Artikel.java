@@ -90,6 +90,15 @@ public class Artikel {
         bestand -= menge;
     }   
     /**
+     * Aendert den Preis um einen gewissen Prozentsatz
+     * @param prozentSatz       gibt die Prozent aenderung mit
+     */
+    public void aenderePreis(double prozentSatz) {
+        double differenz = 0.0;
+        differenz = preis * (prozentSatz / 100);
+        this.preis = preis + differenz;
+    }  
+    /**
      * toString gibt einen String für die Ausgabe zurück
      * @return 
      */
