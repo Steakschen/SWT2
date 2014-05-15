@@ -53,8 +53,10 @@ public class Lager {
 	*
 	*/
 	public void erstelleArtikel (int artikelNummer, String bezeichnung, int bestand, double preis) {
+		assert artikelCounter < (maxArtikel -1) : "Maximale Anzahl Artikel im Lager erreicht!"
 		artikel[artikelCounter] = new Artikel(artikelNummer, bezeichnung, bestand, preis);
 		artikelCounter += 1;
+
 	}
 
 	/**
@@ -67,6 +69,7 @@ public class Lager {
 	*
 	*/
 	public void erstelleArtikel (int artikelNummer, String bezeichnung, double preis) {
+		assert artikelCounter < (maxArtikel -1) : "Maximale Anzahl Artikel im Lager erreicht!"
 		artikel[artikelCounter] = new Artikel(artikelNummer, bezeichnung, preis);
 		artikelCounter += 1;
 	}
