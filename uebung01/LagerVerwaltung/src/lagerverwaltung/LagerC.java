@@ -15,13 +15,14 @@ public class LagerC {
     public String standort;
     public int lagerGroesse;
     public int artikelAnzahl;
-    public Artikel[] artikelArray = new Artikel[lagerGroesse];
-
+    public Artikel[] artikelArray;
     
     public LagerC(String standort, int lagerGroesse) {
         this.standort = standort;
         this.lagerGroesse = lagerGroesse;
         this.artikelAnzahl = 0;
+        this.artikelArray = new Artikel[lagerGroesse];
+                
     }
     
     
@@ -37,7 +38,10 @@ public class LagerC {
     
     public void artikelLöschen(int artikelNr){
         int postition = findeArtikel(artikelNr);
-        if (postition > 0){
+        if (postition >= 0){
+            for (int i = postition; i < artikelAnzahl ; i++) {
+                artikelArray[postition] = artikelArray[postition+1];
+            }
             artikelAnzahl -=1;
         }else{
             System.out.println("Artikel: " +artikelNr + " nicht gefunden!");
@@ -46,19 +50,24 @@ public class LagerC {
     }
     public void artikelLöschen(String bezeichnung){
         int postition = findeArtikel(bezeichnung);
-        if (postition > 0){
+        if (postition >= 0){
+            for (int i = postition; i < artikelAnzahl ; i++) {
+                artikelArray[postition] = artikelArray[postition+1];
+            }
             artikelAnzahl -=1;
         }else{
             System.out.println("Artikel: " +bezeichnung + " nicht gefunden!");
         }
     }
     
-    public void zugangBuchen(Artikel artikel, int menge){
-        artikel.bucheZugang(menge);
+    public void zugangBuchen(int artikelNr, int menge){
+        int position = findeArtikel(artikelNr);
+        artikelArray[position].bucheZugang(menge);
     }
     
-    public void abgangBuchen(Artikel artikel, int menge){
-        artikel.bucheAbgang(menge);
+    public void abgangBuchen(int artikelNr, int menge){
+        int position = findeArtikel(artikelNr);
+        artikelArray[position].bucheAbgang(menge);
     }
     
     public void preisÄndern(Artikel artikel, int prozentSatz){
