@@ -1,5 +1,7 @@
 
 
+ package lagerverwaltung;
+
 /**
 * Fachklasse für die Verwaltung eines Lagers.
 * 
