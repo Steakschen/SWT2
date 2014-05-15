@@ -77,6 +77,17 @@ public class Lager {
 	*
 	*/
 	public void entferneArtikel (String artikelName) {
+		int pos = findeArtikel(artikelName);
+		if (pos >= 0) {
+			for (int i = pos; i < artikelCounter; i++) {
+				artikel[i] = artikel[i+1]
+				
+			}
+			artikelCounter -= 1;
+		}
+		else {
+			assert pos < 0 :  "Artikel nicht vorhanden!"
+		}
 
 	}
 
@@ -87,7 +98,17 @@ public class Lager {
 	*
 	*/
 	public void entferneArtikel (int artikelNummer) {
-
+		int pos = findeArtikel(artikelNummer);
+		if (pos >= 0) {
+			for (int i = pos; i < artikelCounter; i++) {
+				artikel[i] = artikel[i+1]
+				
+			}
+			artikelCounter -= 1;
+		}
+		else {
+			assert pos < 0 :  "Artikel nicht vorhanden!"
+		}
 	}
 
 	/**
@@ -97,8 +118,15 @@ public class Lager {
 	* @param menge 				Menge des Zugangs
 	*/
 	public void zugangBuchen (String artikelName, int menge) {
-
+		int pos = findeArtikel(artikelName);
+		if (pos >= 0) {
+			artikel[pos].setBestand(artikel[pos].getBestand() + menge);
+		}
+		else {
+			assert pos < 0 : "Artikel nicht vorhanden!"
+		}
 	}
+	
 	/**
 	* Methode zum Buchen eines Artikelzugangs.
 	*
@@ -106,7 +134,13 @@ public class Lager {
 	* @param menge 				Menge des Zugangs
 	*/
 	public void zugangBuchen (int artikelNummer, int menge) {
-
+		int pos = findeArtikel(artikelName);
+		if (pos >= 0) {
+			artikel[pos].setBestand(artikel[pos].getBestand() + menge);
+		}
+		else {
+			assert pos < 0 : "Artikel nicht vorhanden!"
+		}
 	}	
 
 	/**
@@ -144,7 +178,12 @@ public class Lager {
 	* @param artikelNummer 		Artikelnummer des Artikels
 	*/
 	private int findeArtikel (int artikelNummer) {
-
+		for (int i = 0; i < artikelCounter; i++) {
+			if (artikel.getArtikelNr() == artikelNummer) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
@@ -153,7 +192,12 @@ public class Lager {
 	* @param artikelName 		Artikelname des Artikels
 	*/
 	private int findeArtikel (String artikelName) {
-
+		for (int i = 0; i < artikelCounter; i++) {
+			if (artikel.getBezeichnung() == artikelName) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
