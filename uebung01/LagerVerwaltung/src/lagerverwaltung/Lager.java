@@ -210,7 +210,7 @@ public class Lager {
 	*/
 	private int findeArtikel (String artikelName) {
 		for (int i = 0; i < artikelCounter; i++) {
-			if (artikel[i].getBezeichnung() == artikelName) {
+			if (artikel[i].getBezeichnung().equalsIgnoreCase(artikelName)) {
 				return i;
 			}
 		}
