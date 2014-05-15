@@ -28,15 +28,34 @@ public class Artikel {
     public Artikel(int artikelNr, String bezeichnung,double preis){
         this(artikelNr, bezeichnung ,0 ,preis);
     }
+
+    public int getArtikelNr() {
+        return artikelNr;
+    }
+    public int getBestand() {
+        return bestand;
+    }
+    public String getBezeichnung() {
+        return bezeichnung;
+    }
+    public double getPreis() {
+        return preis;
+    }
+
+    public void setBestand(int bestand) {
+        this.bestand = bestand;
+    }
+    public void setPreis(double preis) {
+        this.preis = preis;
+    }
     
+        
     public void bucheZugang(int menge){
-        
-    }
-    
+        bestand += menge;
+    }  
     public void bucheAbgang(int menge){
-        
-    }
-    
+        bestand -= menge;
+    }   
     @Override
     public String toString() {       
         return "Artikel: " + artikelNr + " Bezeichnung: "+bezeichnung
