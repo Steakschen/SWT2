@@ -5,7 +5,6 @@
  */
 
 package lagerverwaltung;
-//import de.htw.saarland.stl.Stdin;
 
 /**
  *
