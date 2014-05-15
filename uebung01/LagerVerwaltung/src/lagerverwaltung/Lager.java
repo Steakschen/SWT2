@@ -50,7 +50,7 @@ public class Lager {
 	* @param preis 				Preis des Artikels
 	*
 	*/
-	public void artikelAnlegen (int artikelNummer, String bezeichnung, int bestand, double preis) {
+	public void erstelleArtikel (int artikelNummer, String bezeichnung, int bestand, double preis) {
 		artikel[artikelCounter] = new Artikel(artikelNummer, bezeichnung, bestand, preis);
 		artikelCounter += 1;
 	}
@@ -64,7 +64,7 @@ public class Lager {
 	* @param preis 				Preis des Artikels
 	*
 	*/
-	public void artikelAnlegen (int artikelNummer, String bezeichnung, double preis) {
+	public void erstelleArtikel (int artikelNummer, String bezeichnung, double preis) {
 		artikel[artikelCounter] = new Artikel(artikelNummer, bezeichnung, preis);
 		artikelCounter += 1;
 	}
@@ -86,7 +86,7 @@ public class Lager {
 			artikelCounter -= 1;
 		}
 		else {
-			assert pos < 0 :  "Artikel nicht vorhanden!"
+			assert pos < 0 :  "Artikel nicht vorhanden!";
 		}
 
 	}
@@ -107,7 +107,7 @@ public class Lager {
 			artikelCounter -= 1;
 		}
 		else {
-			assert pos < 0 :  "Artikel nicht vorhanden!"
+			assert pos < 0 :  "Artikel nicht vorhanden!";
 		}
 	}
 
@@ -117,29 +117,29 @@ public class Lager {
 	* @param artikelName 		Name des Artikels
 	* @param menge 				Menge des Zugangs
 	*/
-	public void zugangBuchen (String artikelName, int menge) {
+	public void bucheZugang (String artikelName, int menge) {
 		int pos = findeArtikel(artikelName);
 		if (pos >= 0) {
-			artikel[pos].setBestand(artikel[pos].getBestand() + menge);
+			artikel[pos].bucheZugang(menge);
 		}
 		else {
-			assert pos < 0 : "Artikel nicht vorhanden!"
+			assert pos < 0 : "Artikel nicht vorhanden!";
 		}
 	}
-	
+
 	/**
 	* Methode zum Buchen eines Artikelzugangs.
 	*
 	* @param artikelNummer 		Artikelnummer des Artikels
 	* @param menge 				Menge des Zugangs
 	*/
-	public void zugangBuchen (int artikelNummer, int menge) {
+	public void bucheZugang (int artikelNummer, int menge) {
 		int pos = findeArtikel(artikelName);
 		if (pos >= 0) {
-			artikel[pos].setBestand(artikel[pos].getBestand() + menge);
+			artikel[pos].bucheZugang(menge);
 		}
 		else {
-			assert pos < 0 : "Artikel nicht vorhanden!"
+			assert pos < 0 : "Artikel nicht vorhanden!";
 		}
 	}	
 
@@ -149,8 +149,14 @@ public class Lager {
 	* @param artikelName 		Name des Artikels
 	* @param menge 				Menge des Abgangs
 	*/
-	public void abgangBuchen (String artikelName, int menge) {
-
+	public void bucheAbgang (String artikelName, int menge) {
+		int pos = findeArtikel(artikelName);
+		if (pos >= 0) {
+			artikel[pos].bucheAbgang(menge);
+		}
+		else {
+			assert pos < 0 : "Artikel nicht vorhanden!";
+		}
 	}
 
 	/**
@@ -159,8 +165,14 @@ public class Lager {
 	* @param artikelNummer 		Artikelnummer des Artikels
 	* @param menge 				Menge des Abgangs
 	*/
-	public void abgangBuchen (int artikelNummer, int menge) {
-
+	public void bucheAbgang (int artikelNummer, int menge) {
+		int pos = findeArtikel(artikelNummer);
+		if (pos >= 0) {
+			artikel[pos].bucheAbgang(menge);
+		}
+		else {
+			assert pos < 0 : "Artikel nicht vorhanden!";
+		}
 	}
 
 	/**
@@ -168,8 +180,11 @@ public class Lager {
 	*
 	* @param prozentSatz 		Prozentsatz um den der Preis geändert werden soll, positiv oder negativ
 	*/
-	public void preiseAendern (double prozentSatz) {
-
+	public void aenderePreis (double prozentSatz) {
+		assert (prozentSatz > 50 && prozentSatz < -50) : "Angegebener Prozentsatz ausserhalb des Wertebereichs";
+		for (int i = 0; i < artikelCounter; i++) {
+			artikel[i].aenderePreis(prozentSatz);
+		}
 	}
 
 	/**
