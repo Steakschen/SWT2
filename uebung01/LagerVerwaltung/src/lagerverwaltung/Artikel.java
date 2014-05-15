@@ -5,6 +5,8 @@
  */
 package lagerverwaltung;
 
+import java.text.DecimalFormat;
+
 /**
  * Die Klasse Artikel stellt ein Artikelobjekt mit 4 Attributen bereit.
  * 
@@ -103,9 +105,10 @@ public class Artikel {
      * @return 
      */
     @Override
-    public String toString() {       
+    public String toString() {
+        DecimalFormat f = new DecimalFormat("#0.00"); 
         return "\n Artikel: " + artikelNr + " Bezeichnung: "+bezeichnung
-                + " Bestand: " +bestand+" Preis: "+preis;
+                + " Bestand: " +bestand+" Preis: "+f.format(preis);
     }
 }
 
