@@ -3,11 +3,11 @@
  * Übung 1
  * @author Carsten Gross / Moritz Fey
  */
-
 package lagerverwaltung;
 
 /**
- *
+ * Die Klasse Artikel stellt ein Artikelobjekt mit 4 Attributen bereit.
+ * 
  * @author Carsten
  */
 public class Artikel {
@@ -17,16 +17,17 @@ public class Artikel {
     private int bestand;
     private double preis;
 
-    @SuppressWarnings("null")
+    /**
+     * Konstrukter
+     * @param artikelNr     Artikelnummer des Artikels
+     * @param bezeichnung   Bezeichnung des Artikels
+     * @param bestand       Bestand des Artikels
+     * @param preis         Preis des Artikels
+     */
     public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) {
-       // if (artikelNr < 1000) {
-       //     throw new Exception("Artikelnummer nicht 4 stellig!");
-       // }
-       // if (bezeichnung == null) {
-       //     throw new Exception("Bezeichnung ist Null-Referenz!");
-       // }
         assert artikelNr < 1000 : "Artikelnummer nicht 4 stellig!"; 
         assert bezeichnung == null : "Bezeichnung ist Null-Referenz!"; 
+        assert bezeichnung.trim().length() == 0 : "Bezeichnung darf nicht leer sein!";
         assert bezeichnung.equals(" ") : "Bezeichnung darf keine Leerzeichen enthalten!";
         assert bezeichnung.equals("\t") : "Bezeichnung darf keine Tabulatoren enthalten!";
         assert bezeichnung.equals("\n") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
@@ -38,7 +39,13 @@ public class Artikel {
         this.bestand = bestand;
         this.preis = preis;
     }
-    
+   
+    /**
+     * Konstruktor
+     * @param artikelNr     Artikelnummer des Artikels
+     * @param bezeichnung   Bezeichnung des Artikels
+     * @param preis         Preis des Artikels
+     */
     public Artikel(int artikelNr, String bezeichnung,double preis){
         this(artikelNr, bezeichnung ,0 ,preis);
     }
@@ -65,23 +72,32 @@ public class Artikel {
         this.preis = preis;
     }
     
-        
+    /**
+     * bucheZugang erhöht um die in menge mitgegebene Anzahl den Bestand
+     * @param menge     Anzahl um die siche der Bestand verändert
+     */
     public void bucheZugang(int menge){
         assert menge < 0 : "Menge ist kleiner als 0!";
         bestand += menge;
     }  
+    /**
+     * bucheAbgang verringert um die in menge mitgebene Anzahl den Bestand
+     * @param menge      Anzahl um die siche der Bestand verändert
+     */
     public void bucheAbgang(int menge){
         assert menge < 0 : "Menge ist kleiner als 0!";
         assert (bestand-menge) < 0 : "Bestand wird kleiner als 0!";
         bestand -= menge;
     }   
+    /**
+     * toString gibt einen String für die Ausgabe zurück
+     * @return 
+     */
     @Override
     public String toString() {       
-        return "Artikel: " + artikelNr + " Bezeichnung: "+bezeichnung
+        return "\n Artikel: " + artikelNr + " Bezeichnung: "+bezeichnung
                 + " Bestand: " +bestand+" Preis: "+preis;
     }
-    
-    
 }
 
 
