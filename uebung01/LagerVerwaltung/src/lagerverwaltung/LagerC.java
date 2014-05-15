@@ -79,13 +79,21 @@ public class LagerC {
     }
 
     private int findeArtikel(int artikelNr) {
-
-        return 1;
+        for (int i = 0; i < artikelArray.length ;i++){
+            if (artikelArray[i].getBestand() == artikelNr){
+                return i;
+            }
+        }
+        return -1;
     }
 
     private int findeArtikel(String bezeichnung) {
- 
-        return 1;
+        for (int i = 0; i < artikelArray.length ;i++){
+            if (artikelArray[i].getBezeichnung().equals(bezeichnung)){
+                return i;
+            }
+        }
+        return -1;
     }
     
 }
