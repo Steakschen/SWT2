@@ -196,7 +196,7 @@ public class Lager {
 	*/
 	private int findeArtikel (int artikelNummer) {
 		for (int i = 0; i < artikelCounter; i++) {
-			if (artikel.getArtikelNr() == artikelNummer) {
+			if (artikel[i].getArtikelNr() == artikelNummer) {
 				return i;
 			}
 		}
@@ -210,7 +210,7 @@ public class Lager {
 	*/
 	private int findeArtikel (String artikelName) {
 		for (int i = 0; i < artikelCounter; i++) {
-			if (artikel.getBezeichnung() == artikelName) {
+			if (artikel[i].getBezeichnung() == artikelName) {
 				return i;
 			}
 		}
