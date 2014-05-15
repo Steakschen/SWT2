@@ -42,19 +42,38 @@ public class Lager {
 
 	/**
 	* Methode zum Anlegen eines neuen Artikels im Lager.
+	* Mit Bestand.
 	*
-	*
+	* @param artikelNummer 		Artikelnummer des Artikels
+	* @param bezeichnung		Bezeichnung des Artikels
+	* @param bestand			Bestand des Artikels
+	* @param preis 				Preis des Artikels
 	*
 	*/
-	public void artikelAnlegen (Artikel neuerArtikel) {
-		artikel[artikelCounter] = neuerArtikel;
+	public void artikelAnlegen (int artikelNummer, String bezeichnung, int bestand, double preis) {
+		artikel[artikelCounter] = new Artikel(artikelNummer, bezeichnung, bestand, preis);
 		artikelCounter += 1;
 	}
 
 	/**
+	* Methode zum Anlegen eines neuen Artikels im Lager.
+	* Ohne Bestand.
+	*
+	* @param artikelNummer 		Artikelnummer des Artikels
+	* @param bezeichnung		Bezeichnung des Artikels
+	* @param preis 				Preis des Artikels
+	*
+	*/
+	public void artikelAnlegen (int artikelNummer, String bezeichnung, double preis) {
+		artikel[artikelCounter] = new Artikel(artikelNummer, bezeichnung, preis);
+		artikelCounter += 1;
+	}
+
+
+	/**
 	* Methode zum entfernen eines Artikels.
 	*
-	* @param artikelName Artikelname des zu entfernenden Artikels
+	* @param artikelName 		Artikelname des zu entfernenden Artikels
 	*
 	*/
 	public void entferneArtikel (String artikelName) {
@@ -64,7 +83,7 @@ public class Lager {
 	/**
 	* Methode zum entfernen eines Artikels.
 	*
-	* @param artikelNummer Artikelnummer des zu entfernenden Artikels
+	* @param artikelNummer 		Artikelnummer des zu entfernenden Artikels
 	*
 	*/
 	public void entferneArtikel (int artikelNummer) {
@@ -74,8 +93,8 @@ public class Lager {
 	/**
 	* Methode zum Buchen eines Artikelzugangs.
 	*
-	* @param artikelName Name des Artikels
-	* @param menge Menge des Zugangs
+	* @param artikelName 		Name des Artikels
+	* @param menge 				Menge des Zugangs
 	*/
 	public void zugangBuchen (String artikelName, int menge) {
 
@@ -83,8 +102,8 @@ public class Lager {
 	/**
 	* Methode zum Buchen eines Artikelzugangs.
 	*
-	* @param artikelNummer Artikelnummer des Artikels
-	* @param menge Menge des Zugangs
+	* @param artikelNummer 		Artikelnummer des Artikels
+	* @param menge 				Menge des Zugangs
 	*/
 	public void zugangBuchen (int artikelNummer, int menge) {
 
@@ -93,8 +112,8 @@ public class Lager {
 	/**
 	* Methode zum Buchen eines Artikelabgangs.
 	*
-	* @param artikelName Name des Artikels
-	* @param menge Menge des Abgangs
+	* @param artikelName 		Name des Artikels
+	* @param menge 				Menge des Abgangs
 	*/
 	public void abgangBuchen (String artikelName, int menge) {
 
@@ -103,8 +122,8 @@ public class Lager {
 	/**
 	* Methode zum Buchen eines Artikelabgangs.
 	*
-	* @param artikelNummer Artikelnummer des Artikels
-	* @param menge Menge des Abgangs
+	* @param artikelNummer 		Artikelnummer des Artikels
+	* @param menge 				Menge des Abgangs
 	*/
 	public void abgangBuchen (int artikelNummer, int menge) {
 
@@ -113,7 +132,7 @@ public class Lager {
 	/**
 	* Ändern des Preises für alle Artikel.
 	*
-	* @param prozentSatz Prozentsatz um den der Preis geändert werden soll, positiv oder negativ
+	* @param prozentSatz 		Prozentsatz um den der Preis geändert werden soll, positiv oder negativ
 	*/
 	public void preiseAendern (double prozentSatz) {
 
@@ -122,7 +141,7 @@ public class Lager {
 	/**
 	* Finde den Array-Index des gesuchten Artikels.
 	*
-	* @param artikelNummer Artikelnummer des Artikels
+	* @param artikelNummer 		Artikelnummer des Artikels
 	*/
 	private int findeArtikel (int artikelNummer) {
 
@@ -131,7 +150,7 @@ public class Lager {
 	/**
 	* Finde den Array-Index des gesuchten Artikels.
 	*
-	* @param artikelName Artikelname des Artikels
+	* @param artikelName 		Artikelname des Artikels
 	*/
 	private int findeArtikel (String artikelName) {
 
