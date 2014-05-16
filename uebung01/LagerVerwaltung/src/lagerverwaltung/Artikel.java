@@ -28,14 +28,14 @@ public class Artikel {
      */
     public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) {
         assert artikelNr < 1000 : "Artikelnummer nicht 4 stellig!"; 
-        assert bezeichnung == null : "Bezeichnung ist Null-Referenz!"; 
-        assert bezeichnung.trim().length() == 0 : "Bezeichnung darf nicht leer sein!";
-        assert bezeichnung.equals(" ") : "Bezeichnung darf keine Leerzeichen enthalten!";
-        assert bezeichnung.equals("\t") : "Bezeichnung darf keine Tabulatoren enthalten!";
-        assert bezeichnung.equals("\n") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
-        assert bezeichnung.equals("\r") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
-        assert bestand < 0 : "Bestand ist kleiner als 0!";
-        assert preis < 0 : "Preis ist kleiner als 0!";
+        assert bezeichnung != null : "Bezeichnung ist Null-Referenz!"; 
+        assert bezeichnung.trim().length() > 0 : "Bezeichnung darf nicht leer sein!";
+        //assert bezeichnung.equals(" ") : "Bezeichnung darf keine Leerzeichen enthalten!";
+        //assert bezeichnung.equals("\t") : "Bezeichnung darf keine Tabulatoren enthalten!";
+        //assert bezeichnung.equals("\n") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
+        //assert bezeichnung.equals("\r") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
+        assert bestand > 0 : "Bestand ist kleiner als 0!";
+        assert preis > 0 : "Preis ist kleiner als 0!";
         this.artikelNr = artikelNr;
         this.bezeichnung = bezeichnung;
         this.bestand = bestand;
