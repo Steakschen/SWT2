@@ -20,7 +20,7 @@ public class Lager {
 	private int maxArtikel;
 
 	/** Zähler für die Anzahl der Artikel im Array. */
-	private int artikelCounter;
+	private int artikelAnzahl;
 	
 	/**
 	* Konstruktor der Klasse Lager.
@@ -37,7 +37,7 @@ public class Lager {
 		assert maxArtikel >= 0 : "Die übergebene Anzahl Artikel ist negativ oder 0";
 		this.maxArtikel = maxArtikel;
 
-		this.artikelCounter = 0;
+		this.artikelAnzahl = 0;
 
 		this.artikel = new Artikel[maxArtikel];
 	}
@@ -53,9 +53,9 @@ public class Lager {
 	*
 	*/
 	public void erstelleArtikel (int artikelNummer, String bezeichnung, int bestand, double preis) {
-		assert artikelCounter < (maxArtikel -1) : "Maximale Anzahl Artikel im Lager erreicht!";
-		artikel[artikelCounter] = new Artikel(artikelNummer, bezeichnung, bestand, preis);
-		artikelCounter += 1;
+		assert artikelAnzahl < (maxArtikel -1) : "Maximale Anzahl Artikel im Lager erreicht!";
+		artikel[artikelAnzahl] = new Artikel(artikelNummer, bezeichnung, bestand, preis);
+		artikelAnzahl += 1;
 
 	}
 
@@ -69,9 +69,9 @@ public class Lager {
 	*
 	*/
 	public void erstelleArtikel (int artikelNummer, String bezeichnung, double preis) {
-		assert artikelCounter < (maxArtikel -1) : "Maximale Anzahl Artikel im Lager erreicht!";
-		artikel[artikelCounter] = new Artikel(artikelNummer, bezeichnung, preis);
-		artikelCounter += 1;
+		assert artikelAnzahl < (maxArtikel -1) : "Maximale Anzahl Artikel im Lager erreicht!";
+		artikel[artikelAnzahl] = new Artikel(artikelNummer, bezeichnung, preis);
+		artikelAnzahl += 1;
 	}
 
 
@@ -84,11 +84,11 @@ public class Lager {
 	public void entferneArtikel (String artikelName) {
 		int pos = findeArtikel(artikelName);
 		if (pos >= 0) {
-			for (int i = pos; i < artikelCounter; i++) {
+			for (int i = pos; i < artikelAnzahl; i++) {
 				artikel[i] = artikel[i+1];
 				
 			}
-			artikelCounter -= 1;
+			artikelAnzahl -= 1;
 		}
 		else {
 			assert pos < 0 :  "Artikel nicht vorhanden!";
@@ -105,11 +105,11 @@ public class Lager {
 	public void entferneArtikel (int artikelNummer) {
 		int pos = findeArtikel(artikelNummer);
 		if (pos >= 0) {
-			for (int i = pos; i < artikelCounter; i++) {
+			for (int i = pos; i < artikelAnzahl; i++) {
 				artikel[i] = artikel[i+1];
 				
 			}
-			artikelCounter -= 1;
+			artikelAnzahl -= 1;
 		}
 		else {
 			assert pos < 0 :  "Artikel nicht vorhanden!";
@@ -187,7 +187,7 @@ public class Lager {
 	*/
 	public void aenderePreis (double prozentSatz) {
 		assert (prozentSatz > 50 && prozentSatz < -50) : "Angegebener Prozentsatz ausserhalb des Wertebereichs";
-		for (int i = 0; i < artikelCounter; i++) {
+		for (int i = 0; i < artikelAnzahl; i++) {
 			artikel[i].aenderePreis(prozentSatz);
 		}
 	}
@@ -198,7 +198,7 @@ public class Lager {
 	* @param artikelNummer 		Artikelnummer des Artikels
 	*/
 	private int findeArtikel (int artikelNummer) {
-		for (int i = 0; i < artikelCounter; i++) {
+		for (int i = 0; i < artikelAnzahl; i++) {
 			if (artikel[i].getArtikelNr() == artikelNummer) {
 				return i;
 			}
@@ -212,13 +212,21 @@ public class Lager {
 	* @param artikelName 		Artikelname des Artikels
 	*/
 	private int findeArtikel (String artikelName) {
-		for (int i = 0; i < artikelCounter; i++) {
+		for (int i = 0; i < artikelAnzahl; i++) {
 			if (artikel[i].getBezeichnung().equalsIgnoreCase(artikelName)) {
 				return i;
 			}
 		}
 		return -1;
 	}
+        
+        /**
+         * Gib die Anzahl der Artikel im Lager zurück.
+         * @return Anzahl der Artikel im Lager
+         */
+        public int getArtikelAnzahl () {
+            return this.artikelAnzahl;
+        }
 
 	/**
 	* toString zur Ausgabe des kompletten Lagers.
@@ -228,7 +236,7 @@ public class Lager {
 	public String toString () {
 		String lagerString = new String("Lager am Standort: " + standort + '\n');
 		
-		for (int i = 0; i < artikelCounter; i++) {
+		for (int i = 0; i < artikelAnzahl; i++) {
 			lagerString += artikel[i].toString();
 		}
 
