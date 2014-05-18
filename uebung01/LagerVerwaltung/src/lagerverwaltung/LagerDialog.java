@@ -15,8 +15,8 @@ import java.text.DecimalFormat;
 public class LagerDialog {
     
     public static void main(String[] args) {
-        Lager meinLager = new Lager("Saarbruecken", 10);
-        meinLager.erstelleArtikel(4711, "Parfum", 5, 49.99);
+        Lager meinLager = new Lager("Saarbruecken", 5);
+        meinLager.erstelleArtikel(4711, "Kebab", 5, 49.99);
         meinLager.erstelleArtikel(1254, "Klebeband", 50, 2.50);
         System.out.println(meinLager.toString());
         meinLager.bucheZugang(4711, 20);

@@ -34,7 +34,7 @@ public class Lager {
 			this.standort = standort;
 		}
 
-		assert maxArtikel >= 0 : "Die übergebene Anzahl Artikel ist negativ oder 0";
+		assert maxArtikel > 0 : "Die übergebene Anzahl Artikel ist negativ oder 0";
 		this.maxArtikel = maxArtikel;
 
 		this.artikelAnzahl = 0;
@@ -91,7 +91,7 @@ public class Lager {
 			artikelAnzahl -= 1;
 		}
 		else {
-			assert pos < 0 :  "Artikel nicht vorhanden!";
+			assert pos > 0 :  "Artikel nicht vorhanden!";
 		}
 
 	}
@@ -112,7 +112,7 @@ public class Lager {
 			artikelAnzahl -= 1;
 		}
 		else {
-			assert pos < 0 :  "Artikel nicht vorhanden!";
+			assert pos > 0 :  "Artikel nicht vorhanden!";
 		}
 	}
 
@@ -128,7 +128,7 @@ public class Lager {
 			artikel[pos].bucheZugang(menge);
 		}
 		else {
-			assert pos < 0 : "Artikel nicht vorhanden!";
+			assert pos > 0 : "Artikel nicht vorhanden!";
 		}
 	}
 
@@ -144,7 +144,7 @@ public class Lager {
 			artikel[pos].bucheZugang(menge);
 		}
 		else {
-			assert pos < 0 : "Artikel nicht vorhanden!";
+			assert pos > 0 : "Artikel nicht vorhanden!";
 		}
 	}	
 
@@ -160,7 +160,7 @@ public class Lager {
 			artikel[pos].bucheAbgang(menge);
 		}
 		else {
-			assert pos < 0 : "Artikel nicht vorhanden!";
+			assert pos > 0 : "Artikel nicht vorhanden!";
 		}
 	}
 
@@ -176,7 +176,7 @@ public class Lager {
 			artikel[pos].bucheAbgang(menge);
 		}
 		else {
-			assert pos < 0 : "Artikel nicht vorhanden!";
+			assert pos > 0 : "Artikel nicht vorhanden!";
 		}
 	}
 
@@ -186,7 +186,7 @@ public class Lager {
 	* @param prozentSatz 		Prozentsatz um den der Preis geändert werden soll, positiv oder negativ
 	*/
 	public void aenderePreis (double prozentSatz) {
-		assert (prozentSatz > 50 && prozentSatz < -50) : "Angegebener Prozentsatz ausserhalb des Wertebereichs";
+		assert (prozentSatz < 50 && prozentSatz > -50) : "Angegebener Prozentsatz ausserhalb des Wertebereichs";
 		for (int i = 0; i < artikelAnzahl; i++) {
 			artikel[i].aenderePreis(prozentSatz);
 		}

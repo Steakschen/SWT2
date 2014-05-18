@@ -31,9 +31,9 @@ public class Artikel {
         assert bezeichnung != null : "Bezeichnung ist Null-Referenz!"; 
         assert bezeichnung.trim().length() > 0 : "Bezeichnung darf nicht leer sein!";
         //assert bezeichnung.equals(" ") : "Bezeichnung darf keine Leerzeichen enthalten!";
-        //assert bezeichnung.equals("\t") : "Bezeichnung darf keine Tabulatoren enthalten!";
-        //assert bezeichnung.equals("\n") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
-        //assert bezeichnung.equals("\r") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
+        //assert !bezeichnung.equals("\t") : "Bezeichnung darf keine Tabulatoren enthalten!";
+        //assert !bezeichnung.equals("\n") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
+        //assert !bezeichnung.equals("\r") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
         assert bestand > 0 : "Bestand ist kleiner als 0!";
         assert preis > 0 : "Preis ist kleiner als 0!";
         this.artikelNr = artikelNr;
@@ -66,11 +66,11 @@ public class Artikel {
     }
 
     public void setBestand(int bestand) {
-        assert bestand < 0 : "Bestand ist kleiner als 0!";
+        assert bestand > 0 : "Bestand ist kleiner als 0!";
         this.bestand = bestand;
     }
     public void setPreis(double preis) {
-        assert preis < 0 : "Preis ist kleiner als 0!";
+        assert preis > 0 : "Preis ist kleiner als 0!";
         this.preis = preis;
     }
     
@@ -79,7 +79,7 @@ public class Artikel {
      * @param menge     Anzahl um die siche der Bestand verändert
      */
     public void bucheZugang(int menge){
-        assert menge < 0 : "Menge ist kleiner als 0!";
+        assert menge > 0 : "Menge ist kleiner als 0!";
         bestand += menge;
     }  
     /**
@@ -87,8 +87,8 @@ public class Artikel {
      * @param menge      Anzahl um die siche der Bestand verändert
      */
     public void bucheAbgang(int menge){
-        assert menge < 0 : "Menge ist kleiner als 0!";
-        assert (bestand-menge) < 0 : "Bestand wird kleiner als 0!";
+        assert menge > 0 : "Menge ist kleiner als 0!";
+        assert (bestand-menge) > 0 : "Bestand wird kleiner als 0!";
         bestand -= menge;
     }   
     /**
