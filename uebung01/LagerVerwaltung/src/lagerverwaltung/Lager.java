@@ -84,6 +84,7 @@ public class Lager {
 	public void entferneArtikel (String artikelName) {
 		int pos = findeArtikel(artikelName);
 		if (pos >= 0) {
+			artikel[pos] = null;
 			for (int i = pos; i < artikelAnzahl; i++) {
 				artikel[i] = artikel[i+1];
 				
@@ -105,6 +106,7 @@ public class Lager {
 	public void entferneArtikel (int artikelNummer) {
 		int pos = findeArtikel(artikelNummer);
 		if (pos >= 0) {
+			artikel[pos] = null;
 			for (int i = pos; i < artikelAnzahl; i++) {
 				artikel[i] = artikel[i+1];
 				
