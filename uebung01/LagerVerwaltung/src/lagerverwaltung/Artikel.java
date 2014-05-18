@@ -27,7 +27,7 @@ public class Artikel {
      * @param preis         Preis des Artikels
      */
     public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) {
-        assert artikelNr < 1000 : "Artikelnummer nicht 4 stellig!"; 
+        assert artikelNr > 1000 : "Artikelnummer nicht 4 stellig!"; 
         assert bezeichnung != null : "Bezeichnung ist Null-Referenz!"; 
         assert bezeichnung.trim().length() > 0 : "Bezeichnung darf nicht leer sein!";
         //assert bezeichnung.equals(" ") : "Bezeichnung darf keine Leerzeichen enthalten!";
