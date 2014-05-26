@@ -1,5 +1,4 @@
 package lagerverwaltung;
-
 /**
 * Fachklasse für die Verwaltung eines Lagers.
 * 
@@ -242,5 +241,4 @@ public class Lager {
 
 		return lagerString;
 	}
-
 }
