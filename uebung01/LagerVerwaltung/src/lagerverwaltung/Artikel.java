@@ -4,7 +4,6 @@
  * @author Carsten Gross / Moritz Fey
  */
 package lagerverwaltung;
-
 import java.text.DecimalFormat;
 
 /**
@@ -13,11 +12,21 @@ import java.text.DecimalFormat;
  * @author Carsten
  */
 public class Artikel {
- 
-    private int artikelNr;
-    private String bezeichnung;
-    private int bestand;
-    private double preis;
+    
+    static int ARTIKELNR_MIN_SIZE = 1000;
+    static int ARTIKELNR_MAX_SIZE = 10000;
+    static int BESTAND_MIN = 0;
+    static int PREIS_MIN = 0;
+    static String ARTIKELNR_SIZE_EX = "Artikelnummer nicht 4 stellig!";
+    static String BEZEICHNUNG_NULL_EX = "Bezeichnung ist Null-Referenz oder leer!";
+    static String BESTAND_MIN_EX = "Bestand ist/wird kleiner als 0!";
+    static String PREIS_MIN_EX = "Preis ist/wird kleiner als 0!";
+    static String MENGE_MIN_EX = "Menge ist kleiner als 0!";
+    
+    private int     artikelNr;
+    private String  bezeichnung;
+    private int     bestand;
+    private double  preis;
 
     /**
      * Konstrukter
@@ -25,17 +34,26 @@ public class Artikel {
      * @param bezeichnung   Bezeichnung des Artikels
      * @param bestand       Bestand des Artikels
      * @param preis         Preis des Artikels
+     * @throws lagerverwaltung.MyException
      */
-    public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) {
-        assert artikelNr > 1000 : "Artikelnummer nicht 4 stellig!"; 
-        assert bezeichnung != null : "Bezeichnung ist Null-Referenz!"; 
-        assert bezeichnung.trim().length() > 0 : "Bezeichnung darf nicht leer sein!";
-        //assert bezeichnung.equals(" ") : "Bezeichnung darf keine Leerzeichen enthalten!";
-        //assert !bezeichnung.equals("\t") : "Bezeichnung darf keine Tabulatoren enthalten!";
-        //assert !bezeichnung.equals("\n") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
-        //assert !bezeichnung.equals("\r") : "Bezeichnung darf keine Zeile-Ende-Zeichen enthalten!";
-        assert bestand > 0 : "Bestand ist kleiner als 0!";
-        assert preis > 0 : "Preis ist kleiner als 0!";
+    public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) throws MyException {
+        String exMsg = null;
+
+        if (artikelNr < ARTIKELNR_MIN_SIZE && artikelNr < ARTIKELNR_MAX_SIZE) {
+            exMsg += ARTIKELNR_SIZE_EX;
+        }
+        if (bezeichnung == null || bezeichnung.trim().length() == 0) {
+            exMsg += ARTIKELNR_SIZE_EX;
+        }
+        if (bestand < 0) {
+            exMsg += BESTAND_MIN_EX;
+        }
+        if (preis < 0) {
+            exMsg += PREIS_MIN_EX;
+        }
+        if (exMsg != null) {
+            throw new MyException(exMsg);
+        }
         this.artikelNr = artikelNr;
         this.bezeichnung = bezeichnung;
         this.bestand = bestand;
@@ -47,11 +65,12 @@ public class Artikel {
      * @param artikelNr     Artikelnummer des Artikels
      * @param bezeichnung   Bezeichnung des Artikels
      * @param preis         Preis des Artikels
+     * @throws lagerverwaltung.MyException
      */
-    public Artikel(int artikelNr, String bezeichnung,double preis){
+    public Artikel(int artikelNr, String bezeichnung,double preis) throws MyException{
         this(artikelNr, bezeichnung ,0 ,preis);
     }
-
+    
     public int getArtikelNr() {
         return artikelNr;
     }
@@ -65,41 +84,60 @@ public class Artikel {
         return preis;
     }
 
-    public void setBestand(int bestand) {
-        assert bestand > 0 : "Bestand ist kleiner als 0!";
-        this.bestand = bestand;
-    }
-    public void setPreis(double preis) {
-        assert preis > 0 : "Preis ist kleiner als 0!";
+    public void setPreis(double preis) throws MyException {
+        String exMsg = null;
+        if (preis < 0.0) {
+            exMsg += PREIS_MIN_EX;
+        }
+        if (exMsg != null) {
+            throw new MyException(exMsg);
+        }
         this.preis = preis;
     }
     
     /**
      * bucheZugang erhöht um die in menge mitgegebene Anzahl den Bestand
-     * @param menge     Anzahl um die siche der Bestand verändert
+     * @param menge     Anzahl, um die sich der Bestand verändert
      */
-    public void bucheZugang(int menge){
-        assert menge > 0 : "Menge ist kleiner als 0!";
+    public void bucheZugang(int menge) throws MyException{
+        String exMsg = null;
+        if (menge < 0.0) {
+            exMsg += MENGE_MIN_EX;
+        }
+        if (exMsg != null) {
+            throw new MyException(exMsg);
+        }
         bestand += menge;
     }  
     /**
      * bucheAbgang verringert um die in menge mitgebene Anzahl den Bestand
      * @param menge      Anzahl um die siche der Bestand verändert
      */
-    public void bucheAbgang(int menge){
-        assert menge > 0 : "Menge ist kleiner als 0!";
-        assert (bestand-menge) > 0 : "Bestand wird kleiner als 0!";
+    public void bucheAbgang(int menge) throws MyException{
+        String exMsg = null;
+        if (menge < 0.0) {
+            exMsg += MENGE_MIN_EX;
+        }
+        if ((bestand-menge) < 0) {
+            exMsg += BESTAND_MIN_EX;
+        }
+        if (exMsg != null) {
+            throw new MyException(exMsg);
+        }
         bestand -= menge;
     }   
+    
     /**
      * Aendert den Preis um einen gewissen Prozentsatz
      * @param prozentSatz       gibt die Prozent aenderung mit
-     */
+    
     public void aenderePreis(double prozentSatz) {
         double differenz = 0.0;
         differenz = preis * (prozentSatz / 100);
         this.preis = preis + differenz;
-    }  
+    }  */
+    
+    
     /**
      * toString gibt einen String für die Ausgabe zurück
      * @return 
@@ -111,10 +149,3 @@ public class Artikel {
                 + " Bestand: " +bestand+" Preis: "+f.format(preis);
     }
 }
-
-
-/**
- * Wieso kein Standard Konstruktor?
- * Weil wir sonst Objekte haben mit gleicher Artikelnummer und 
- * diese nicht mehr diefferenzieren können.
- */

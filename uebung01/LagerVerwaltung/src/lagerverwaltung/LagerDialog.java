@@ -13,7 +13,6 @@ import de.htw.saarland.stl.Stdin;
  */
 public class LagerDialog {
     
-    /*
     Lager[] lagerArray;
     int maxLager;
     int lagerAnzahl;
@@ -26,7 +25,8 @@ public class LagerDialog {
      
     private LagerDialog() {
     }
-    */
+    
+    
     public static void main(String[] args) {
         Lager meinLager = new Lager("Saarbruecken", 5);
         meinLager.erstelleArtikel(4711, "Kebab", 5, 49.99);
@@ -38,10 +38,10 @@ public class LagerDialog {
         meinLager.aenderePreis(20);
         System.out.println(meinLager.toString());     
         
-        //LagerDialog lagerDialog = new LagerDialog();
-        //lagerDialog.start();   
+        LagerDialog lagerDialog = new LagerDialog();
+        lagerDialog.start();   
     }
-    /*
+    
     private void start() {
         while (weitermachen()){
             int menu = printMenu();
@@ -96,5 +96,4 @@ public class LagerDialog {
         }    
         return antwort == 'j';
     }
-    */
 }
