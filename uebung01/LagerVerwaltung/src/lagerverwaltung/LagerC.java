@@ -26,12 +26,12 @@ public class LagerC {
     }
     
     
-    public void artikelAnlegen(int artikelNr, String bezeichnung, int bestand, double preis){
+    public void artikelAnlegen(int artikelNr, String bezeichnung, int bestand, double preis) throws MyException{
         artikelArray[artikelAnzahl] = new Artikel(artikelNr, bezeichnung, bestand, preis);
         artikelAnzahl += 1;
         
     }
-    public void artikelAnlegen(int artikelNr, String bezeichnung, double preis){
+    public void artikelAnlegen(int artikelNr, String bezeichnung, double preis) throws MyException{
         artikelArray[artikelAnzahl] = new Artikel(artikelNr, bezeichnung, preis);
         artikelAnzahl += 1;
     }
@@ -60,17 +60,17 @@ public class LagerC {
         }
     }
     
-    public void zugangBuchen(int artikelNr, int menge){
+    public void zugangBuchen(int artikelNr, int menge) throws MyException{
         int position = findeArtikel(artikelNr);
         artikelArray[position].bucheZugang(menge);
     }
     
-    public void abgangBuchen(int artikelNr, int menge){
+    public void abgangBuchen(int artikelNr, int menge) throws MyException{
         int position = findeArtikel(artikelNr);
         artikelArray[position].bucheAbgang(menge);
     }
     
-    public void preisÄndern(Artikel artikel, int prozentSatz){
+    public void preisÄndern(Artikel artikel, int prozentSatz) throws MyException{
         assert prozentSatz <= 0 : "Prozentsatz zu niedrig!";
         assert prozentSatz >= 50 : "Prozentsatz zu hoch!";
         for (Artikel artikelIn : artikelArray) {
