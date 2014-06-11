@@ -116,7 +116,7 @@ public class LagerDialog {
      */
     public boolean weitermachen() {
         char antwort = ' ';
-        System.out.println("Weitermachen?");
+        System.out.println("\n Weitermachen?");
         while ((antwort != 'j') && (antwort != 'n')) {
             antwort = Stdin.readChar();
         }

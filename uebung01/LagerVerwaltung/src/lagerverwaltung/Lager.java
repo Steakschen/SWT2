@@ -247,8 +247,9 @@ public class Lager {
             throw new MyException(exMsg);
         }
         
-        for (int i = 0; i < artikel.length; i++) {
+        for (int i = 0; i < artikelAnzahl; i++) {
             artikel[i].setPreis( artikel[i].getPreis() * ((100.0 + (double) prozentSatz) / 100.0) );
+            System.out.println(artikel[i]);
         }
     }
 
