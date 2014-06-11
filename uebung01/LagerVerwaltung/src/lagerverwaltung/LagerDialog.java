@@ -35,7 +35,8 @@ public class LagerDialog {
 
         do {
             int menu = printMenu();
-            switch (menu) {
+            try {
+                switch (menu) {
                 case 1:
                     System.out.println("Artikelnummer: ");
                     int artikelNr = Stdin.readInt();
@@ -78,6 +79,11 @@ public class LagerDialog {
                     System.out.println("Default got hit O_o");
                     break;
             }
+            } catch (MyException e) {
+                    System.out.println(e);
+            }
+            
+            
         } while (weitermachen());
     }
 
