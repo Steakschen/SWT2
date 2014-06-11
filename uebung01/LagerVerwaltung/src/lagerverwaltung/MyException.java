@@ -7,7 +7,7 @@
 package lagerverwaltung;
 
 /**
- *
+ * Exception Klasse
  * @author Moritz
  */
 public class MyException extends Exception {
