@@ -12,6 +12,8 @@ package lagerverwaltung;
  */
 public class Liste {
     
+    private static final String ARTIKEL_VORHANDEN = "\nArtikel bereits vorhanden!\n"; 
+    
     private int count;
     private Knoten head;
     
@@ -30,7 +32,7 @@ public class Liste {
         else {
             Knoten tmp = head;
             if (this.contains(artikel)) {
-                throw new MyException("Artikel bereits in Liste");
+                throw new MyException(ARTIKEL_VORHANDEN);
             }
             while (tmp != null) {
                 if (tmp.data.getArtikelNr() < itemToAdd.data.getArtikelNr()) {
@@ -43,11 +45,11 @@ public class Liste {
         }
     }
     
-    public boolean contains(Artikel _artikel) {
+    public boolean contains(Artikel artikel) {
         Knoten tmp = head;
         boolean containsItem = false;
         for (int i = 0; i < count; i++) {
-            if (tmp.data.getArtikelNr() == _artikel.getArtikelNr()) {
+            if (tmp.data.getArtikelNr() == artikel.getArtikelNr()) {
                 containsItem = true;
             }
             tmp = tmp.next;
@@ -59,10 +61,20 @@ public class Liste {
         return head.data;
     }
     
-    public void delete(int _artikelnummer) {
+    public Artikel getArtikel(int artikelNummer) {
         Knoten tmp = head;
         while (tmp != null) {
-            if (tmp.next.data.getArtikelNr() == _artikelnummer) {
+            if (tmp.data.getArtikelNr() == artikelNummer) {
+                return tmp.data;
+            }
+        }
+        return null;
+    }
+    
+    public void delete(int artikelNummer) {
+        Knoten tmp = head;
+        while (tmp != null) {
+            if (tmp.next.data.getArtikelNr() == artikelNummer) {
                 tmp.next = tmp.next.next;
                 count -= 1;
             }
