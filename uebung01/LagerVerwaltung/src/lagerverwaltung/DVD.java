@@ -10,6 +10,6 @@ package lagerverwaltung;
  *
  * @author Moritz
  */
-public class DVD {
+public class DVD extends Artikel {
     
 }

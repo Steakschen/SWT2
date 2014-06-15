@@ -10,6 +10,6 @@ package lagerverwaltung;
  *
  * @author Moritz
  */
-public class Buch {
+public class Buch extends Artikel {
     
 }
