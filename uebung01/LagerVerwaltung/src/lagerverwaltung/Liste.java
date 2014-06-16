@@ -25,32 +25,65 @@ public class Liste {
         this.head       = null;
     }
     
+    public void addFirst (Artikel artikel) throws MyException {
+        Knoten itemToAdd = new Knoten(artikel, null, null);
+        Knoten tmp = head;
+        head = itemToAdd;
+        head.next = tmp;
+        count += 1;
+    }
+    
     /**
      * Funktion zum sortierten einfuegen in die Liste.
+     * @param index
      * @param artikel Der einzufuegende Artikel
      * @throws MyException 
      */
-    public void add(Artikel artikel) throws MyException {
-        Knoten itemToAdd = new Knoten(artikel, null);
-        if (count == 0) {
-            head   = itemToAdd;
-            count += 1;
-        } 
+    public void add(int index, Artikel artikel) throws MyException {
+        /*if (index > count) {
+            throw new MyException("Index out of Bound");
+        } */  
         
+        if (index == 1) {
+            addFirst(artikel);
+        } 
         else {
-            Knoten tmp = head;
+           
             if (this.contains(artikel)) {
                 throw new MyException(ARTIKEL_VORHANDEN);
             }
-            while (tmp != null) {
-                if (tmp.data.getArtikelNr() < itemToAdd.data.getArtikelNr()) {
-                    Knoten tmpNext = tmp.next;
-                    tmp.next = itemToAdd;
-                    itemToAdd.next = tmpNext;
-                }
-                tmp = tmp.next;
+            
+            int i = 1;
+            Knoten neuerKnoten      = new Knoten(artikel, null, null);
+            Knoten tmpKnoten        = head;
+            Knoten naechsterKnoten  = null;
+            
+            while (i < index-1) {
+                naechsterKnoten     = tmpKnoten.next;
+                tmpKnoten           = naechsterKnoten;
+                i++;
+            }
+            
+            neuerKnoten.prev        = tmpKnoten;
+            neuerKnoten.next        = tmpKnoten.next;
+            tmpKnoten.next.prev     = neuerKnoten;
+            tmpKnoten.next          = neuerKnoten;
+            count++;
+        }
+    }
+    
+    public int findeArtikel(int artikelNummer) {
+        int position        = -1;
+        int zaehler         =  0;
+        Knoten tmpKnoten    = head;
+        
+        while (tmpKnoten != null) {
+            zaehler += 1;
+            if (tmpKnoten.data.getArtikelNr() == artikelNummer) {
+                position = zaehler;
             }
         }
+        return position;
     }
     
     /**
@@ -107,15 +140,27 @@ public class Liste {
         }
     }
     
+    public String toString() {
+        Knoten tmp = head;
+        String listenString = new String();
+        while (tmp != null) {
+            listenString += tmp.data.toString();
+            tmp = tmp.next;
+        }
+        return listenString;
+    }
+    
     /**
      * Klasse fuer den Knoten der Liste.
      */
     public static class Knoten {
         private Artikel data;
+        private Knoten prev;
         private Knoten next;
         
-        public Knoten (Artikel _data, Knoten _next) {
+        public Knoten (Artikel _data, Knoten _prev, Knoten _next) {
             this.data = _data;
+            this.prev = _prev;
             this.next = _next;
         }
     }

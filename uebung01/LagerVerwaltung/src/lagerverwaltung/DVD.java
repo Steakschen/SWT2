@@ -12,4 +12,11 @@ package lagerverwaltung;
  */
 public class DVD extends Artikel {
     
+    String titel;
+    double spieldauer;
+    int erscheinungsjahr;
+    public DVD(int artikelNr, String bezeichnung, int bestand, double preis, 
+            String titel, double spieldauer, int erscheinungsjahr) throws MyException {
+        super(artikelNr, bezeichnung, bestand, preis);
+    }
 }
