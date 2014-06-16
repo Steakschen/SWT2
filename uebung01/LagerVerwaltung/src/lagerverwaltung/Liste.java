@@ -14,18 +14,26 @@ public class Liste {
     
     private static final String ARTIKEL_VORHANDEN = "\nArtikel bereits vorhanden!\n"; 
     
-    private int count;
-    private Knoten head;
+    private int         count;
+    private Knoten      head;
     
+    /**
+     * Konstruktor fuer die Klasse Liste.
+     */
     public Liste() {
-        this.count = 0;
-        this.head  = null;
+        this.count      = 0;
+        this.head       = null;
     }
     
+    /**
+     * Funktion zum sortierten einfuegen in die Liste.
+     * @param artikel Der einzufuegende Artikel
+     * @throws MyException 
+     */
     public void add(Artikel artikel) throws MyException {
         Knoten itemToAdd = new Knoten(artikel, null);
         if (count == 0) {
-            head = itemToAdd;
+            head   = itemToAdd;
             count += 1;
         } 
         
@@ -45,6 +53,11 @@ public class Liste {
         }
     }
     
+    /**
+     * Funktion die prueft, ob ein Artikel in der Liste ist.
+     * @param artikel
+     * @return true, falls Artikel im Lager, ansonsten false
+     */
     public boolean contains(Artikel artikel) {
         Knoten tmp = head;
         boolean containsItem = false;
@@ -57,10 +70,19 @@ public class Liste {
         return containsItem;
     }
     
+    /**
+     * Gibt das erste Element der Liste zurueck.
+     * @return erstes Listenelement
+     */
     public Artikel getHead() {
         return head.data;
     }
     
+    /**
+     * Artikel mit Artikelnummer finden.
+     * @param artikelNummer Artikelnummer des gesuchten Artikels
+     * @return Referenz auf den Artikel, oder im Fehlerfall null
+     */
     public Artikel getArtikel(int artikelNummer) {
         Knoten tmp = head;
         while (tmp != null) {
@@ -71,6 +93,10 @@ public class Liste {
         return null;
     }
     
+    /**
+     * Loeschen eines Artikels per Artikelnummer.
+     * @param artikelNummer Artikelnummer des zu loeschenden Artikels
+     */
     public void delete(int artikelNummer) {
         Knoten tmp = head;
         while (tmp != null) {
@@ -81,6 +107,9 @@ public class Liste {
         }
     }
     
+    /**
+     * Klasse fuer den Knoten der Liste.
+     */
     public static class Knoten {
         private Artikel data;
         private Knoten next;
