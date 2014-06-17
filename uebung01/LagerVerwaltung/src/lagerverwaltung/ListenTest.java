@@ -17,7 +17,7 @@ public class ListenTest {
     private int elemente;
     public ListenTest() {
         list = new Liste();
-        elemente = 1;
+        elemente = 3;
     }
 
     public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class ListenTest {
         String bezeichnung          = Stdin.readString("Bezeichnung: ");
         int bestand                 = Stdin.readInt("Bestand: ");
         double preis                = Stdin.readDouble("Preis: ");
-        list.add(elemente, new Artikel(artikelNummer, bezeichnung, bestand, preis));
+        list.add(new Artikel(artikelNummer, bezeichnung, bestand, preis));
         elemente++;
     }
 
@@ -43,9 +43,16 @@ public class ListenTest {
         System.out.println("2 - Print Liste");
     }
     
+    public void deleteArtikel() throws MyException {
+        int artikelNummer = Stdin.readInt("Bitte Artikelnummer angeben: ");
+        list.delete(artikelNummer);
+    }
+    
     public void run() {
         int eingabe = -1;
         try {
+            list.add(new Artikel(4711,"Banane",6,6));
+            list.add(new Artikel(1337,"Apfel",5,5));
             while (eingabe != 0) {
                 printMenu();
                 eingabe = Stdin.readInt("Auswahl: ");
@@ -55,6 +62,9 @@ public class ListenTest {
                         break;
                     case 2:
                         printListe();
+                        break;
+                    case 3:
+                        deleteArtikel();
                         break;
                 }
             }
