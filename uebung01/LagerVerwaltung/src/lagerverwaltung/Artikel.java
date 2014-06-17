@@ -17,6 +17,7 @@ public class Artikel {
     static int ARTIKELNR_MAX_SIZE = 10000;
     static int BESTAND_MIN = 0;
     static int PREIS_MIN = 0;
+    static double MWST = 1.19;
     static String ARTIKELNR_SIZE_EX = "Artikelnummer nicht 4 stellig!";
     static String BEZEICHNUNG_NULL_EX = "Bezeichnung ist Null-Referenz oder leer!";
     static String BESTAND_MIN_EX = "Bestand ist/wird kleiner als 0!";
@@ -135,6 +136,8 @@ public class Artikel {
     public String toString() {
         DecimalFormat f = new DecimalFormat("#0.00"); 
         return "\n Artikel: " + artikelNr + " Bezeichnung: "+bezeichnung
-                + " Bestand: " +bestand+" Preis: "+f.format(preis);
+                + " Bestand: " +bestand+" Brutto-Preis: "+f.format(preis)
+                +" Netto-Preis: "+ f.format(preis/MWST)+" MWST-Anteil: "
+                + f.format(preis-(preis/MWST));
     }
 }
