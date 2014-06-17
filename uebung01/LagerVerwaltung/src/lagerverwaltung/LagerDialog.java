@@ -8,6 +8,12 @@ package lagerverwaltung;
 import de.htw.saarland.stl.Stdin;
 
 public class LagerDialog {
+    
+    /* Konstanten */
+    private static final int ARTIKEL = 1;
+    private static final int BUCH = 2;
+    private static final int DVD = 3;
+    private static final int CD = 4;
 
     private Lager meinLager;
 
@@ -47,21 +53,23 @@ public class LagerDialog {
             try {
                 switch (menu) {
                     case 1:
-                        System.out.println("Artikelnummer: ");
-                        int artikelNr = Stdin.readInt();
-                        System.out.println("Artikelname: ");
-                        String artikelName = Stdin.readString();
-                        System.out.println("Artikelbestand: ");
-                        int artikelBestand = Stdin.readInt();
-                        System.out.println("Artikelpreis: ");
-                        double artikelPreis = Stdin.readDouble();
-                        meinLager.erstelleArtikel(artikelNr, artikelName, 
-                                artikelBestand, artikelPreis);
+                        int artikelMenu = printArtikelMenu();
+                        if (artikelMenu == ARTIKEL) {
+                            artikelAnlegen();
+                        }else if (artikelMenu == BUCH) {
+                            buchAnlegen();
+                        }else if (artikelMenu == DVD) {
+                            dvdAnlegen();
+                        }else if (artikelMenu == CD) {
+                            cdAnlegen();
+                        }else {
+                            artikelAnlegen();
+                        }
                         break;
                     case 2:
                         System.out.println("Bitte Artikelnummer des zu "
                                 + "entfernenden Artikels: ");
-                        artikelNr = Stdin.readInt();
+                        int artikelNr = Stdin.readInt();
                         meinLager.entferneArtikel(artikelNr);
                         break;
                     case 3:
@@ -99,7 +107,8 @@ public class LagerDialog {
 
     /**
      * Menu ausgeben
-     * @return 
+     *
+     * @return
      */
     private int printMenu() {
         System.out.println("\n Menu:\n");
@@ -111,10 +120,25 @@ public class LagerDialog {
         System.out.println("6 - Lager ausgeben\n");
         return Stdin.readInt();
     }
+    
+        /**
+     * Aritikel Menu ausgeben
+     *
+     * @return
+     */
+    private int printArtikelMenu() {
+        System.out.println("\n Was möchten sie Anlegen:\n");
+        System.out.println("1 - Artikel anlegen\n");
+        System.out.println("2 - Buch anlegen\n");
+        System.out.println("3 - DVD  anlegen\n");
+        System.out.println("4 - CD anlegen\n");
+        return Stdin.readInt();
+    }
 
     /**
      * Weitermachen ?
-     * @return 
+     *
+     * @return
      */
     public boolean weitermachen() {
         char antwort = ' ';
@@ -123,5 +147,48 @@ public class LagerDialog {
             antwort = Stdin.readChar();
         }
         return antwort == 'j';
+    }
+
+    private void artikelAnlegen() throws MyException {
+        System.out.println("Artikelnummer: ");
+        int artikelNr = Stdin.readInt();
+        System.out.println("Artikelname: ");
+        String artikelName = Stdin.readString();
+        System.out.println("Artikelbestand: ");
+        int artikelBestand = Stdin.readInt();
+        System.out.println("Artikelpreis: ");
+        double artikelPreis = Stdin.readDouble();
+        meinLager.erstelleArtikel(artikelNr, artikelName,
+                artikelBestand, artikelPreis);
+    }
+    
+    private void buchAnlegen() {
+        System.out.println("Buch Titel: ");
+        String titel = Stdin.readString();
+        System.out.println("Buch Autor: ");
+        String autor = Stdin.readString();
+        System.out.println("Buch Verlag: ");
+        String verlag = Stdin.readString();
+        //meinLager.erstelleBUCH(titel, autor, verlag);
+    }
+
+    private void dvdAnlegen() {
+        System.out.println("DVD Titel: ");
+        String titel = Stdin.readString();
+        System.out.println("DVD Spieldauer: ");
+        float dauer = (float) Stdin.readDouble(); //readFloat geht net
+        System.out.println("DVD Erscheinungsjahr: ");
+        String jahr = Stdin.readString();
+        //meinLager.erstelleDVD(titel, dauer, jahr);
+    }
+
+    private void cdAnlegen() {
+        System.out.println("CD Interpret: ");
+        String titel = Stdin.readString();
+        System.out.println("CD Titel: ");
+        String autor = Stdin.readString();
+        System.out.println("CD Anzahl Musiktitel: ");
+        int anzahl = Stdin.readInt();
+        //meinLager.erstelleDVD(titel, autor, anzahl)
     }
 }
