@@ -320,6 +320,18 @@ public class Lager {
     }
     
     /**
+     * Bereitet den Lagerbestand auf und gibt ihn aus
+     * @return 
+     */
+    public String ausgebenBestandsListe() {
+        String lagerString = new String("Lagerort: " + standort+'\n');
+        
+        //hier formatter
+        
+        return lagerString; 
+    }
+    
+    /**
      * toString zur Ausgabe des kompletten Lagers.
      *
      * @return Lager als String
