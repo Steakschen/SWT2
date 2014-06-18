@@ -55,13 +55,17 @@ public class LagerDialog {
                     case 1:
                         int artikelMenu = printArtikelMenu();
                         if (artikelMenu == ARTIKEL) {
-                            artikelAnlegen();
+                            Artikel artikel = artikelAnlegen();
+                            meinLager.erstelleArtikel(artikel);
                         }else if (artikelMenu == BUCH) {
-                            buchAnlegen();
+                            Buch buch = buchAnlegen();
+                            meinLager.erstelleArtikel(buch);
                         }else if (artikelMenu == DVD) {
-                            dvdAnlegen();
+                            DVD dvd = dvdAnlegen();
+                            meinLager.erstelleArtikel(dvd);
                         }else if (artikelMenu == CD) {
-                            cdAnlegen();
+                            CD cd = cdAnlegen();
+                            meinLager.erstelleArtikel(cd);
                         }else {
                             artikelAnlegen();
                         }
@@ -111,13 +115,13 @@ public class LagerDialog {
      * @return
      */
     private int printMenu() {
-        System.out.println("\n Menu:\n");
-        System.out.println("1 - Artikel anlegen\n");
-        System.out.println("2 - Artikel löschen\n");
-        System.out.println("3 - Buche Zugang\n");
-        System.out.println("4 - Buche Abgang\n");
-        System.out.println("5 - aendere Preis\n");
-        System.out.println("6 - Lager ausgeben\n");
+        System.out.println("\n Menu:");
+        System.out.println(" 1 - Artikel anlegen");
+        System.out.println(" 2 - Artikel löschen");
+        System.out.println(" 3 - Buche Zugang");
+        System.out.println(" 4 - Buche Abgang");
+        System.out.println(" 5 - aendere Preis");
+        System.out.println(" 6 - Lager ausgeben\n");
         return Stdin.readInt();
     }
     
@@ -127,11 +131,11 @@ public class LagerDialog {
      * @return
      */
     private int printArtikelMenu() {
-        System.out.println("\n Was möchten sie Anlegen:\n");
-        System.out.println("1 - Artikel anlegen\n");
-        System.out.println("2 - Buch anlegen\n");
-        System.out.println("3 - DVD  anlegen\n");
-        System.out.println("4 - CD anlegen\n");
+        System.out.println("\n Was möchten sie Anlegen:");
+        System.out.println(" 1 - Artikel anlegen");
+        System.out.println(" 2 - Buch anlegen");
+        System.out.println(" 3 - DVD  anlegen");
+        System.out.println(" 4 - CD anlegen\n");
         return Stdin.readInt();
     }
 
@@ -149,7 +153,7 @@ public class LagerDialog {
         return antwort == 'j';
     }
 
-    private void artikelAnlegen() throws MyException {
+    private Artikel artikelAnlegen() throws MyException {
         System.out.println("Artikelnummer: ");
         int artikelNr = Stdin.readInt();
         System.out.println("Artikelname: ");
@@ -158,37 +162,47 @@ public class LagerDialog {
         int artikelBestand = Stdin.readInt();
         System.out.println("Artikelpreis: ");
         double artikelPreis = Stdin.readDouble();
-        meinLager.erstelleArtikel(artikelNr, artikelName,
-                artikelBestand, artikelPreis);
+        Artikel artikel 
+            = new Artikel (artikelNr,artikelName,artikelBestand,artikelPreis);
+        return artikel;
     }
     
-    private void buchAnlegen() {
+    private Buch buchAnlegen() throws MyException {
+        Artikel artikel = artikelAnlegen();
         System.out.println("Buch Titel: ");
         String titel = Stdin.readString();
         System.out.println("Buch Autor: ");
         String autor = Stdin.readString();
         System.out.println("Buch Verlag: ");
         String verlag = Stdin.readString();
-        //meinLager.erstelleBUCH(titel, autor, verlag);
+        Buch buch = new Buch(artikel.getArtikelNr(), artikel.getBezeichnung(), 
+                artikel.getBestand(), artikel.getPreis(),titel, autor, verlag);
+        return buch;
     }
 
-    private void dvdAnlegen() {
+    private DVD dvdAnlegen() throws MyException {
+        Artikel artikel = artikelAnlegen();
         System.out.println("DVD Titel: ");
         String titel = Stdin.readString();
         System.out.println("DVD Spieldauer: ");
-        float dauer = (float) Stdin.readDouble(); //readFloat geht net
+        float spieldauer = (float) Stdin.readDouble(); //readFloat geht net
         System.out.println("DVD Erscheinungsjahr: ");
-        String jahr = Stdin.readString();
-        //meinLager.erstelleDVD(titel, dauer, jahr);
+        int erscheinungsjahr = Stdin.readInt();
+        DVD dvd = new DVD(artikel.getArtikelNr(), artikel.getBezeichnung(), 
+                artikel.getBestand(), artikel.getPreis(),titel, spieldauer, erscheinungsjahr);
+        return dvd;
     }
 
-    private void cdAnlegen() {
+    private CD cdAnlegen() throws MyException {
+        Artikel artikel = artikelAnlegen();
         System.out.println("CD Interpret: ");
         String titel = Stdin.readString();
         System.out.println("CD Titel: ");
-        String autor = Stdin.readString();
+        String interpret = Stdin.readString();
         System.out.println("CD Anzahl Musiktitel: ");
         int anzahl = Stdin.readInt();
-        //meinLager.erstelleDVD(titel, autor, anzahl)
+        CD cd = new CD(artikel.getArtikelNr(), artikel.getBezeichnung(), 
+                artikel.getBestand(), artikel.getPreis(), titel, interpret, anzahl);
+        return cd;
     }
 }

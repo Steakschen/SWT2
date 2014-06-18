@@ -28,6 +28,7 @@ public class Buch extends Artikel {
 
     /**
      * Konstruktor des Buchs
+     *
      * @param artikelNr
      * @param bezeichnung
      * @param bestand
@@ -35,7 +36,7 @@ public class Buch extends Artikel {
      * @param titel
      * @param autor
      * @param verlag
-     * @throws MyException 
+     * @throws MyException
      */
     public Buch(int artikelNr, String bezeichnung, int bestand, double preis,
             String titel, String autor, String verlag) throws MyException {
@@ -60,9 +61,11 @@ public class Buch extends Artikel {
             this.verlag = verlag;
         }
     }
-    
+
+
     /**
      * Liefert den Titel des Buchs
+     *
      * @return Buchtitel
      */
     public String getTitel() {
@@ -71,20 +74,22 @@ public class Buch extends Artikel {
 
     /**
      * Liefert den Autor des Buchs
+     *
      * @return Buchautor
      */
     public String getAutor() {
         return autor;
     }
-    
+
     /**
      * Liefert den Verlag
+     *
      * @return Verlag des Buchs
      */
     public String getVerlag() {
         return verlag;
     }
-    
+
     /**
      * Liefert den Autor und Titel des Buchs als String.
      *
@@ -97,6 +102,7 @@ public class Buch extends Artikel {
 
     /**
      * toString() Methode der Klasse Buch.
+     *
      * @return
      */
     public String toString() {
