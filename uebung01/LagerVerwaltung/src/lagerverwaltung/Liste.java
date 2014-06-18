@@ -14,6 +14,7 @@ public class Liste {
     
     private static final String ARTIKEL_VORHANDEN = "\tArtikel bereits vorhanden!\n"; 
     private static final String LISTE_LEER = "\tListe ist leer!\n";
+    private static final String AUSSERHALB_LISTE = "\tIndex ausserhalb der Liste!\n";
     
     private int         size;
     private Knoten      head;
@@ -131,6 +132,24 @@ public class Liste {
         } else {
             throw new MyException(LISTE_LEER);
         }
+    }
+    
+    public Artikel getArtikelAtPos(int position) throws MyException{
+        if (position < 0 || position >= size) {
+            throw new MyException(AUSSERHALB_LISTE);
+        }
+        
+        Knoten anker = head;
+        int it = 0;
+        
+        while(anker != null && it <= position) {
+            if (anker != null && it == position) {
+                return anker.data;
+            }
+            anker = anker.next;
+            it++;
+        }
+        return null;
     }
     
     /**

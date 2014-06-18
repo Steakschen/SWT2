@@ -35,7 +35,12 @@ public class Lager {
     /**
      * Array, das die Artikel beinhaltet.
      */
-    private Artikel[]   artikel;
+    //private Artikel[]   artikel;
+    
+    /**
+     * Liste die die Artikel beinhaltet.
+     */
+    private Liste       artikelListe;
 
     /**
      * Maximale Anzahl Artikel im Lager.
@@ -60,9 +65,9 @@ public class Lager {
             exMsg += STANDORT_FEHLT_EX;
         }
         
-        if (maxArtikel <= MIN_ANZAHL_ARTIKEL) {
+        /*if (maxArtikel <= MIN_ANZAHL_ARTIKEL) {
             exMsg += ANZAHL_ARTIKEL_EX;
-        }
+        }*/
         
         if (exMsg != null) {
             throw new MyException(exMsg);
@@ -71,7 +76,8 @@ public class Lager {
         this.standort           = standort;
         this.maxArtikel         = maxArtikel;
         this.artikelAnzahl      = 0;
-        this.artikel            = new Artikel[maxArtikel];
+        //this.artikel            = new Artikel[maxArtikel];
+        this.artikelListe       = new Liste();
     }
 
     /**
@@ -83,9 +89,8 @@ public class Lager {
      * @param preis Preis des Artikels
      *
      */
-    public void erstelleArtikel(int artikelNummer, String bezeichnung, 
-            int bestand, double preis) throws MyException {
-        String exMsg = null;
+    public void erstelleArtikel(Artikel artikel) throws MyException {
+        /*String exMsg = null;
         
         if (findeArtikel(artikelNummer) >= 0) {
             exMsg += ARTIKEL_BEREITS_VORHANDEN_EX;
@@ -101,7 +106,8 @@ public class Lager {
         
         artikel[artikelAnzahl] = new Artikel(artikelNummer, bezeichnung, 
                 bestand, preis);
-        artikelAnzahl += 1;
+        artikelAnzahl += 1;*/
+        artikelListe.add(artikel);
     }
 
     /**
@@ -112,10 +118,10 @@ public class Lager {
      * @param preis Preis des Artikels
      *
      */
-    public void erstelleArtikel(int artikelNummer, String bezeichnung, 
+    /*public void erstelleArtikel(int artikelNummer, String bezeichnung, 
             double preis) throws MyException {
         erstelleArtikel(artikelNummer, bezeichnung, 0, preis);
-    }
+    }/*
 
     /**
      * Methode zum entfernen eines Artikels.
@@ -123,7 +129,7 @@ public class Lager {
      * @param artikelName Artikelname des zu entfernenden Artikels
      *
      */
-    public void entferneArtikel(String artikelName) throws MyException {
+    /*public void entferneArtikel(String artikelName) throws MyException {
         String exMsg = null;
         
         int pos = findeArtikel(artikelName);
@@ -139,7 +145,7 @@ public class Lager {
             }
             artikelAnzahl -= 1;
         }
-    }
+    }*/
 
     /**
      * Methode zum entfernen eines Artikels.
@@ -149,8 +155,8 @@ public class Lager {
      */
     public void entferneArtikel(int artikelNummer) throws MyException {
         String exMsg = null;
-        
-        int pos = findeArtikel(artikelNummer);
+        artikelListe.delete(artikelNummer);
+        /*int pos = findeArtikel(artikelNummer);
         if (pos < 0) {
             exMsg += ARTIKEL_NICHT_VORHANDEN_EX;
             throw new MyException(exMsg);
@@ -162,7 +168,7 @@ public class Lager {
                 artikel[i] = artikel[i + 1];
             }
             artikelAnzahl -= 1;
-        }
+        }*/
     }
 
     /**
@@ -171,7 +177,7 @@ public class Lager {
      * @param artikelName Name des Artikels
      * @param menge Menge des Zugangs
      */
-    public void bucheZugang(String artikelName, int menge) throws MyException {
+    /*public void bucheZugang(String artikelName, int menge) throws MyException {
         String exMsg = null;
         
         int pos = findeArtikel(artikelName);
@@ -182,7 +188,7 @@ public class Lager {
         else {
             artikel[pos].bucheZugang(menge);
         }
-    }
+    }*/
 
     /**
      * Methode zum Buchen eines Artikelzugangs.
@@ -193,14 +199,15 @@ public class Lager {
     public void bucheZugang(int artikelNummer, int menge) throws MyException {
         String exMsg = null;
         
-        int pos = findeArtikel(artikelNummer);
+        artikelListe.getArtikel(artikelNummer).bucheZugang(menge);
+        /*int pos = findeArtikel(artikelNummer);
         if (pos < 0) {
             exMsg += ARTIKEL_NICHT_VORHANDEN_EX;
             throw new MyException(exMsg);
         }
         else {
             artikel[pos].bucheZugang(menge);
-        }
+        }*/
     }
 
     /**
@@ -209,7 +216,7 @@ public class Lager {
      * @param artikelName Name des Artikels
      * @param menge Menge des Abgangs
      */
-    public void bucheAbgang(String artikelName, int menge) throws MyException{
+    /*public void bucheAbgang(String artikelName, int menge) throws MyException{
         String exMsg = null;
         
         int pos = findeArtikel(artikelName);
@@ -220,7 +227,7 @@ public class Lager {
         else{
             artikel[pos].bucheAbgang(menge);
         }
-    }
+    }*/
 
     /**
      * Methode zum Buchen eines Artikelabgangs.
@@ -231,14 +238,15 @@ public class Lager {
     public void bucheAbgang(int artikelNummer, int menge) throws MyException {
         String exMsg = null;
         
-        int pos = findeArtikel(artikelNummer);
+        artikelListe.getArtikel(artikelNummer).bucheAbgang(menge);
+        /*int pos = findeArtikel(artikelNummer);
         if (pos < 0) {
             exMsg += ARTIKEL_NICHT_VORHANDEN_EX;
             throw new MyException(exMsg);
         }
         else{
             artikel[pos].bucheAbgang(menge);
-        }
+        }*/
     }
 
     /**
@@ -256,10 +264,10 @@ public class Lager {
             throw new MyException(exMsg);
         }
         
-        for (int i = 0; i < artikelAnzahl; i++) {
-            artikel[i].setPreis( artikel[i].getPreis() * 
+        for (int i = 0; i < artikelListe.getSize(); i++) {
+            artikelListe.getArtikelAtPos(i).setPreis(artikelListe.getArtikelAtPos(i).getPreis() * 
                     ((100.0 + (double) prozentSatz) / 100.0) );
-            System.out.println(artikel[i]);
+            System.out.println(artikelListe.getArtikelAtPos(i));
         }
     }
 
@@ -268,28 +276,28 @@ public class Lager {
      *
      * @param artikelNummer Artikelnummer des Artikels
      */
-    private int findeArtikel(int artikelNummer) {
+    /*private int findeArtikel(int artikelNummer) {
         for (int i = 0; i < artikelAnzahl; i++) {
             if (artikel[i].getArtikelNr() == artikelNummer) {
                 return i;
             }
         }
         return -1;
-    }
+    }*/
 
     /**
      * Finde den Array-Index des gesuchten Artikels.
      *
      * @param artikelName Artikelname des Artikels
      */
-    private int findeArtikel(String artikelName) {
+    /*private int findeArtikel(String artikelName) {
         for (int i = 0; i < artikelAnzahl; i++) {
             if (artikel[i].getBezeichnung().equalsIgnoreCase(artikelName)) {
                 return i;
             }
         }
         return -1;
-    }
+    }*/
 
     /**
      * Gib die Anzahl der Artikel im Lager zurück.
@@ -316,7 +324,7 @@ public class Lager {
      * @return true wenn keine Artikel vorhanden, ansonsten false
      */
     public boolean isEmpty() {
-        return (artikelAnzahl == 0);
+        return (artikelListe.getSize() == 0);
     }
     
     /**
@@ -339,12 +347,10 @@ public class Lager {
     public String toString() {
         String lagerString = new String("Lager am Standort: " + standort+'\n');
 
-        if (artikel.length == 0) {
+        if (artikelListe.getSize() == 0) {
             lagerString += LAGER_LEER_EX;
         } else {
-            for (int i = 0; i < artikelAnzahl; i++) {
-                lagerString += artikel[i].toString();
-            }
+            lagerString += artikelListe.toString();
         }
 
         return lagerString;
