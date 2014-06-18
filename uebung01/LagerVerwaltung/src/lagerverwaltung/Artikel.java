@@ -29,8 +29,6 @@ public class Artikel {
     private int     bestand;
     private double  preis;
 
-    public Artikel() {
-    }
 
     /**
      * Konstrukter
