@@ -1,6 +1,6 @@
 /*
  * Softwaretechnik 2 
- * Uebung 1
+ * Uebung 3
  * @author Carsten Gross / Moritz Fey
  */
 package lagerverwaltung;
@@ -8,7 +8,7 @@ package lagerverwaltung;
 /**
  * Klasse fuer eine CD.
  *
- * @author Moritz
+ * @author Moritz / Carsten
  */
 public class CD extends Artikel {
 
@@ -37,6 +37,7 @@ public class CD extends Artikel {
      *
      * @param _artikelNummer Artikelnummer der CD
      * @param _bezeichnung Bezeichnung der CD
+     * @param _bestand
      * @param _preis Preis der CD
      * @param _interpret Interpret der CD
      * @param _titel Titel der CD
@@ -97,8 +98,9 @@ public class CD extends Artikel {
      *
      * @return Beschreibung der CD als String
      */
+    @Override
     public String getBeschreibung() {
-        String beschreibung = new String(interpret + ": " + titel);
+        String beschreibung = interpret + ": " + titel;
         return beschreibung;
     }
 
@@ -107,6 +109,7 @@ public class CD extends Artikel {
      *
      * @return
      */
+    @Override
     public String toString() {
         String cdString = super.toString();
         cdString = cdString + " " + this.getBeschreibung();

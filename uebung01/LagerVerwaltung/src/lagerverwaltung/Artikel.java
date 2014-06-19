@@ -1,6 +1,6 @@
 /**
  * Softwaretechnik 2 
- * Übung 1
+ * Übung 3
  * @author Carsten Gross / Moritz Fey
  */
 package lagerverwaltung;
@@ -9,10 +9,11 @@ import java.text.DecimalFormat;
 /**
  * Die Klasse Artikel stellt ein Artikelobjekt mit 4 Attributen bereit.
  * 
- * @author Carsten
+ * @author Carsten / Moritz
  */
 public class Artikel {
     
+    /* Konstanten */
     static int ARTIKELNR_MIN_SIZE = 1000;
     static int ARTIKELNR_MAX_SIZE = 10000;
     static int BESTAND_MIN = 0;
@@ -24,14 +25,16 @@ public class Artikel {
     static String PREIS_MIN_EX = "Preis ist/wird kleiner als 0!";
     static String MENGE_MIN_EX = "Menge ist kleiner als 0!";
     
+    /* Attribute */
     private int     artikelNr;
     private String  bezeichnung;
     private int     bestand;
     private double  preis;
 
-    
+    /**
+     * Standardkonstruktor (benötigt für ausgebenBestandsListe in Lager)
+     */
     public Artikel() {
-        
     }
 
     /**
@@ -77,23 +80,52 @@ public class Artikel {
         this(artikelNr, bezeichnung ,0 ,preis);
     }
     
+    /**
+     * Gibt die Artikelnummer zurück
+     * @return 
+     */
     public int getArtikelNr() {
         return artikelNr;
     }
+    
+    /**
+     * Gibt den aktuellen Bestand des Artikels zurück
+     * @return 
+     */
     public int getBestand() {
         return bestand;
     }
+    
+    /**
+     * Gibt die Bezeichnung des Artikels zurück
+     * @return 
+     */
     public String getBezeichnung() {
         return bezeichnung;
     }
     
+    /**
+     * Gibt die Bezeichnung zurück muss so sein da die Namenskonvention in 
+     * der Übung nicht gleich sind (ueb1 Bezeichnung / ueb3 Beschreibung)
+     * @return 
+     */
     public String getBeschreibung() {
         return bezeichnung;
     }
+    
+    /**
+     * Gibt den Preis des Artikels zurück
+     * @return 
+     */
     public double getPreis() {
         return preis;
     }
 
+    /**
+     * Setzt den Preis des Artikels
+     * @param preis
+     * @throws MyException 
+     */
     public void setPreis(double preis) throws MyException {
         String exMsg = null;
         if (preis < 0.0) {
@@ -108,6 +140,7 @@ public class Artikel {
     /**
      * bucheZugang erhöht um die in menge mitgegebene Anzahl den Bestand
      * @param menge     Anzahl, um die sich der Bestand verändert
+     * @throws lagerverwaltung.MyException
      */
     public void bucheZugang(int menge) throws MyException{
         String exMsg = null;
@@ -122,6 +155,7 @@ public class Artikel {
     /**
      * bucheAbgang verringert um die in menge mitgebene Anzahl den Bestand
      * @param menge      Anzahl um die siche der Bestand verändert
+     * @throws lagerverwaltung.MyException
      */
     public void bucheAbgang(int menge) throws MyException{
         String exMsg = null;

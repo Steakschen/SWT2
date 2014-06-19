@@ -1,14 +1,14 @@
 /*
  * Softwaretechnik 2 
- * Uebung 1
+ * Uebung 3
  * @author Carsten Gross / Moritz Fey
  */
 
 package lagerverwaltung;
 
 /**
- *
- * @author Moritz
+ * Listen Klasse
+ * @author Moritz / Carsten
  */
 public class Liste {
     
@@ -27,6 +27,11 @@ public class Liste {
         this.head       = null;
     }
     
+    /**
+     * Fügt ein Element an der ersten Stelle ein
+     * @param artikel
+     * @throws MyException 
+     */
     public void addFirst (Artikel artikel) throws MyException {
         Knoten itemToAdd = new Knoten(artikel, null);
         Knoten tmp = head;
@@ -114,6 +119,7 @@ public class Liste {
     /**
      * Loeschen eines Artikels per Artikelnummer.
      * @param artikelNummer Artikelnummer des zu loeschenden Artikels
+     * @throws lagerverwaltung.MyException
      */
     public void delete(int artikelNummer) throws MyException {
         Knoten anker = head;
@@ -135,6 +141,12 @@ public class Liste {
         }
     }
     
+    /**
+     * Gibt den Artikel an der Position in der Liste zurück
+     * @param position
+     * @return
+     * @throws MyException 
+     */
     public Artikel getArtikelAtPos(int position) throws MyException{
         if (position < 0 || position >= size) {
             throw new MyException(AUSSERHALB_LISTE);
@@ -183,6 +195,7 @@ public class Liste {
      * toString()-Methoder der Listenklasse.
      * @return 
      */
+    @Override
     public String toString() {
         Knoten tmp = head;
         String listenString = new String();

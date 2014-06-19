@@ -1,3 +1,8 @@
+/*
+ * Softwaretechnik 2 
+ * Uebung 3
+ * @author Carsten Gross / Moritz Fey
+ */
 package lagerverwaltung;
 
 import java.text.DecimalFormat;
@@ -36,10 +41,6 @@ public class Lager {
      */
     private String standort;
 
-    /**
-     * Array, das die Artikel beinhaltet.
-     */
-    //private Artikel[]   artikel;
     /**
      * Liste die die Artikel beinhaltet.
      */

@@ -1,13 +1,13 @@
 /*
  * Softwaretechnik 2 
- * Uebung 1
+ * Uebung 3
  * @author Carsten Gross / Moritz Fey
  */
 package lagerverwaltung;
 
 /**
- *
- * @author Moritz
+ * Buch Klasse
+ * @author Moritz / Carsten
  */
 public class Buch extends Artikel {
 
@@ -95,6 +95,7 @@ public class Buch extends Artikel {
      *
      * @return Titel der DVD als String
      */
+    @Override
     public String getBeschreibung() {
         String beschreibung = new String(autor + ": " + titel);
         return beschreibung;
@@ -105,6 +106,7 @@ public class Buch extends Artikel {
      *
      * @return
      */
+    @Override
     public String toString() {
         String cdString = super.toString();
         cdString = cdString + " " + this.getBeschreibung();

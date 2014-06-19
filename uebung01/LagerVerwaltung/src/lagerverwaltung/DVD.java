@@ -1,6 +1,6 @@
 /*
  * Softwaretechnik 2 
- * Uebung 1
+ * Uebung 3
  * @author Carsten Gross / Moritz Fey
  */
 package lagerverwaltung;
@@ -8,8 +8,8 @@ package lagerverwaltung;
 import java.util.Calendar;
 
 /**
- *
- * @author Moritz
+ * DVD Klasse
+ * @author Moritz / Carsten
  */
 public class DVD extends Artikel {
 
@@ -95,8 +95,9 @@ public class DVD extends Artikel {
      * Liefert den Titel der DVD als String.
      * @return Titel der DVD als String
      */
+    @Override
     public String getBeschreibung() {
-        String beschreibung = new String(titel);
+        String beschreibung = titel;
         return beschreibung;
     }
     
@@ -104,6 +105,7 @@ public class DVD extends Artikel {
      * toString() Methode der Klasse DVD.
      * @return 
      */
+    @Override
     public String toString() {
         String cdString = super.toString();
         cdString = cdString + " " + this.getBeschreibung();
