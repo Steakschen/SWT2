@@ -29,6 +29,10 @@ public class Artikel {
     private int     bestand;
     private double  preis;
 
+    
+    public Artikel() {
+        
+    }
 
     /**
      * Konstrukter
@@ -80,6 +84,10 @@ public class Artikel {
         return bestand;
     }
     public String getBezeichnung() {
+        return bezeichnung;
+    }
+    
+    public String getBeschreibung() {
         return bezeichnung;
     }
     public double getPreis() {

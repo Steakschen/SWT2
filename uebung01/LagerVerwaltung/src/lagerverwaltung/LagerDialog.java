@@ -83,6 +83,9 @@ public class LagerDialog {
                     case 6:
                         System.out.println(meinLager.toString());
                         break;
+                    case 7:
+                        System.out.println(meinLager.ausgebenBestandsListe());
+                        break;
                     default:
                         System.out.println("Default got hit O_o");
                         break;
@@ -106,7 +109,8 @@ public class LagerDialog {
         System.out.println(" 3 - Buche Zugang");
         System.out.println(" 4 - Buche Abgang");
         System.out.println(" 5 - aendere Preis");
-        System.out.println(" 6 - Lager ausgeben\n");
+        System.out.println(" 6 - Lager ausgeben");
+        System.out.println(" 7 - Bestandsliste ausgeben\n");
         return Stdin.readInt();
     }
 

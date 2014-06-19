@@ -89,7 +89,7 @@ public class Liste {
     }
     
     /**
-     * Gibt das erste Element der Liste zurueck.
+     * Gibt das erste Element/den ersten Artikel der Liste zurueck.
      * @return erstes Listenelement
      */
     public Artikel getHead() {
@@ -120,6 +120,7 @@ public class Liste {
         if (anker != null) {
             if (anker.data.getArtikelNr() == artikelNummer) {
                 popFront();
+                size--; //carsten
             } else {
                 Knoten p = anker;
                 while (p.next != null && p.next.data.getArtikelNr() != artikelNummer) {
