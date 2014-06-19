@@ -142,6 +142,11 @@ public class LagerDialog {
         return antwort == 'j';
     }
 
+    /**
+     * Legt die Artikel an
+     *
+     * @throws MyException
+     */
     private void artikelAnlegen() throws MyException {
         int artikelMenu = printArtikelMenu();
         switch (artikelMenu) {
@@ -186,21 +191,41 @@ public class LagerDialog {
         }
     }
 
+    /**
+     * Artikelnummer einlesen
+     *
+     * @return
+     */
     private int artikelNrAnlegen() {
         System.out.println("Artikelnummer: ");
         return Stdin.readInt();
     }
 
+    /**
+     * Artikelname anlegen/einlesen
+     *
+     * @return
+     */
     private String artikelNameAnlegen() {
         System.out.println("Artikelname: ");
         return Stdin.readString();
     }
 
+    /**
+     * Bestand anlegen/einlesen
+     *
+     * @return
+     */
     private int artikelBestandAnlegen() {
         System.out.println("Artikelbestand: ");
         return Stdin.readInt();
     }
 
+    /**
+     * Preis anlegen/einlesen
+     *
+     * @return
+     */
     private double artikelPreisAnlegen() {
         System.out.println("Artikelpreis: ");
         return Stdin.readDouble();

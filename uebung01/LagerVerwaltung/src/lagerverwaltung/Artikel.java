@@ -1,18 +1,19 @@
 /**
- * Softwaretechnik 2 
- * Übung 3
+ * Softwaretechnik 2 Übung 3
+ *
  * @author Carsten Gross / Moritz Fey
  */
 package lagerverwaltung;
+
 import java.text.DecimalFormat;
 
 /**
  * Die Klasse Artikel stellt ein Artikelobjekt mit 4 Attributen bereit.
- * 
+ *
  * @author Carsten / Moritz
  */
 public class Artikel {
-    
+
     /* Konstanten */
     static int ARTIKELNR_MIN_SIZE = 1000;
     static int ARTIKELNR_MAX_SIZE = 10000;
@@ -24,12 +25,12 @@ public class Artikel {
     static String BESTAND_MIN_EX = "Bestand ist/wird kleiner als 0!";
     static String PREIS_MIN_EX = "Preis ist/wird kleiner als 0!";
     static String MENGE_MIN_EX = "Menge ist kleiner als 0!";
-    
+
     /* Attribute */
-    private int     artikelNr;
-    private String  bezeichnung;
-    private int     bestand;
-    private double  preis;
+    private int artikelNr;
+    private String bezeichnung;
+    private int bestand;
+    private double preis;
 
     /**
      * Standardkonstruktor (benötigt für ausgebenBestandsListe in Lager)
@@ -39,10 +40,11 @@ public class Artikel {
 
     /**
      * Konstrukter
-     * @param artikelNr     Artikelnummer des Artikels
-     * @param bezeichnung   Bezeichnung des Artikels
-     * @param bestand       Bestand des Artikels
-     * @param preis         Preis des Artikels
+     *
+     * @param artikelNr Artikelnummer des Artikels
+     * @param bezeichnung Bezeichnung des Artikels
+     * @param bestand Bestand des Artikels
+     * @param preis Preis des Artikels
      * @throws lagerverwaltung.MyException
      */
     public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) throws MyException {
@@ -68,54 +70,60 @@ public class Artikel {
         this.bestand = bestand;
         this.preis = preis;
     }
-   
+
     /**
      * Konstruktor
-     * @param artikelNr     Artikelnummer des Artikels
-     * @param bezeichnung   Bezeichnung des Artikels
-     * @param preis         Preis des Artikels
+     *
+     * @param artikelNr Artikelnummer des Artikels
+     * @param bezeichnung Bezeichnung des Artikels
+     * @param preis Preis des Artikels
      * @throws lagerverwaltung.MyException
      */
-    public Artikel(int artikelNr, String bezeichnung,double preis) throws MyException{
-        this(artikelNr, bezeichnung ,0 ,preis);
+    public Artikel(int artikelNr, String bezeichnung, double preis) throws MyException {
+        this(artikelNr, bezeichnung, 0, preis);
     }
-    
+
     /**
      * Gibt die Artikelnummer zurück
-     * @return 
+     *
+     * @return
      */
     public int getArtikelNr() {
         return artikelNr;
     }
-    
+
     /**
      * Gibt den aktuellen Bestand des Artikels zurück
-     * @return 
+     *
+     * @return
      */
     public int getBestand() {
         return bestand;
     }
-    
+
     /**
      * Gibt die Bezeichnung des Artikels zurück
-     * @return 
+     *
+     * @return
      */
     public String getBezeichnung() {
         return bezeichnung;
     }
-    
+
     /**
-     * Gibt die Bezeichnung zurück muss so sein da die Namenskonvention in 
-     * der Übung nicht gleich sind (ueb1 Bezeichnung / ueb3 Beschreibung)
-     * @return 
+     * Gibt die Bezeichnung zurück muss so sein da die Namenskonvention in der
+     * Übung nicht gleich sind (ueb1 Bezeichnung / ueb3 Beschreibung)
+     *
+     * @return
      */
     public String getBeschreibung() {
         return bezeichnung;
     }
-    
+
     /**
      * Gibt den Preis des Artikels zurück
-     * @return 
+     *
+     * @return
      */
     public double getPreis() {
         return preis;
@@ -123,8 +131,9 @@ public class Artikel {
 
     /**
      * Setzt den Preis des Artikels
+     *
      * @param preis
-     * @throws MyException 
+     * @throws MyException
      */
     public void setPreis(double preis) throws MyException {
         String exMsg = null;
@@ -136,13 +145,14 @@ public class Artikel {
         }
         this.preis = preis;
     }
-    
+
     /**
      * bucheZugang erhöht um die in menge mitgegebene Anzahl den Bestand
-     * @param menge     Anzahl, um die sich der Bestand verändert
+     *
+     * @param menge Anzahl, um die sich der Bestand verändert
      * @throws lagerverwaltung.MyException
      */
-    public void bucheZugang(int menge) throws MyException{
+    public void bucheZugang(int menge) throws MyException {
         String exMsg = null;
         if (menge < 0.0) {
             exMsg += MENGE_MIN_EX;
@@ -151,36 +161,39 @@ public class Artikel {
             throw new MyException(exMsg);
         }
         bestand += menge;
-    }  
+    }
+
     /**
      * bucheAbgang verringert um die in menge mitgebene Anzahl den Bestand
-     * @param menge      Anzahl um die siche der Bestand verändert
+     *
+     * @param menge Anzahl um die siche der Bestand verändert
      * @throws lagerverwaltung.MyException
      */
-    public void bucheAbgang(int menge) throws MyException{
+    public void bucheAbgang(int menge) throws MyException {
         String exMsg = null;
         if (menge < 0.0) {
             exMsg += MENGE_MIN_EX;
         }
-        if ((bestand-menge) < 0) {
+        if ((bestand - menge) < 0) {
             exMsg += BESTAND_MIN_EX;
         }
         if (exMsg != null) {
             throw new MyException(exMsg);
         }
         bestand -= menge;
-    }   
-    
+    }
+
     /**
      * toString gibt einen String für die Ausgabe zurück
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
-        DecimalFormat f = new DecimalFormat("#0.00"); 
-        return "\n Artikel: " + artikelNr + " Bezeichnung: "+bezeichnung
-                + " Bestand: " +bestand+" Brutto-Preis: "+f.format(preis)
-                +" Netto-Preis: "+ f.format(preis/MWST)+" MWST-Anteil: "
-                + f.format(preis-(preis/MWST));
+        DecimalFormat f = new DecimalFormat("#0.00");
+        return "\n Artikel: " + artikelNr + " Bezeichnung: " + bezeichnung
+                + " Bestand: " + bestand + " Brutto-Preis: " + f.format(preis)
+                + " Netto-Preis: " + f.format(preis / MWST) + " MWST-Anteil: "
+                + f.format(preis - (preis / MWST));
     }
 }

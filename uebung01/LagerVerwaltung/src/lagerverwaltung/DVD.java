@@ -9,6 +9,7 @@ import java.util.Calendar;
 
 /**
  * DVD Klasse
+ *
  * @author Moritz / Carsten
  */
 public class DVD extends Artikel {
@@ -29,7 +30,7 @@ public class DVD extends Artikel {
     /* Kalender für das aktuelle Jahr zu prüfen */
     Calendar cal = Calendar.getInstance();
     int aktuellesJahr = cal.get(Calendar.YEAR);
-    
+
     /**
      * Konstruktor der DVD
      *
@@ -69,6 +70,7 @@ public class DVD extends Artikel {
 
     /**
      * Liefert den Titel der DVD
+     *
      * @return DVD Titel
      */
     public String getTitel() {
@@ -77,6 +79,7 @@ public class DVD extends Artikel {
 
     /**
      * Liefert die Spieldauer der DVD
+     *
      * @return Spieldauer der DVD
      */
     public double getSpieldauer() {
@@ -85,6 +88,7 @@ public class DVD extends Artikel {
 
     /**
      * Liefert das Erscheinungsjahr der DVD
+     *
      * @return Erscheinungsjahr der DVD
      */
     public int getErscheinungsjahr() {
@@ -93,6 +97,7 @@ public class DVD extends Artikel {
 
     /**
      * Liefert den Titel der DVD als String.
+     *
      * @return Titel der DVD als String
      */
     @Override
@@ -100,10 +105,11 @@ public class DVD extends Artikel {
         String beschreibung = titel;
         return beschreibung;
     }
-    
+
     /**
      * toString() Methode der Klasse DVD.
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {

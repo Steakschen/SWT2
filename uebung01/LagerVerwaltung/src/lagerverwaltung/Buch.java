@@ -7,6 +7,7 @@ package lagerverwaltung;
 
 /**
  * Buch Klasse
+ *
  * @author Moritz / Carsten
  */
 public class Buch extends Artikel {
@@ -61,7 +62,6 @@ public class Buch extends Artikel {
             this.verlag = verlag;
         }
     }
-
 
     /**
      * Liefert den Titel des Buchs

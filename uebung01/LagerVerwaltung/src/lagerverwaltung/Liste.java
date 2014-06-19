@@ -3,36 +3,37 @@
  * Uebung 3
  * @author Carsten Gross / Moritz Fey
  */
-
 package lagerverwaltung;
 
 /**
  * Listen Klasse
+ *
  * @author Moritz / Carsten
  */
 public class Liste {
-    
-    private static final String ARTIKEL_VORHANDEN = "\tArtikel bereits vorhanden!\n"; 
+
+    private static final String ARTIKEL_VORHANDEN = "\tArtikel bereits vorhanden!\n";
     private static final String LISTE_LEER = "\tListe ist leer!\n";
     private static final String AUSSERHALB_LISTE = "\tIndex ausserhalb der Liste!\n";
-    
-    private int         size;
-    private Knoten      head;
-    
+
+    private int size;
+    private Knoten head;
+
     /**
      * Konstruktor fuer die Klasse Liste.
      */
     public Liste() {
-        this.size      = 0;
-        this.head       = null;
+        this.size = 0;
+        this.head = null;
     }
-    
+
     /**
      * Fügt ein Element an der ersten Stelle ein
+     *
      * @param artikel
-     * @throws MyException 
+     * @throws MyException
      */
-    public void addFirst (Artikel artikel) throws MyException {
+    public void addFirst(Artikel artikel) throws MyException {
         Knoten itemToAdd = new Knoten(artikel, null);
         Knoten tmp = head;
         head = itemToAdd;
@@ -42,24 +43,22 @@ public class Liste {
 
     /**
      * Funktion zum sortierten einfuegen in die Liste.
+     *
      * @param artikel Der einzufuegende Artikel
-     * @throws MyException 
+     * @throws MyException
      */
     public void add(Artikel artikel) throws MyException {
         if (head == null) {
             addFirst(artikel);
-        }
-        else {
+        } else {
             if (contains(artikel)) {
-                throw new MyException(ARTIKEL_VORHANDEN);               
-            }
-            else {
+                throw new MyException(ARTIKEL_VORHANDEN);
+            } else {
                 Knoten aktuell, letzter;
-                Knoten neu = new Knoten(artikel,null);
+                Knoten neu = new Knoten(artikel, null);
                 if (head.data.getArtikelNr() > artikel.getArtikelNr()) {
                     addFirst(artikel);
-                } 
-                else {
+                } else {
                     aktuell = head.next;
                     letzter = head;
                     while ((aktuell != null) && (aktuell.data.getArtikelNr() < artikel.getArtikelNr())) {
@@ -75,9 +74,10 @@ public class Liste {
             }
         }
     }
-    
+
     /**
      * Funktion die prueft, ob ein Artikel in der Liste ist.
+     *
      * @param artikel
      * @return true, falls Artikel im Lager, ansonsten false
      */
@@ -92,17 +92,19 @@ public class Liste {
         }
         return containsItem;
     }
-    
+
     /**
      * Gibt das erste Element/den ersten Artikel der Liste zurueck.
+     *
      * @return erstes Listenelement
      */
     public Artikel getHead() {
         return head.data;
     }
-    
+
     /**
      * Artikel mit Artikelnummer finden.
+     *
      * @param artikelNummer Artikelnummer des gesuchten Artikels
      * @return Referenz auf den Artikel, oder im Fehlerfall null
      */
@@ -115,9 +117,10 @@ public class Liste {
         }
         return null;
     }
-    
+
     /**
      * Loeschen eines Artikels per Artikelnummer.
+     *
      * @param artikelNummer Artikelnummer des zu loeschenden Artikels
      * @throws lagerverwaltung.MyException
      */
@@ -140,22 +143,23 @@ public class Liste {
             throw new MyException(LISTE_LEER);
         }
     }
-    
+
     /**
      * Gibt den Artikel an der Position in der Liste zurück
+     *
      * @param position
      * @return
-     * @throws MyException 
+     * @throws MyException
      */
-    public Artikel getArtikelAtPos(int position) throws MyException{
+    public Artikel getArtikelAtPos(int position) throws MyException {
         if (position < 0 || position >= size) {
             throw new MyException(AUSSERHALB_LISTE);
         }
-        
+
         Knoten anker = head;
         int it = 0;
-        
-        while(anker != null && it <= position) {
+
+        while (anker != null && it <= position) {
             if (anker != null && it == position) {
                 return anker.data;
             }
@@ -164,23 +168,25 @@ public class Liste {
         }
         return null;
     }
-    
+
     /**
      * Gibt die Anzahl der Elemente der Liste zurueck.
+     *
      * @return Anzahl der Elemente in der Liste
      */
     public int getSize() {
         return size;
     }
-    
+
     /**
      * Prueft, ob die Liste leer ist.
+     *
      * @return true, wenn Liste leer, ansonsten false
      */
     public boolean isEmpty() {
         return size == 0;
     }
-    
+
     /**
      * Löscht das erste Element der Liste.
      */
@@ -190,10 +196,11 @@ public class Liste {
         newHead = oldHead.next;
         head = newHead;
     }
-    
+
     /**
      * toString()-Methoder der Listenklasse.
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
@@ -204,5 +211,5 @@ public class Liste {
             tmp = tmp.next;
         }
         return listenString;
-    }  
+    }
 }
