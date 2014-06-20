@@ -202,7 +202,7 @@ public class Lager {
      * @return
      * @throws lagerverwaltung.MyException
      */
-    public String ausgebenBestandsListe() {
+    public String ausgebenBestandsListe() throws MyException {
         String lagerString = "Lagerort: " + standort + '\n';
         //System.out.println(lagerString);
 
@@ -221,12 +221,7 @@ public class Lager {
         String daten = null;
 
         for (int i = 0; i < artikelListe.getSize(); i++) {
-            try {
-                tempArtikel = artikelListe.getArtikelAtPos(i);
-            } catch (MyException e) {
-                e.printStackTrace();
-            }
-
+            tempArtikel = artikelListe.getArtikelAtPos(i);
             formatter.format("%-7s %-20s %-9s %-8s %-9s %-4s\n", tempArtikel.getArtikelNr(),
                     tempArtikel.getBeschreibung(), f.format(tempArtikel.getPreis() / 1.19),
                     f.format(tempArtikel.getPreis() - (tempArtikel.getPreis() / 1.19)),
@@ -244,7 +239,7 @@ public class Lager {
      */
     @Override
     public String toString() {
-        /*String lagerString = "Lager am Standort: " + standort + '\n';
+        String lagerString = "Lager am Standort: " + standort + '\n';
 
         if (artikelListe.getSize() == 0) {
             lagerString += LAGER_LEER_EX;
@@ -252,8 +247,6 @@ public class Lager {
             lagerString += artikelListe.toString();
         }
 
-        return lagerString;/*
-        */
-        return ausgebenBestandsListe();
+        return lagerString;
     }
 }

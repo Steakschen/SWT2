@@ -84,7 +84,7 @@ public class LagerDialog {
                         System.out.println(meinLager.toString());
                         break;
                     case 7:
-                        System.out.println(meinLager);
+                        System.out.println(meinLager.ausgebenBestandsListe());
                         break;
                     default:
                         System.out.println("Default got hit O_o");
