@@ -211,8 +211,8 @@ public class Lager {
         Formatter formatterHL = new Formatter(sbhl, Locale.GERMAN);
         Formatter formatter = new Formatter(sb, Locale.GERMAN);
 
-        formatterHL.format("\n%-7s %-20s %-9s %-8s %-9s %-4s", "ArtNr", "Beschreibung", "Netto", "Mwst", "Brutto", "Bestand");
-        String striche = "\n------------------------------------------------------------------\n";
+        formatterHL.format("\n%-7s %-50s %-9s %-8s %-9s %-4s", "ArtNr", "Beschreibung", "Netto", "Mwst", "Brutto", "Bestand");
+        String striche = "\n------------------------------------------------------------------------------------------------\n";
 
         DecimalFormat f = new DecimalFormat("#0.00");
 
@@ -222,7 +222,7 @@ public class Lager {
 
         for (int i = 0; i < artikelListe.getSize(); i++) {
             tempArtikel = artikelListe.getArtikelAtPos(i);
-            formatter.format("%-7s %-20s %-9s %-8s %-9s %-4s\n", tempArtikel.getArtikelNr(),
+            formatter.format("%-7s %-50s %-9s %-8s %-9s %-4s\n", tempArtikel.getArtikelNr(),
                     tempArtikel.getBeschreibung(), f.format(tempArtikel.getPreis() / 1.19),
                     f.format(tempArtikel.getPreis() - (tempArtikel.getPreis() / 1.19)),
                     f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
