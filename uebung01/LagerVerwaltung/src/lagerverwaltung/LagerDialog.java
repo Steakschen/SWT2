@@ -157,18 +157,18 @@ public class LagerDialog {
                 break;
             case BUCH:
                 System.out.println("Buch Titel: ");
-                String titel = Stdin.readString();  //ggf auf Beschreibung einlesen verzichten und auf Titel:autor setzen
+                String titel = Stdin.readlnString();  //ggf auf Beschreibung einlesen verzichten und auf Titel:autor setzen
                 System.out.println("Buch Autor: ");
-                String autor = Stdin.readString();
+                String autor = Stdin.readlnString();
                 System.out.println("Buch Verlag: ");
-                String verlag = Stdin.readString();
+                String verlag = Stdin.readlnString();
                 Buch buch = new Buch(artikelNrAnlegen(), artikelNameAnlegen(),
                         artikelBestandAnlegen(), artikelPreisAnlegen(), titel, autor, verlag);
                 meinLager.erstelleArtikel(buch);
                 break;
             case DVD:
                 System.out.println("DVD Titel: ");
-                titel = Stdin.readString();
+                titel = Stdin.readlnString();
                 System.out.println("DVD Spieldauer: ");
                 float spieldauer = (float) Stdin.readDouble(); //readFloat geht net
                 System.out.println("DVD Erscheinungsjahr: ");
@@ -179,9 +179,9 @@ public class LagerDialog {
                 break;
             case CD:
                 System.out.println("CD Interpret: ");
-                titel = Stdin.readString();
+                titel = Stdin.readlnString();
                 System.out.println("CD Titel: ");
-                String interpret = Stdin.readString();
+                String interpret = Stdin.readlnString();
                 System.out.println("CD Anzahl Musiktitel: ");
                 int anzahl = Stdin.readInt();
                 CD cd = new CD(artikelNrAnlegen(), artikelNameAnlegen(),
