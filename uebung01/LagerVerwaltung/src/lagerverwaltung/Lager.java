@@ -216,7 +216,7 @@ public class Lager {
 
         DecimalFormat f = new DecimalFormat("#0.00");
 
-        Artikel tempArtikel = new Artikel();
+        Artikel tempArtikel;
         String headline = lagerString + formatterHL.toString() + striche;
         String daten = null;
 
