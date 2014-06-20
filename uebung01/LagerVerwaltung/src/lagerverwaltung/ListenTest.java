@@ -16,7 +16,7 @@ public class ListenTest {
     private Liste list;
     private int elemente;
     public ListenTest() {
-        list = new Liste();
+        //list = new Liste();
         elemente = 3;
     }
 

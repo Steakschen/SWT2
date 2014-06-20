@@ -12,19 +12,22 @@ package lagerverwaltung;
  */
 public class Liste {
 
-    private static final String ARTIKEL_VORHANDEN = "\tArtikel bereits vorhanden!\n";
-    private static final String LISTE_LEER = "\tListe ist leer!\n";
-    private static final String AUSSERHALB_LISTE = "\tIndex ausserhalb der Liste!\n";
+    private static final String ARTIKEL_VORHANDEN   = "\tArtikel bereits vorhanden!\n";
+    private static final String LISTE_LEER          = "\tListe ist leer!\n";
+    private static final String LISTE_VOLL          = "\tListe ist voll!\n";
+    private static final String AUSSERHALB_LISTE    = "\tIndex ausserhalb der Liste!\n";
 
-    private int size;
-    private Knoten head;
+    private int     size;
+    private Knoten  head;
+
 
     /**
      * Konstruktor fuer die Klasse Liste.
+     * 
      */
     public Liste() {
-        this.size = 0;
-        this.head = null;
+        this.size       = 0;
+        this.head       = null;
     }
 
     /**
@@ -34,11 +37,11 @@ public class Liste {
      * @throws MyException
      */
     public void addFirst(Artikel artikel) throws MyException {
-        Knoten itemToAdd = new Knoten(artikel, null);
-        Knoten tmp = head;
-        head = itemToAdd;
-        head.next = tmp;
-        size += 1;
+        Knoten itemToAdd    = new Knoten(artikel, null);
+        Knoten tmp          = head;
+        head                = itemToAdd;
+        head.next           = tmp;
+        size                += 1;
     }
 
     /**
@@ -186,15 +189,15 @@ public class Liste {
     public boolean isEmpty() {
         return size == 0;
     }
-
+    
     /**
      * Löscht das erste Element der Liste.
      */
     public void popFront() {
         Knoten oldHead, newHead;
-        oldHead = head;
-        newHead = oldHead.next;
-        head = newHead;
+        oldHead     = head;
+        newHead     = oldHead.next;
+        head        = newHead;
     }
 
     /**
@@ -204,11 +207,11 @@ public class Liste {
      */
     @Override
     public String toString() {
-        Knoten tmp = head;
+        Knoten tmp          = head;
         String listenString = new String();
         while (tmp != null) {
-            listenString += tmp.data.toString();
-            tmp = tmp.next;
+            listenString    += tmp.data.toString();
+            tmp             = tmp.next;
         }
         return listenString;
     }

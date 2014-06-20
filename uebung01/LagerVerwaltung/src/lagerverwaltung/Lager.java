@@ -85,7 +85,7 @@ public class Lager {
     /**
      * Methode zum Anlegen eines neuen Artikels im Lager
      *
-     * @param artikel
+     * @param artikel Artikel der im Lager abgelegt wird
      * @throws lagerverwaltung.MyException
      *
      */
@@ -95,10 +95,7 @@ public class Lager {
         if (artikelListe.contains(artikel)) {
             exMsg += ARTIKEL_BEREITS_VORHANDEN_EX;
         }
-        /*
-         if (artikelAnzahl >= (maxArtikel - 1)) {
-         exMsg += LAGER_VOLL_EX;
-         }*/
+        
         if (isFull()) {
             exMsg += LAGER_VOLL_EX;
         }
@@ -184,7 +181,7 @@ public class Lager {
      * false
      */
     public boolean isFull() {
-        return (artikelAnzahl == maxArtikel);
+        return (artikelListe.getSize() == maxArtikel);
     }
 
     /**
