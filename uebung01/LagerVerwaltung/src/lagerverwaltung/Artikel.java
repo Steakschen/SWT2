@@ -47,7 +47,8 @@ public class Artikel {
      * @param preis Preis des Artikels
      * @throws lagerverwaltung.MyException
      */
-    public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) throws MyException {
+    public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) 
+            throws MyException {
         String exMsg = null;
 
         if (artikelNr < ARTIKELNR_MIN_SIZE && artikelNr < ARTIKELNR_MAX_SIZE) {

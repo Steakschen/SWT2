@@ -152,18 +152,20 @@ public class LagerDialog {
         switch (artikelMenu) {
             case ARTIKEL:
                 Artikel artikel = new Artikel(artikelNrAnlegen(),
-                        artikelNameAnlegen(), artikelBestandAnlegen(), artikelPreisAnlegen());
+                        artikelNameAnlegen(), artikelBestandAnlegen(), 
+                        artikelPreisAnlegen());
                 meinLager.erstelleArtikel(artikel);
                 break;
             case BUCH:
                 System.out.println("Buch Titel: ");
-                String titel = Stdin.readlnString();  //ggf auf Beschreibung einlesen verzichten und auf Titel:autor setzen
+                String titel = Stdin.readlnString();
                 System.out.println("Buch Autor: ");
                 String autor = Stdin.readlnString();
                 System.out.println("Buch Verlag: ");
                 String verlag = Stdin.readlnString();
                 Buch buch = new Buch(artikelNrAnlegen(), artikelNameAnlegen(),
-                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel, autor, verlag);
+                        artikelBestandAnlegen(), artikelPreisAnlegen(), 
+                        titel, autor, verlag);
                 meinLager.erstelleArtikel(buch);
                 break;
             case DVD:
@@ -174,7 +176,8 @@ public class LagerDialog {
                 System.out.println("DVD Erscheinungsjahr: ");
                 int erscheinungsjahr = Stdin.readInt();
                 DVD dvd = new DVD(artikelNrAnlegen(), artikelNameAnlegen(),
-                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel, spieldauer, erscheinungsjahr);
+                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel, 
+                        spieldauer, erscheinungsjahr);
                 meinLager.erstelleArtikel(dvd);
                 break;
             case CD:
@@ -185,7 +188,8 @@ public class LagerDialog {
                 System.out.println("CD Anzahl Musiktitel: ");
                 int anzahl = Stdin.readInt();
                 CD cd = new CD(artikelNrAnlegen(), artikelNameAnlegen(),
-                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel, interpret, anzahl);
+                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel, 
+                        interpret, anzahl);
                 meinLager.erstelleArtikel(cd);
                 break;
         }

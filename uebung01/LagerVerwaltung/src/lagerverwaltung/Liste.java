@@ -64,7 +64,8 @@ public class Liste {
                 } else {
                     aktuell = head.next;
                     letzter = head;
-                    while ((aktuell != null) && (aktuell.data.getArtikelNr() < artikel.getArtikelNr())) {
+                    while ((aktuell != null) && (aktuell.data.getArtikelNr() 
+                            < artikel.getArtikelNr())) {
                         aktuell = aktuell.next;
                         letzter = letzter.next;
                     }
