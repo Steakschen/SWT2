@@ -47,9 +47,9 @@ public class LagerDialog {
         System.out.println("Lagerplaetze: ");
         int maxLagerPlaetze = Stdin.readInt();
         meinLager = new Lager(lagerName, maxLagerPlaetze);
-
+        int menu = 0;
         do {
-            int menu = printMenu();
+            menu = printMenu();
             try {
                 switch (menu) {
                     case 1:
@@ -86,6 +86,9 @@ public class LagerDialog {
                     case 7:
                         System.out.println(meinLager.ausgebenBestandsListe());
                         break;
+                    case 8:
+                        System.out.println("\nDas Programm Beendet sich, Vielen Dank\n");
+                        break;
                     default:
                         System.out.println("Default got hit O_o");
                         break;
@@ -94,7 +97,7 @@ public class LagerDialog {
                 System.out.println(e);
             }
 
-        } while (weitermachen());
+        } while (menu != 8);
     }
 
     /**
@@ -110,7 +113,8 @@ public class LagerDialog {
         System.out.println(" 4 - Buche Abgang");
         System.out.println(" 5 - aendere Preis");
         System.out.println(" 6 - Lager ausgeben");
-        System.out.println(" 7 - Bestandsliste ausgeben\n");
+        System.out.println(" 7 - Bestandsliste ausgeben");
+        System.out.println(" 8 - Beenden\n");
         return Stdin.readInt();
     }
 
@@ -129,20 +133,6 @@ public class LagerDialog {
     }
 
     /**
-     * Weitermachen ?
-     *
-     * @return
-     */
-    public boolean weitermachen() {
-        char antwort = ' ';
-        System.out.println("\n Weitermachen?");
-        while ((antwort != 'j') && (antwort != 'n')) {
-            antwort = Stdin.readChar();
-        }
-        return antwort == 'j';
-    }
-
-    /**
      * Legt die Artikel an
      *
      * @throws MyException
@@ -152,7 +142,7 @@ public class LagerDialog {
         switch (artikelMenu) {
             case ARTIKEL:
                 Artikel artikel = new Artikel(artikelNrAnlegen(),
-                        artikelNameAnlegen(), artikelBestandAnlegen(), 
+                        artikelNameAnlegen(), artikelBestandAnlegen(),
                         artikelPreisAnlegen());
                 meinLager.erstelleArtikel(artikel);
                 break;
@@ -164,7 +154,7 @@ public class LagerDialog {
                 System.out.println("Buch Verlag: ");
                 String verlag = Stdin.readlnString();
                 Buch buch = new Buch(artikelNrAnlegen(), artikelNameAnlegen(),
-                        artikelBestandAnlegen(), artikelPreisAnlegen(), 
+                        artikelBestandAnlegen(), artikelPreisAnlegen(),
                         titel, autor, verlag);
                 meinLager.erstelleArtikel(buch);
                 break;
@@ -176,7 +166,7 @@ public class LagerDialog {
                 System.out.println("DVD Erscheinungsjahr: ");
                 int erscheinungsjahr = Stdin.readInt();
                 DVD dvd = new DVD(artikelNrAnlegen(), artikelNameAnlegen(),
-                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel, 
+                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel,
                         spieldauer, erscheinungsjahr);
                 meinLager.erstelleArtikel(dvd);
                 break;
@@ -188,7 +178,7 @@ public class LagerDialog {
                 System.out.println("CD Anzahl Musiktitel: ");
                 int anzahl = Stdin.readInt();
                 CD cd = new CD(artikelNrAnlegen(), artikelNameAnlegen(),
-                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel, 
+                        artikelBestandAnlegen(), artikelPreisAnlegen(), titel,
                         interpret, anzahl);
                 meinLager.erstelleArtikel(cd);
                 break;

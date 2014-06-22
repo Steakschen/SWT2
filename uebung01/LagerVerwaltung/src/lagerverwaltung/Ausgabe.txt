@@ -1,0 +1,246 @@
+Da Solaris nicht lief, die Ausgabe/Eingabe aus NetBeans
+Moritz Fey / Carsten Gross
+Ausgabe nachträglich druckfreundich Formatiert bei toString
+
+run:
+1 - Lager anlegen 
+
+Lagername: 
+Schiffweiler
+Lagerplaetze: 
+5
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+1
+
+ Was möchten sie Anlegen:
+ 1 - Artikel anlegen
+ 2 - Buch anlegen
+ 3 - DVD  anlegen
+ 4 - CD anlegen
+
+1
+Artikelnummer: 
+1001
+Artikelname: 
+Klobrille
+Artikelbestand: 
+2
+Artikelpreis: 
+12.50
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+1
+
+ Was möchten sie Anlegen:
+ 1 - Artikel anlegen
+ 2 - Buch anlegen
+ 3 - DVD  anlegen
+ 4 - CD anlegen
+
+2
+Buch Titel: 
+Carry Band Eins
+Buch Autor: 
+Stephen King
+Buch Verlag: 
+Buchverlag
+Artikelnummer: 
+1002
+Artikelname: 
+Buch
+Artikelbestand: 
+4
+Artikelpreis: 
+16.20
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+1
+
+ Was möchten sie Anlegen:
+ 1 - Artikel anlegen
+ 2 - Buch anlegen
+ 3 - DVD  anlegen
+ 4 - CD anlegen
+
+3
+DVD Titel: 
+ACDC Live
+DVD Spieldauer: 
+2.5
+DVD Erscheinungsjahr: 
+2013
+Artikelnummer: 
+1003
+Artikelname: 
+Dvd
+Artikelbestand: 
+2
+Artikelpreis: 
+20
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+1
+
+ Was möchten sie Anlegen:
+ 1 - Artikel anlegen
+ 2 - Buch anlegen
+ 3 - DVD  anlegen
+ 4 - CD anlegen
+
+4
+CD Interpret: 
+Shinedown
+CD Titel: 
+Amarilys
+CD Anzahl Musiktitel: 
+12
+Artikelnummer: 
+1004
+Artikelname: 
+Cd
+Artikelbestand: 
+6
+Artikelpreis: 
+9.99
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+7
+Lagerort: Schiffweiler
+
+ArtNr   Beschreibung                                       Netto     Mwst     Brutto    Bestand
+------------------------------------------------------------------------------------------------
+1001    Klobrille                                          10,50     2,00     12,50     2   
+1002    Stephen King: Carry Band Eins                      13,85     2,59     16,20     4   
+1003    ACDC Live                                          16,81     3,19     20,00     2   
+1004    Shinedown: Amarilys                                8,39      1,60     9,99      6   
+
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+6
+Lager am Standort: Schiffweiler
+
+ Artikel: 1001 Bezeichnung: Klobrille Bestand: 2 Brutto-Preis: 12,50 Netto-Preis: 10,50 
+	MWST-Anteil: 2,00
+ Artikel: 1002 Bezeichnung: Buch Bestand: 4 Brutto-Preis: 16,20 Netto-Preis: 13,61 
+	MWST-Anteil: 2,59 Buch: Stephen King: Carry Band Eins Verlag: Buchverlag
+ Artikel: 1003 Bezeichnung: Dvd Bestand: 2 Brutto-Preis: 20,00 Netto-Preis: 16,81 
+	MWST-Anteil: 3,19 DVD: ACDC Live Spieldauer: 2.50 Erscheinungsjahr: 2013
+ Artikel: 1004 Bezeichnung: Cd Bestand: 6 Brutto-Preis: 9,99 Netto-Preis: 8,39 
+	MWST-Anteil: 1,60 CD: Shinedown: Amarilys Anzahl Titel: 12
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+1
+
+ Was möchten sie Anlegen:
+ 1 - Artikel anlegen
+ 2 - Buch anlegen
+ 3 - DVD  anlegen
+ 4 - CD anlegen
+
+1
+Artikelnummer: 
+1001
+Artikelname: 
+Test
+Artikelbestand: 
+2
+Artikelpreis: 
+2
+lagerverwaltung.MyException: null	Artikel bereits vorhanden!
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+2
+Bitte Artikelnummer des zu entfernenden Artikels: 
+1004
+
+ Menu:
+ 1 - Artikel anlegen
+ 2 - Artikel löschen
+ 3 - Buche Zugang
+ 4 - Buche Abgang
+ 5 - aendere Preis
+ 6 - Lager ausgeben
+ 7 - Bestandsliste ausgeben
+ 8 - Beenden
+
+7
+Lagerort: Schiffweiler
+
+ArtNr   Beschreibung                                       Netto     Mwst     Brutto    Bestand
+------------------------------------------------------------------------------------------------
+1001    Klobrille                                          10,50     2,00     12,50     2   
+1002    Stephen King: Carry Band Eins                      13,85     2,59     16,20     4   
+1003    ACDC Live                                          16,81     3,19     20,00     2   

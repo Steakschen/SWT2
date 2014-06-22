@@ -20,6 +20,7 @@ public class Artikel {
     static int BESTAND_MIN = 0;
     static int PREIS_MIN = 0;
     static double MWST = 1.19;
+    static double MWST_ermaessigt = 1.17;
     static String ARTIKELNR_SIZE_EX = "Artikelnummer nicht 4 stellig!";
     static String BEZEICHNUNG_NULL_EX = "Bezeichnung ist Null-Referenz oder leer!";
     static String BESTAND_MIN_EX = "Bestand ist/wird kleiner als 0!";
@@ -47,7 +48,7 @@ public class Artikel {
      * @param preis Preis des Artikels
      * @throws lagerverwaltung.MyException
      */
-    public Artikel(int artikelNr, String bezeichnung, int bestand, double preis) 
+    public Artikel(int artikelNr, String bezeichnung, int bestand, double preis)
             throws MyException {
         String exMsg = null;
 
@@ -122,12 +123,38 @@ public class Artikel {
     }
 
     /**
-     * Gibt den Preis des Artikels zurück
+     * Gibt den Brutto Preis des Artikels zurück
      *
      * @return
      */
     public double getPreis() {
         return preis;
+    }
+
+    /**
+     * Gibt den Netto Preis des Artikels zurück mit 19% MWST
+     *
+     * @return
+     */
+    public double getMwstPreis() {
+        return preis / MWST;
+    }
+
+    /**
+     * Gibt den Netto Preis des Artikels zurück mit 19% MWST
+     *
+     * @return
+     */
+    public double getMwstErmaessigtPreis() {
+        return preis / MWST_ermaessigt;
+    }
+    
+    /**
+     * Gibt den MWST-Anteil zurück
+     * @return 
+     */
+    public double getMwstAnteil() {
+        return preis - (preis / MWST);
     }
 
     /**
@@ -193,8 +220,8 @@ public class Artikel {
     public String toString() {
         DecimalFormat f = new DecimalFormat("#0.00");
         return "\n Artikel: " + artikelNr + " Bezeichnung: " + bezeichnung
-                + " Bestand: " + bestand + " Brutto-Preis: " + f.format(preis)
-                + " Netto-Preis: " + f.format(preis / MWST) + " MWST-Anteil: "
-                + f.format(preis - (preis / MWST));
+                + " Bestand: " + bestand + " Brutto-Preis: " + f.format(getPreis())
+                + " Netto-Preis: " + f.format(getMwstPreis()) + " MWST-Anteil: "
+                + f.format(getMwstAnteil());
     }
 }

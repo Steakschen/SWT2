@@ -114,7 +114,9 @@ public class DVD extends Artikel {
     @Override
     public String toString() {
         String cdString = super.toString();
-        cdString = cdString + " " + this.getBeschreibung();
+        cdString = cdString + " DVD: " + this.getBeschreibung() 
+                + " Spieldauer: " + this.getSpieldauer() 
+                + "Erscheinungsjahr: " + this.getErscheinungsjahr();
         return cdString;
     }
 }

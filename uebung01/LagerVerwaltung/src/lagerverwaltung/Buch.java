@@ -109,7 +109,8 @@ public class Buch extends Artikel {
     @Override
     public String toString() {
         String cdString = super.toString();
-        cdString = cdString + " " + this.getBeschreibung();
+        cdString = cdString + " Buch: " + this.getBeschreibung()
+                + " Verlag: " +this.getVerlag();
         return cdString;
     }
 }

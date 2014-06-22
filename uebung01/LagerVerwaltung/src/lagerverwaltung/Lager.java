@@ -95,7 +95,7 @@ public class Lager {
         if (artikelListe.contains(artikel)) {
             exMsg += ARTIKEL_BEREITS_VORHANDEN_EX;
         }
-        
+
         if (isFull()) {
             exMsg += LAGER_VOLL_EX;
         }
@@ -201,14 +201,13 @@ public class Lager {
      */
     public String ausgebenBestandsListe() throws MyException {
         String lagerString = "Lagerort: " + standort + '\n';
-        //System.out.println(lagerString);
 
         StringBuilder sbhl = new StringBuilder();
         StringBuilder sb = new StringBuilder();
         Formatter formatterHL = new Formatter(sbhl, Locale.GERMAN);
         Formatter formatter = new Formatter(sb, Locale.GERMAN);
 
-        formatterHL.format("\n%-7s %-50s %-9s %-8s %-9s %-4s", "ArtNr", 
+        formatterHL.format("\n%-7s %-50s %-9s %-8s %-9s %-4s", "ArtNr",
                 "Beschreibung", "Netto", "Mwst", "Brutto", "Bestand");
         String striche = "\n---------------------------------------------"
                 + "---------------------------------------------------\n";
@@ -221,11 +220,19 @@ public class Lager {
 
         for (int i = 0; i < artikelListe.getSize(); i++) {
             tempArtikel = artikelListe.getArtikelAtPos(i);
-            formatter.format("%-7s %-50s %-9s %-8s %-9s %-4s\n", 
-                    tempArtikel.getArtikelNr(), tempArtikel.getBeschreibung(), 
-                    f.format(tempArtikel.getPreis() / 1.19),
-                    f.format(tempArtikel.getPreis() - (tempArtikel.getPreis() / 1.19)),
-                    f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
+            if (tempArtikel instanceof Buch) {
+                formatter.format("%-7s %-50s %-9s %-8s %-9s %-4s\n",
+                        tempArtikel.getArtikelNr(), tempArtikel.getBeschreibung(),
+                        f.format(tempArtikel.getMwstErmaessigtPreis()),
+                        f.format(tempArtikel.getMwstAnteil()),
+                        f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
+            } else {
+                formatter.format("%-7s %-50s %-9s %-8s %-9s %-4s\n",
+                        tempArtikel.getArtikelNr(), tempArtikel.getBeschreibung(),
+                        f.format(tempArtikel.getMwstPreis()),
+                        f.format(tempArtikel.getMwstAnteil()),
+                        f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
+            }
             daten = formatter.toString();
         }
 

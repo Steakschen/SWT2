@@ -112,7 +112,8 @@ public class CD extends Artikel {
     @Override
     public String toString() {
         String cdString = super.toString();
-        cdString = cdString + " " + this.getBeschreibung();
+        cdString = cdString + " CD: " + this.getBeschreibung() 
+                + " Anzahl Titel: "+ this.getAnzahlTitel();
         return cdString;
     }
 
