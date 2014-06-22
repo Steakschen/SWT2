@@ -33,7 +33,7 @@ public class Liste {
     /**
      * Fügt ein Element an der ersten Stelle ein
      *
-     * @param artikel
+     * @param artikel   
      * @throws MyException
      */
     public void addFirst(Artikel artikel) throws MyException {
@@ -51,6 +51,7 @@ public class Liste {
      * @throws MyException
      */
     public void add(Artikel artikel) throws MyException {
+        /* Wenn es das erste Element ist rufe Addfirst auf */
         if (head == null) {
             addFirst(artikel);
         } else {
