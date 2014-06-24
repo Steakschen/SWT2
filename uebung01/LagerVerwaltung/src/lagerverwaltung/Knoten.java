@@ -5,10 +5,12 @@
  */
 package lagerverwaltung;
 
+import java.io.Serializable;
+
 /**
  * Klasse fuer den Knoten der Liste.
  */
-public class Knoten {
+public class Knoten implements Serializable {
 
     protected Artikel data;
     protected Knoten next;

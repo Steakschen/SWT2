@@ -5,6 +5,14 @@
  */
 package lagerverwaltung;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.Formatter;
 import java.util.Locale;
@@ -191,6 +199,51 @@ public class Lager {
      */
     public boolean isEmpty() {
         return (artikelListe.getSize() == 0);
+    }
+    
+    //TODO: Exceptions überarbeiten, testen, zur Not Liste neu schreiben
+    /**
+     * Funktion zum Laden des Lagers aus einer Datei.
+     * @param dateiName Name der Datei in der das Lager gespeichert wurde
+     * @throws MyException 
+     */
+    public void laden (String dateiName) throws MyException, ClassNotFoundException {
+        ObjectInputStream inputStream;
+        File inputDatei = new File (dateiName);
+        
+        try {
+            inputStream = new ObjectInputStream(
+                                new BufferedInputStream(
+                                    new FileInputStream(inputDatei)));
+            
+            artikelListe = (Liste) inputStream.readObject();
+            inputStream.close();
+        } catch (IOException e) {
+            throw new MyException("Bla bla");
+        }
+        
+
+    }
+    
+    //TODO: Exceptions überarbeiten, testen, zur Not Liste neu schreiben
+    /**
+     * Funktion zum Speichern des Lagers in einer Datei.
+     * @param dateiName Name der Datei in der das Lager gespeichert wird
+     */
+    public void speichern (String dateiName) throws MyException, ClassNotFoundException {
+        ObjectOutputStream outputStream;
+        File outputDatei = new File (dateiName);
+        
+        try {
+            outputStream = new ObjectOutputStream(
+                                new BufferedOutputStream(
+                                    new FileOutputStream(outputDatei)));
+            outputStream.writeObject(artikelListe);
+            outputStream.close();
+            
+        } catch (IOException e) {
+            throw new MyException("Bla Bla");
+        }
     }
 
     /**
