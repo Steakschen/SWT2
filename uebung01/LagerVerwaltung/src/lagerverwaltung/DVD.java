@@ -41,11 +41,11 @@ public class DVD extends Artikel {
      * @param titel
      * @param spieldauer
      * @param erscheinungsjahr
-     * @throws MyException
+     * @throws lagerverwaltung.ArtikelException
      */
     public DVD(int artikelNr, String bezeichnung, int bestand, double preis,
             String titel, double spieldauer, int erscheinungsjahr)
-            throws MyException {
+            throws ArtikelException {
 
         super(artikelNr, bezeichnung, bestand, preis);
 
@@ -60,7 +60,7 @@ public class DVD extends Artikel {
             msg += UNGUELTIGES_ERSCHEINUNGSJAHR;
         }
         if (msg != null) {
-            throw new MyException(msg);
+            throw new ArtikelException(msg);
         } else {
             this.titel = titel;
             this.spieldauer = spieldauer;

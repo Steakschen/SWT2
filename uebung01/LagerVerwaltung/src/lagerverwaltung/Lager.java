@@ -69,9 +69,9 @@ public class Lager {
      *
      * @param standort Name des Lagerstandorts
      * @param maxArtikel Maximale Anzahl Artikel die das Lager beinhalten kann
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.LagerException
      */
-    public Lager(String standort, int maxArtikel) throws MyException {
+    public Lager(String standort, int maxArtikel) throws LagerException {
         String exMsg = null;
 
         if (standort == null || standort.trim().length() == 0) {
@@ -81,7 +81,7 @@ public class Lager {
          exMsg += ANZAHL_ARTIKEL_EX;
          }*/
         if (exMsg != null) {
-            throw new MyException(exMsg);
+            throw new LagerException(exMsg);
         }
 
         this.standort = standort;
@@ -94,10 +94,10 @@ public class Lager {
      * Methode zum Anlegen eines neuen Artikels im Lager
      *
      * @param artikel Artikel der im Lager abgelegt wird
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      *
      */
-    public void erstelleArtikel(Artikel artikel) throws MyException {
+    public void erstelleArtikel(Artikel artikel) throws ArtikelException {
         String exMsg = null;
 
         if (artikelListe.contains(artikel)) {
@@ -109,7 +109,7 @@ public class Lager {
         }
 
         if (exMsg != null) {
-            throw new MyException(exMsg);
+            throw new ArtikelException(exMsg);
         }
         artikelAnzahl += 1;
         artikelListe.add(artikel);
@@ -119,32 +119,32 @@ public class Lager {
      * Methode zum entfernen eines Artikels.
      *
      * @param artikelNummer Artikelnummer des zu entfernenden Artikels
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      *
      */
-    public void entferneArtikel(int artikelNummer) throws MyException {
+    public void entferneArtikel(int artikelNummer) throws ArtikelException {
         String exMsg = null;
         artikelAnzahl -= 1;
         artikelListe.delete(artikelNummer);
     }
 
-    public void bucheZugang(int artikelNummer, int menge) throws MyException {
+    public void bucheZugang(int artikelNummer, int menge) throws ArtikelException {
         String exMsg = null;
 
         if (!artikelListe.contains(artikelListe.getArtikel(artikelNummer))) {
             exMsg += ARTIKEL_NICHT_VORHANDEN_EX;
-            throw new MyException(exMsg);
+            throw new ArtikelException(exMsg);
         } else {
             artikelListe.getArtikel(artikelNummer).bucheZugang(menge);
         }
     }
 
-    public void bucheAbgang(int artikelNummer, int menge) throws MyException {
+    public void bucheAbgang(int artikelNummer, int menge) throws ArtikelException {
         String exMsg = null;
 
         if (!artikelListe.contains(artikelListe.getArtikel(artikelNummer))) {
             exMsg += ARTIKEL_NICHT_VORHANDEN_EX;
-            throw new MyException(exMsg);
+            throw new ArtikelException(exMsg);
         } else {
             artikelListe.getArtikel(artikelNummer).bucheAbgang(menge);
         }
@@ -155,15 +155,15 @@ public class Lager {
      *
      * @param prozentSatz Prozentsatz um den der Preis geändert werden soll,
      * positiv oder negativ
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      */
-    public void aenderePreis(int prozentSatz) throws MyException {
+    public void aenderePreis(int prozentSatz) throws ArtikelException {
         String exMsg = null;
 
         if ((prozentSatz < MIN_PROZENT_SATZ)
                 || (prozentSatz > MAX_PROZENT_SATZ)) {
             exMsg += PROZENTSATZ_WERTEBEREICH_EX;
-            throw new MyException(exMsg);
+            throw new ArtikelException(exMsg);
         }
 
         for (int i = 0; i < artikelListe.getSize(); i++) {
@@ -205,9 +205,10 @@ public class Lager {
     /**
      * Funktion zum Laden des Lagers aus einer Datei.
      * @param dateiName Name der Datei in der das Lager gespeichert wurde
-     * @throws MyException 
+     * @throws lagerverwaltung.DateiException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public void laden (String dateiName) throws MyException, ClassNotFoundException {
+    public void laden (String dateiName) throws DateiException, ClassNotFoundException {
         ObjectInputStream inputStream;
         File inputDatei = new File (dateiName);
         
@@ -219,7 +220,7 @@ public class Lager {
             artikelListe = (Liste) inputStream.readObject();
             inputStream.close();
         } catch (IOException e) {
-            throw new MyException("Bla bla");
+            throw new DateiException("Bla bla");
         }
         
 
@@ -229,8 +230,10 @@ public class Lager {
     /**
      * Funktion zum Speichern des Lagers in einer Datei.
      * @param dateiName Name der Datei in der das Lager gespeichert wird
+     * @throws lagerverwaltung.DateiException
+     * @throws java.lang.ClassNotFoundException
      */
-    public void speichern (String dateiName) throws MyException, ClassNotFoundException {
+    public void speichern (String dateiName) throws DateiException, ClassNotFoundException {
         ObjectOutputStream outputStream;
         File outputDatei = new File (dateiName);
         
@@ -242,7 +245,7 @@ public class Lager {
             outputStream.close();
             
         } catch (IOException e) {
-            throw new MyException("Bla Bla");
+            throw new DateiException("Bla Bla");
         }
     }
 
@@ -250,9 +253,9 @@ public class Lager {
      * Bereitet den Lagerbestand auf und gibt ihn aus
      *
      * @return
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      */
-    public String ausgebenBestandsListe() throws MyException {
+    public String ausgebenBestandsListe() throws ArtikelException {
         String lagerString = "Lagerort: " + standort + '\n';
 
         StringBuilder sbhl = new StringBuilder();

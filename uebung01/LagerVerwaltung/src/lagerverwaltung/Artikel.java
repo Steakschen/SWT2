@@ -49,7 +49,7 @@ public class Artikel {
      * @throws lagerverwaltung.MyException
      */
     public Artikel(int artikelNr, String bezeichnung, int bestand, double preis)
-            throws MyException {
+            throws ArtikelException {
         String exMsg = null;
 
         if (artikelNr < ARTIKELNR_MIN_SIZE && artikelNr < ARTIKELNR_MAX_SIZE) {
@@ -65,7 +65,7 @@ public class Artikel {
             exMsg += PREIS_MIN_EX;
         }
         if (exMsg != null) {
-            throw new MyException(exMsg);
+            throw new ArtikelException(exMsg);
         }
         this.artikelNr = artikelNr;
         this.bezeichnung = bezeichnung;
@@ -81,7 +81,7 @@ public class Artikel {
      * @param preis Preis des Artikels
      * @throws lagerverwaltung.MyException
      */
-    public Artikel(int artikelNr, String bezeichnung, double preis) throws MyException {
+    public Artikel(int artikelNr, String bezeichnung, double preis) throws ArtikelException {
         this(artikelNr, bezeichnung, 0, preis);
     }
 
@@ -163,13 +163,13 @@ public class Artikel {
      * @param preis
      * @throws MyException
      */
-    public void setPreis(double preis) throws MyException {
+    public void setPreis(double preis) throws ArtikelException {
         String exMsg = null;
         if (preis < 0.0) {
             exMsg += PREIS_MIN_EX;
         }
         if (exMsg != null) {
-            throw new MyException(exMsg);
+            throw new ArtikelException(exMsg);
         }
         this.preis = preis;
     }
@@ -180,13 +180,13 @@ public class Artikel {
      * @param menge Anzahl, um die sich der Bestand verändert
      * @throws lagerverwaltung.MyException
      */
-    public void bucheZugang(int menge) throws MyException {
+    public void bucheZugang(int menge) throws ArtikelException {
         String exMsg = null;
         if (menge < 0.0) {
             exMsg += MENGE_MIN_EX;
         }
         if (exMsg != null) {
-            throw new MyException(exMsg);
+            throw new ArtikelException(exMsg);
         }
         bestand += menge;
     }
@@ -197,7 +197,7 @@ public class Artikel {
      * @param menge Anzahl um die siche der Bestand verändert
      * @throws lagerverwaltung.MyException
      */
-    public void bucheAbgang(int menge) throws MyException {
+    public void bucheAbgang(int menge) throws ArtikelException {
         String exMsg = null;
         if (menge < 0.0) {
             exMsg += MENGE_MIN_EX;
@@ -206,7 +206,7 @@ public class Artikel {
             exMsg += BESTAND_MIN_EX;
         }
         if (exMsg != null) {
-            throw new MyException(exMsg);
+            throw new ArtikelException(exMsg);
         }
         bestand -= menge;
     }

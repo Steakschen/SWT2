@@ -27,9 +27,8 @@ public class LagerDialog {
      * Main-Methode Startet die Dialogklasse
      *
      * @param args
-     * @throws MyException
      */
-    public static void main(String[] args) throws MyException {
+    public static void main(String[] args) throws ArtikelException, LagerException {
         LagerDialog lagerDialog = new LagerDialog();
         lagerDialog.start();
     }
@@ -39,7 +38,7 @@ public class LagerDialog {
      *
      * @throws MyException
      */
-    private void start() throws MyException {
+    private void start() throws LagerException, ArtikelException {
 
         System.out.println("1 - Lager anlegen \n");
         System.out.println("Lagername: ");
@@ -93,7 +92,7 @@ public class LagerDialog {
                         System.out.println("Default got hit O_o");
                         break;
                 }
-            } catch (MyException e) {
+            } catch (ArtikelException e) {
                 System.out.println(e);
             }
 
@@ -135,9 +134,9 @@ public class LagerDialog {
     /**
      * Legt die Artikel an
      *
-     * @throws MyException
+     * @throws ArtikelException
      */
-    private void artikelAnlegen() throws MyException {
+    private void artikelAnlegen() throws ArtikelException {
         int artikelMenu = printArtikelMenu();
         switch (artikelMenu) {
             case ARTIKEL:

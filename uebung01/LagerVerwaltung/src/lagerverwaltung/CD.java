@@ -42,10 +42,10 @@ public class CD extends Artikel {
      * @param _interpret Interpret der CD
      * @param _titel Titel der CD
      * @param _anzahlTitel Anzahl der Titel der CD
-     * @throws MyException
+     * @throws lagerverwaltung.ArtikelException
      */
     public CD(int _artikelNummer, String _bezeichnung, int _bestand, double _preis,
-            String _interpret, String _titel, int _anzahlTitel) throws MyException {
+            String _interpret, String _titel, int _anzahlTitel) throws ArtikelException {
         super(_artikelNummer, _bezeichnung, _bestand, _preis);
         String msg = null;
         if (_interpret == null || _interpret.trim().length() == 0) {
@@ -58,7 +58,7 @@ public class CD extends Artikel {
             msg += KEINE_SONGS;
         }
         if (msg != null) {
-            throw new MyException(msg);
+            throw new ArtikelException(msg);
         } else {
             this.interpret = _interpret;
             this.titel = _titel;

@@ -34,9 +34,9 @@ public class Liste {
      * Fügt ein Element an der ersten Stelle ein
      *
      * @param artikel   
-     * @throws MyException
+     * @throws lagerverwaltung.ArtikelException
      */
-    public void addFirst(Artikel artikel) throws MyException {
+    public void addFirst(Artikel artikel) throws ArtikelException {
         Knoten itemToAdd    = new Knoten(artikel, null);
         Knoten tmp          = head;
         head                = itemToAdd;
@@ -48,15 +48,15 @@ public class Liste {
      * Funktion zum sortierten einfuegen in die Liste.
      *
      * @param artikel Der einzufuegende Artikel
-     * @throws MyException
+     * @throws lagerverwaltung.ArtikelException
      */
-    public void add(Artikel artikel) throws MyException {
+    public void add(Artikel artikel) throws ArtikelException {
         /* Wenn es das erste Element ist rufe Addfirst auf */
         if (head == null) {
             addFirst(artikel);
         } else {
             if (contains(artikel)) {
-                throw new MyException(ARTIKEL_VORHANDEN);
+                throw new ArtikelException(ARTIKEL_VORHANDEN);
             } else {
                 Knoten aktuell, letzter;
                 Knoten neu = new Knoten(artikel, null);
@@ -127,9 +127,9 @@ public class Liste {
      * Loeschen eines Artikels per Artikelnummer.
      *
      * @param artikelNummer Artikelnummer des zu loeschenden Artikels
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      */
-    public void delete(int artikelNummer) throws MyException {
+    public void delete(int artikelNummer) throws ArtikelException {
         Knoten anker = head;
         if (anker != null) {
             if (anker.data.getArtikelNr() == artikelNummer) {
@@ -145,7 +145,7 @@ public class Liste {
                 }
             }
         } else {
-            throw new MyException(LISTE_LEER);
+            throw new ArtikelException(LISTE_LEER);
         }
     }
 
@@ -154,11 +154,11 @@ public class Liste {
      *
      * @param position
      * @return
-     * @throws MyException
+     * @throws lagerverwaltung.ArtikelException
      */
-    public Artikel getArtikelAtPos(int position) throws MyException {
+    public Artikel getArtikelAtPos(int position) throws ArtikelException {
         if (position < 0 || position >= size) {
-            throw new MyException(AUSSERHALB_LISTE);
+            throw new ArtikelException(AUSSERHALB_LISTE);
         }
 
         Knoten anker = head;

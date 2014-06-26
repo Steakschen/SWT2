@@ -37,10 +37,10 @@ public class Buch extends Artikel {
      * @param titel
      * @param autor
      * @param verlag
-     * @throws MyException
+     * @throws lagerverwaltung.ArtikelException
      */
     public Buch(int artikelNr, String bezeichnung, int bestand, double preis,
-            String titel, String autor, String verlag) throws MyException {
+            String titel, String autor, String verlag) throws ArtikelException {
 
         super(artikelNr, bezeichnung, bestand, preis);
 
@@ -55,7 +55,7 @@ public class Buch extends Artikel {
             msg += KEIN_VERLAG;
         }
         if (msg != null) {
-            throw new MyException(msg);
+            throw new ArtikelException(msg);
         } else {
             this.titel = titel;
             this.autor = autor;
