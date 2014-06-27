@@ -19,6 +19,8 @@ public class Buch extends Artikel {
             = "\tEs wurde kein Autor angegeben!\n";
     private static final String KEIN_VERLAG
             = "\tEs wurde kein Verlag angegeben!\n";
+    
+    static final double MWST = 7;
 
     /**
      * Attribute
