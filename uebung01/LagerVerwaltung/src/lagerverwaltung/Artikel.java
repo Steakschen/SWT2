@@ -12,20 +12,19 @@ import java.text.DecimalFormat;
  *
  * @author Carsten / Moritz
  */
-public class Artikel {
+public class Artikel implements Comparable {
 
     /* Konstanten */
-    static int ARTIKELNR_MIN_SIZE = 1000;
-    static int ARTIKELNR_MAX_SIZE = 10000;
-    static int BESTAND_MIN = 0;
-    static int PREIS_MIN = 0;
-    static double MWST = 1.19;
-    static double MWST_ermaessigt = 1.17;
-    static String ARTIKELNR_SIZE_EX = "Artikelnummer nicht 4 stellig!";
-    static String BEZEICHNUNG_NULL_EX = "Bezeichnung ist Null-Referenz oder leer!";
-    static String BESTAND_MIN_EX = "Bestand ist/wird kleiner als 0!";
-    static String PREIS_MIN_EX = "Preis ist/wird kleiner als 0!";
-    static String MENGE_MIN_EX = "Menge ist kleiner als 0!";
+    static final int ARTIKELNR_MIN_SIZE = 1000;
+    static final int ARTIKELNR_MAX_SIZE = 10000;
+    static final int BESTAND_MIN = 0;
+    static final int PREIS_MIN = 0;
+    static final double MWST = 19;
+    static final String ARTIKELNR_SIZE_EX = "Artikelnummer nicht 4 stellig!";
+    static final String BEZEICHNUNG_NULL_EX = "Bezeichnung ist Null-Referenz oder leer!";
+    static final String BESTAND_MIN_EX = "Bestand ist/wird kleiner als 0!";
+    static final String PREIS_MIN_EX = "Preis ist/wird kleiner als 0!";
+    static final String MENGE_MIN_EX = "Menge ist kleiner als 0!";
 
     /* Attribute */
     private int artikelNr;
@@ -45,7 +44,7 @@ public class Artikel {
      * @param artikelNr Artikelnummer des Artikels
      * @param bezeichnung Bezeichnung des Artikels
      * @param bestand Bestand des Artikels
-     * @param preis Preis des Artikels
+     * @param preis Bruttopreis des Artikels
      * @throws lagerverwaltung.MyException
      */
     public Artikel(int artikelNr, String bezeichnung, int bestand, double preis)
@@ -134,29 +133,28 @@ public class Artikel {
     /**
      * Gibt den Netto Preis des Artikels zurück mit 19% MWST
      *
-     * @return
+     * @return Nettopreis
      */
-    public double getMwstPreis() {
-        return preis / MWST;
-    }
-
-    /**
-     * Gibt den Netto Preis des Artikels zurück mit 19% MWST
-     *
-     * @return
-     */
-    public double getMwstErmaessigtPreis() {
-        return preis / MWST_ermaessigt;
+    public double getNettoPreis() {
+        return Math.round(preis / (getMwstSatz() / 100 + 1));
     }
     
     /**
-     * Gibt den MWST-Anteil zurück
-     * @return 
+     * Gibt den MWST-Anteil zurück.
+     * @return MWST-Anteil
      */
     public double getMwstAnteil() {
-        return preis - (preis / MWST);
+        return preis - getNettoPreis();
     }
 
+    /**
+     * Gibt den MWST-Satz zurück.
+     * @return MWST-Satz
+     */
+    public double getMwstSatz() {
+        return MWST;
+    }
+    
     /**
      * Setzt den Preis des Artikels
      *
@@ -212,6 +210,15 @@ public class Artikel {
     }
 
     /**
+     * Methode zum vergleichen von Artikeln.
+     * @param vglObject Objekt mit dem das aktuelle verglichen werden soll
+     * @return -int/0/+int für kleiner/gleich/groesser
+     */
+    public int compareTo(Object vglObject) {
+        return this.artikelNr - ((Artikel) vglObject).getArtikelNr();
+    }
+    
+    /**
      * toString gibt einen String für die Ausgabe zurück
      *
      * @return
@@ -221,7 +228,7 @@ public class Artikel {
         DecimalFormat f = new DecimalFormat("#0.00");
         return "\n Artikel: " + artikelNr + " Bezeichnung: " + bezeichnung
                 + " Bestand: " + bestand + " Brutto-Preis: " + f.format(getPreis())
-                + " Netto-Preis: " + f.format(getMwstPreis()) + " MWST-Anteil: "
+                + " Netto-Preis: " + f.format(getNettoPreis()) + " MWST-Anteil: "
                 + f.format(getMwstAnteil());
     }
 }
