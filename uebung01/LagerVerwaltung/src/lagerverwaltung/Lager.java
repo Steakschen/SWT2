@@ -276,19 +276,13 @@ public class Lager {
 
         for (int i = 0; i < artikelListe.getSize(); i++) {
             tempArtikel = artikelListe.getArtikelAtPos(i);
-            if (tempArtikel instanceof Buch) {
-                formatter.format("%-7s %-50s %-9s %-8s %-9s %-4s\n",
-                        tempArtikel.getArtikelNr(), tempArtikel.getBeschreibung(),
-                        f.format(tempArtikel.getMwstErmaessigtPreis()),
-                        f.format(tempArtikel.getMwstAnteil()),
-                        f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
-            } else {
-                formatter.format("%-7s %-50s %-9s %-8s %-9s %-4s\n",
-                        tempArtikel.getArtikelNr(), tempArtikel.getBeschreibung(),
-                        f.format(tempArtikel.getMwstPreis()),
-                        f.format(tempArtikel.getMwstAnteil()),
-                        f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
-            }
+
+            formatter.format("%-7s %-50s %-9s %-8s %-9s %-4s\n",
+                tempArtikel.getArtikelNr(), tempArtikel.getBeschreibung(),
+                f.format(tempArtikel.getNettoPreis()),
+                f.format(tempArtikel.getMwstAnteil()),
+                f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
+
             daten = formatter.toString();
         }
 
