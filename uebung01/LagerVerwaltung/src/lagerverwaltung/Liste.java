@@ -60,13 +60,15 @@ public class Liste {
             } else {
                 Knoten aktuell, letzter;
                 Knoten neu = new Knoten(artikel, null);
-                if (head.data.getArtikelNr() > artikel.getArtikelNr()) {
+                //if (head.data.getArtikelNr() > artikel.getArtikelNr()) {
+                if (head.data.compareTo(artikel) > 0) {
                     addFirst(artikel);
                 } else {
                     aktuell = head.next;
                     letzter = head;
-                    while ((aktuell != null) && (aktuell.data.getArtikelNr() 
-                            < artikel.getArtikelNr())) {
+                    /*while ((aktuell != null) && (aktuell.data.getArtikelNr() 
+                            < artikel.getArtikelNr())) {*/
+                    while ((aktuell != null) && (aktuell.data.compareTo(artikel) < 0)) {
                         aktuell = aktuell.next;
                         letzter = letzter.next;
                     }
