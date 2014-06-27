@@ -92,6 +92,10 @@ public class Buch extends Artikel {
         return verlag;
     }
 
+    public double getMwstSatz() {
+        return MWST;
+    }
+    
     /**
      * Liefert den Autor und Titel des Buchs als String.
      *
