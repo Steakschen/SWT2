@@ -5,6 +5,7 @@
  */
 package lagerverwaltung;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 /**
@@ -12,7 +13,7 @@ import java.text.DecimalFormat;
  *
  * @author Carsten / Moritz
  */
-public class Artikel implements Comparable {
+public class Artikel implements Comparable, Serializable {
 
     /* Konstanten */
     static final int ARTIKELNR_MIN_SIZE = 1000;
@@ -45,7 +46,7 @@ public class Artikel implements Comparable {
      * @param bezeichnung Bezeichnung des Artikels
      * @param bestand Bestand des Artikels
      * @param preis Bruttopreis des Artikels
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      */
     public Artikel(int artikelNr, String bezeichnung, int bestand, double preis)
             throws ArtikelException {
@@ -78,7 +79,7 @@ public class Artikel implements Comparable {
      * @param artikelNr Artikelnummer des Artikels
      * @param bezeichnung Bezeichnung des Artikels
      * @param preis Preis des Artikels
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      */
     public Artikel(int artikelNr, String bezeichnung, double preis) throws ArtikelException {
         this(artikelNr, bezeichnung, 0, preis);
@@ -159,7 +160,7 @@ public class Artikel implements Comparable {
      * Setzt den Preis des Artikels
      *
      * @param preis
-     * @throws MyException
+     * @throws lagerverwaltung.ArtikelException
      */
     public void setPreis(double preis) throws ArtikelException {
         String exMsg = null;
@@ -176,7 +177,7 @@ public class Artikel implements Comparable {
      * bucheZugang erhöht um die in menge mitgegebene Anzahl den Bestand
      *
      * @param menge Anzahl, um die sich der Bestand verändert
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      */
     public void bucheZugang(int menge) throws ArtikelException {
         String exMsg = null;
@@ -193,7 +194,7 @@ public class Artikel implements Comparable {
      * bucheAbgang verringert um die in menge mitgebene Anzahl den Bestand
      *
      * @param menge Anzahl um die siche der Bestand verändert
-     * @throws lagerverwaltung.MyException
+     * @throws lagerverwaltung.ArtikelException
      */
     public void bucheAbgang(int menge) throws ArtikelException {
         String exMsg = null;
@@ -214,6 +215,7 @@ public class Artikel implements Comparable {
      * @param vglObject Objekt mit dem das aktuelle verglichen werden soll
      * @return -int/0/+int für kleiner/gleich/groesser
      */
+    @Override
     public int compareTo(Object vglObject) {
         return this.artikelNr - ((Artikel) vglObject).getArtikelNr();
     }

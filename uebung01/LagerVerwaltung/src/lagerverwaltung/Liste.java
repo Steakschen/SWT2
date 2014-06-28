@@ -5,12 +5,14 @@
  */
 package lagerverwaltung;
 
+import java.io.Serializable;
+
 /**
  * Listen Klasse
  *
  * @author Moritz / Carsten
  */
-public class Liste {
+public class Liste implements Serializable{
 
     private static final String ARTIKEL_VORHANDEN   = "\tArtikel bereits vorhanden!\n";
     private static final String LISTE_LEER          = "\tListe ist leer!\n";

@@ -124,13 +124,17 @@ public class Lager {
      */
     public void entferneArtikel(int artikelNummer) throws ArtikelException {
         String exMsg = null;
-        artikelAnzahl -= 1;
-        artikelListe.delete(artikelNummer);
+        if (artikelListe.getArtikel(artikelNummer) == null) {
+            exMsg += ARTIKEL_NICHT_VORHANDEN_EX;
+            throw new ArtikelException(exMsg);
+        } else {
+            artikelAnzahl -= 1;
+            artikelListe.delete(artikelNummer);
+        }
     }
 
     public void bucheZugang(int artikelNummer, int menge) throws ArtikelException {
         String exMsg = null;
-
         if (!artikelListe.contains(artikelListe.getArtikel(artikelNummer))) {
             exMsg += ARTIKEL_NICHT_VORHANDEN_EX;
             throw new ArtikelException(exMsg);
@@ -200,52 +204,53 @@ public class Lager {
     public boolean isEmpty() {
         return (artikelListe.getSize() == 0);
     }
-    
+
     //TODO: Exceptions überarbeiten, testen, zur Not Liste neu schreiben
     /**
      * Funktion zum Laden des Lagers aus einer Datei.
+     *
      * @param dateiName Name der Datei in der das Lager gespeichert wurde
-     * @throws lagerverwaltung.DateiException 
-     * @throws java.lang.ClassNotFoundException 
+     * @throws lagerverwaltung.DateiException
+     * @throws java.lang.ClassNotFoundException
      */
-    public void laden (String dateiName) throws DateiException, ClassNotFoundException {
+    public void laden(String dateiName) throws DateiException, ClassNotFoundException {
         ObjectInputStream inputStream;
-        File inputDatei = new File (dateiName);
-        
+        File inputDatei = new File(dateiName);
+
         try {
             inputStream = new ObjectInputStream(
-                                new BufferedInputStream(
-                                    new FileInputStream(inputDatei)));
-            
+                    new BufferedInputStream(
+                            new FileInputStream(inputDatei)));
+
             artikelListe = (Liste) inputStream.readObject();
             inputStream.close();
         } catch (IOException e) {
-            throw new DateiException("Bla bla");
+            throw new DateiException("Bla bla laden" + e);
         }
-        
 
     }
-    
+
     //TODO: Exceptions überarbeiten, testen, zur Not Liste neu schreiben
     /**
      * Funktion zum Speichern des Lagers in einer Datei.
+     *
      * @param dateiName Name der Datei in der das Lager gespeichert wird
      * @throws lagerverwaltung.DateiException
      * @throws java.lang.ClassNotFoundException
      */
-    public void speichern (String dateiName) throws DateiException, ClassNotFoundException {
+    public void speichern(String dateiName) throws DateiException, ClassNotFoundException {
         ObjectOutputStream outputStream;
-        File outputDatei = new File (dateiName);
-        
+        File outputDatei = new File(dateiName);
+
         try {
             outputStream = new ObjectOutputStream(
-                                new BufferedOutputStream(
-                                    new FileOutputStream(outputDatei)));
+                    new BufferedOutputStream(
+                            new FileOutputStream(outputDatei)));
             outputStream.writeObject(artikelListe);
             outputStream.close();
-            
+
         } catch (IOException e) {
-            throw new DateiException("Bla Bla");
+            throw new DateiException("Bla Bla speichern" + e);
         }
     }
 
@@ -278,10 +283,10 @@ public class Lager {
             tempArtikel = artikelListe.getArtikelAtPos(i);
 
             formatter.format("%-7s %-50s %-9s %-8s %-9s %-4s\n",
-                tempArtikel.getArtikelNr(), tempArtikel.getBeschreibung(),
-                f.format(tempArtikel.getNettoPreis()),
-                f.format(tempArtikel.getMwstAnteil()),
-                f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
+                    tempArtikel.getArtikelNr(), tempArtikel.getBeschreibung(),
+                    f.format(tempArtikel.getNettoPreis()),
+                    f.format(tempArtikel.getMwstAnteil()),
+                    f.format(tempArtikel.getPreis()), tempArtikel.getBestand());
 
             daten = formatter.toString();
         }
@@ -305,5 +310,14 @@ public class Lager {
         }
 
         return lagerString;
+    }
+
+    public boolean dateiVorhanden(String dateiName) {
+        File datei = new File(dateiName);
+        if (datei.exists()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

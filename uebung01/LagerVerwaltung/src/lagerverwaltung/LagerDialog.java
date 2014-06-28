@@ -16,6 +16,8 @@ public class LagerDialog {
     private static final int CD = 4;
 
     private Lager meinLager;
+    
+    private String dateiname;
 
     /**
      * Konstruktor
@@ -27,8 +29,12 @@ public class LagerDialog {
      * Main-Methode Startet die Dialogklasse
      *
      * @param args
+     * @throws lagerverwaltung.ArtikelException
+     * @throws lagerverwaltung.LagerException
+     * @throws lagerverwaltung.DateiException
+     * @throws java.lang.ClassNotFoundException
      */
-    public static void main(String[] args) throws ArtikelException, LagerException {
+    public static void main(String[] args) throws ArtikelException, LagerException, DateiException, ClassNotFoundException {
         LagerDialog lagerDialog = new LagerDialog();
         lagerDialog.start();
     }
@@ -38,9 +44,9 @@ public class LagerDialog {
      *
      * @throws MyException
      */
-    private void start() throws LagerException, ArtikelException {
-
-        System.out.println("1 - Lager anlegen \n");
+    private void start() throws LagerException, ArtikelException, DateiException, ClassNotFoundException {
+       
+        System.out.println("\nLager anlegen");
         System.out.println("Lagername: ");
         String lagerName = Stdin.readString();
         System.out.println("Lagerplaetze: ");
@@ -86,6 +92,14 @@ public class LagerDialog {
                         System.out.println(meinLager.ausgebenBestandsListe());
                         break;
                     case 8:
+                        dateiLaden();
+                        System.out.println("Laden von: "+dateiname + "erfolgreich!");
+                        break;
+                    case 9:
+                        dateiSpeichern();
+                        System.out.println("Speichern von "+dateiname+ "erfolgreich!");
+                        break;
+                    case 10:
                         System.out.println("\nDas Programm Beendet sich, Vielen Dank\n");
                         break;
                     default:
@@ -96,7 +110,7 @@ public class LagerDialog {
                 System.out.println(e);
             }
 
-        } while (menu != 8);
+        } while (menu != 10);
     }
 
     /**
@@ -113,7 +127,9 @@ public class LagerDialog {
         System.out.println(" 5 - aendere Preis");
         System.out.println(" 6 - Lager ausgeben");
         System.out.println(" 7 - Bestandsliste ausgeben");
-        System.out.println(" 8 - Beenden\n");
+        System.out.println(" 8 - Laden");
+        System.out.println(" 9 - Speichern");
+        System.out.println(" 10 - Beenden\n");
         return Stdin.readInt();
     }
 
@@ -222,5 +238,34 @@ public class LagerDialog {
     private double artikelPreisAnlegen() {
         System.out.println("Artikelpreis: ");
         return Stdin.readDouble();
+    }
+
+    /**
+     * Datei laden
+     */
+    private void dateiLaden() throws DateiException, ClassNotFoundException {
+        meinLager.laden(dateiNameEinlesen());
+        //Prüfen ob einlesen Sinn macht??
+    }
+
+    /**
+     * Datei Speichern
+     */
+    private void dateiSpeichern() throws DateiException, ClassNotFoundException {
+        dateiname = dateiNameEinlesen();
+                
+        if (meinLager.dateiVorhanden(dateiname)){
+            System.out.println("Datei: "+ dateiname+" vorhanden, überschreiben ? j/n");
+            if (Stdin.readChar() == 'j') {
+                meinLager.speichern(dateiname);
+            }
+        } else {
+            meinLager.speichern(dateiname);
+        }
+    }
+    
+    private String dateiNameEinlesen() {
+        System.out.println("Bitte Dateinamen zum speichern eingeben: ");
+        return dateiname = Stdin.readlnString();
     }
 }

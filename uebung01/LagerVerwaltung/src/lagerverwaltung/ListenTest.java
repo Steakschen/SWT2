@@ -20,12 +20,12 @@ public class ListenTest {
         elemente = 3;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArtikelException {
         ListenTest test = new ListenTest();
         test.run();
     }
 
-    public void addArtikel() throws MyException {
+    public void addArtikel() throws MyException, ArtikelException {
         int artikelNummer           = Stdin.readInt("Artikelnummer: ");
         String bezeichnung          = Stdin.readString("Bezeichnung: ");
         int bestand                 = Stdin.readInt("Bestand: ");
@@ -43,12 +43,12 @@ public class ListenTest {
         System.out.println("2 - Print Liste");
     }
     
-    public void deleteArtikel() throws MyException {
+    public void deleteArtikel() throws MyException, ArtikelException {
         int artikelNummer = Stdin.readInt("Bitte Artikelnummer angeben: ");
         list.delete(artikelNummer);
     }
     
-    public void run() {
+    public void run() throws ArtikelException {
         int eingabe = -1;
         try {
             list.add(new Artikel(4711,"Banane",6,6));
