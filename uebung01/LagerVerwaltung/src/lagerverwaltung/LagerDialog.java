@@ -93,11 +93,11 @@ public class LagerDialog {
                         break;
                     case 8:
                         dateiLaden();
-                        System.out.println("Laden von: "+dateiname + "erfolgreich!");
+                        System.out.println("Laden von: "+dateiname + " erfolgreich!");
                         break;
                     case 9:
                         dateiSpeichern();
-                        System.out.println("Speichern von "+dateiname+ "erfolgreich!");
+                        System.out.println("Speichern von: "+dateiname+ " erfolgreich!");
                         break;
                     case 10:
                         System.out.println("\nDas Programm Beendet sich, Vielen Dank\n");
