@@ -45,13 +45,21 @@ public class LagerDialog {
      * @throws MyException
      */
     private void start() throws LagerException, ArtikelException, DateiException, ClassNotFoundException {
-       
-        System.out.println("\nLager anlegen");
-        System.out.println("Lagername: ");
-        String lagerName = Stdin.readString();
-        System.out.println("Lagerplaetze: ");
-        int maxLagerPlaetze = Stdin.readInt();
-        meinLager = new Lager(lagerName, maxLagerPlaetze);
+        
+        char lagerVorhanden = Stdin.readChar("\n Lager bereits vorhanden und laden? (j/n)");
+        if (lagerVorhanden == 'j') {
+            meinLager = new Lager();
+            dateiLaden();
+        }
+        else {
+            System.out.println("\nLager anlegen");
+            System.out.println("Lagername: ");
+            String lagerName = Stdin.readString();
+            System.out.println("Lagerplaetze: ");
+            int maxLagerPlaetze = Stdin.readInt();
+            meinLager = new Lager(lagerName, maxLagerPlaetze); 
+        }
+
         int menu = 0;
         do {
             menu = printMenu();
@@ -245,7 +253,7 @@ public class LagerDialog {
      */
     private void dateiLaden() throws DateiException, ClassNotFoundException {
         meinLager.laden(dateiNameEinlesen());
-        //Prüfen ob einlesen Sinn macht??
+        //Prüfen ob einlesen Sinn macht??        
     }
 
     /**

@@ -7,6 +7,8 @@ package lagerverwaltung;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -38,6 +40,9 @@ public class Lager {
             + "bereits vorhanden!\n";
     private static final String PROZENTSATZ_WERTEBEREICH_EX = "\tAngegebener "
             + "Prozentsatz ausserhalb des Wertebereichs\n";
+    private static final String FEHLER_LADEN = "\tFehler beim Laden der Datei!\n";
+    private static final String FEHLER_SPEICHERN = 
+            "\tFehler beim Speichern der Datei!\n";
 
     /* Weitere Konstanten */
     private static final int MIN_ANZAHL_ARTIKEL = 1;
@@ -63,6 +68,12 @@ public class Lager {
      * Zähler für die Anzahl der Artikel im Array.
      */
     private int artikelAnzahl;
+    
+    /**
+     * Standardkonstruktor.
+     */
+    public Lager() {
+    }
 
     /**
      * Konstruktor der Klasse Lager.
@@ -206,7 +217,6 @@ public class Lager {
         return (artikelListe.getSize() == 0);
     }
 
-    //TODO: Exceptions überarbeiten, testen, zur Not Liste neu schreiben
     /**
      * Funktion zum Laden des Lagers aus einer Datei.
      *
@@ -216,21 +226,32 @@ public class Lager {
      */
     public void laden(String dateiName) throws DateiException, ClassNotFoundException {
         File inputDatei = new File(dateiName);
+        DateiException.dateiNichtVorhanden(inputDatei);
 
+        try (DataInputStream inputStreamInt = 
+                new DataInputStream(
+                    new BufferedInputStream(
+                            new FileInputStream(inputDatei)))){
+            maxArtikel    = (int) inputStreamInt.readInt();
+            
+        } catch (IOException e) {
+            throw new DateiException(FEHLER_LADEN + e);
+        }        
+        
         try (ObjectInputStream inputStream = 
                 new ObjectInputStream(
                     new BufferedInputStream(
                             new FileInputStream(inputDatei)))){
 
-            artikelListe = (Liste) inputStream.readObject();
+            artikelListe    = (Liste) inputStream.readObject();
+            standort        = (String) inputStream.readObject();
             
         } catch (IOException e) {
-            throw new DateiException("Bla bla laden" + e);
+            throw new DateiException(FEHLER_LADEN + e);
         }
 
     }
 
-    //TODO: Exceptions überarbeiten, testen, zur Not Liste neu schreiben
     /**
      * Funktion zum Speichern des Lagers in einer Datei.
      *
@@ -240,16 +261,26 @@ public class Lager {
      */
     public void speichern(String dateiName) throws DateiException, ClassNotFoundException {
         File outputDatei = new File(dateiName);
-
+         
+        try (DataOutputStream outputStreamInt =
+                new DataOutputStream(
+                    new BufferedOutputStream(
+                        new FileOutputStream(outputDatei)))) {
+            outputStreamInt.writeInt(maxArtikel);
+        } catch (IOException e) {
+            throw new DateiException(FEHLER_SPEICHERN + e);           
+        }
+        
         try (ObjectOutputStream outputStream = 
                 new ObjectOutputStream(
                     new BufferedOutputStream(
                             new FileOutputStream(outputDatei)))){
 
             outputStream.writeObject(artikelListe);
+            outputStream.writeObject(standort);
 
         } catch (IOException e) {
-            throw new DateiException("Bla Bla speichern" + e);
+            throw new DateiException(FEHLER_SPEICHERN + e);
         }
     }
 
