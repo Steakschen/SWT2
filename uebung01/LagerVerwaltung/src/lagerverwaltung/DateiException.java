@@ -24,19 +24,7 @@ public class DateiException extends Exception {
     public DateiException(String fehlerMeldung) {
         super(fehlerMeldung);
     }
-    
-    /**
-     * Prüft, ob bereits eine Datei mit dem angegebenen Namen vorhanden ist. 
-     * Wirft im Fehlerfall direkt eine Exception.
-     * @param datei Name der Datei
-     * @throws DateiException 
-     */
-    public static void dateiVorhanden (File datei) throws DateiException {
-        if (datei.exists()) {
-            throw new DateiException(DATEI_VORHANDEN + datei.getName());
-        }
-    }
-    
+
     /**
      * Prüft, ob bereits eine Datei mit dem angegebenen Namen noch nicht vorhanden ist. 
      * Wirft im Fehlerfall direkt eine Exception.
