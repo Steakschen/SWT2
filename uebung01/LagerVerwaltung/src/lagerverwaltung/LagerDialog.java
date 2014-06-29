@@ -264,6 +264,10 @@ public class LagerDialog {
         }
     }
     
+    /**
+     * Liest den Dateinamen ein
+     * @return dateiname
+     */
     private String dateiNameEinlesen() {
         System.out.println("Bitte Dateinamen zum speichern eingeben: ");
         return dateiname = Stdin.readlnString();

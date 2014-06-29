@@ -216,16 +216,15 @@ public class Lager {
      * @throws java.lang.ClassNotFoundException
      */
     public void laden(String dateiName) throws DateiException, ClassNotFoundException {
-        ObjectInputStream inputStream;
         File inputDatei = new File(dateiName);
 
-        try {
-            inputStream = new ObjectInputStream(
+        try (ObjectInputStream inputStream = 
+                new ObjectInputStream(
                     new BufferedInputStream(
-                            new FileInputStream(inputDatei)));
+                            new FileInputStream(inputDatei)))){
 
             artikelListe = (Liste) inputStream.readObject();
-            inputStream.close();
+            
         } catch (IOException e) {
             throw new DateiException("Bla bla laden" + e);
         }
@@ -241,15 +240,14 @@ public class Lager {
      * @throws java.lang.ClassNotFoundException
      */
     public void speichern(String dateiName) throws DateiException, ClassNotFoundException {
-        ObjectOutputStream outputStream;
         File outputDatei = new File(dateiName);
 
-        try {
-            outputStream = new ObjectOutputStream(
+        try (ObjectOutputStream outputStream = 
+                new ObjectOutputStream(
                     new BufferedOutputStream(
-                            new FileOutputStream(outputDatei)));
+                            new FileOutputStream(outputDatei)))){
+
             outputStream.writeObject(artikelListe);
-            outputStream.close();
 
         } catch (IOException e) {
             throw new DateiException("Bla Bla speichern" + e);
