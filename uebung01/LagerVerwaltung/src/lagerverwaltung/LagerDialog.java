@@ -269,7 +269,7 @@ public class LagerDialog {
      * @return dateiname
      */
     private String dateiNameEinlesen() {
-        System.out.println("Bitte Dateinamen zum speichern eingeben: ");
+        System.out.println("Bitte Dateinamen zum speichern/laden eingeben: ");
         return dateiname = Stdin.readlnString();
     }
 }

@@ -123,7 +123,6 @@ public class Lager {
      *
      */
     public void entferneArtikel(int artikelNummer) throws ArtikelException {
-        System.out.println("\n #### in entferne Arktikel #### \n");
         String exMsg = null;
         //if (artikelListe.getArtikel(artikelNummer) == null) {
         if (!artikelListe.contains(artikelListe.getArtikel(artikelNummer))) {
