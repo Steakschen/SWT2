@@ -38,7 +38,7 @@ public class Liste implements Serializable{
      * @param artikel   
      * @throws lagerverwaltung.ArtikelException
      */
-    public void addFirst(Artikel artikel) throws ArtikelException {
+    public void pushFront(Artikel artikel) throws ArtikelException {
         Knoten itemToAdd    = new Knoten(artikel, null);
         Knoten tmp          = head;
         head                = itemToAdd;
@@ -55,7 +55,7 @@ public class Liste implements Serializable{
     public void add(Artikel artikel) throws ArtikelException {
         /* Wenn es das erste Element ist rufe Addfirst auf */
         if (head == null) {
-            addFirst(artikel);
+            pushFront(artikel);
         } else {
             if (contains(artikel)) {
                 throw new ArtikelException(ARTIKEL_VORHANDEN);
@@ -64,7 +64,7 @@ public class Liste implements Serializable{
                 Knoten neu = new Knoten(artikel, null);
                 //if (head.data.getArtikelNr() > artikel.getArtikelNr()) {
                 if (head.data.compareTo(artikel) > 0) {
-                    addFirst(artikel);
+                    pushFront(artikel);
                 } else {
                     aktuell = head.next;
                     letzter = head;
