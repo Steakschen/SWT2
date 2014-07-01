@@ -21,22 +21,35 @@ public class LagerGuiMain extends JFrame {
         setTitle("Lagerverwaltung");
         setSize(550, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //Label für den Standort anlegen
         JLabel lagerOrt         = new JLabel("Lagerort");
+        
+        //Textarea für die Ausgabe des Lagers, als Scrollpane
+        JTextArea textFeld      = new JTextArea("Test");
+        JScrollPane scrollPane  = new JScrollPane(textFeld);
+        
+        //Flowlayout für die unteren Buttons
         JPanel buttonFeld       = new JPanel(new FlowLayout());
+        
+        //Buttons für das Flowlayout
         JButton neuButton       = new JButton("neu");
         JButton loeschenButton  = new JButton("loeschen");
         JButton zugangButton    = new JButton("Zugang");
         JButton abgangButton    = new JButton("Abgang");
-        JTextArea textFeld      = new JTextArea("Test");
-        JScrollPane scrollPane  = new JScrollPane(textFeld);
-        add(scrollPane, BorderLayout.CENTER);
-        add(lagerOrt, BorderLayout.NORTH);
+
+        //Buttons zum Flowlayout hinzufügen
         buttonFeld.add(neuButton);
         buttonFeld.add(loeschenButton);
         buttonFeld.add(zugangButton);
         buttonFeld.add(abgangButton);
+        
+        //Komponenten in den JFrame einfügen 
+        add(scrollPane, BorderLayout.CENTER);
+        add(lagerOrt, BorderLayout.NORTH);
         add(buttonFeld, BorderLayout.SOUTH);
         
+        //Actionlistener für die Buttons 
         neuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //neuen Artikel anlegen
