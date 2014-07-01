@@ -198,6 +198,10 @@ public class Lager {
         return this.artikelAnzahl;
     }
 
+    public String getStandort() {
+        return standort;
+    }
+
     /**
      * Pr&uuml;ft, ob das Lager voll ist.
      *

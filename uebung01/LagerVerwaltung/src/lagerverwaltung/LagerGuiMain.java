@@ -6,11 +6,14 @@
 package lagerverwaltung;
 
 import java.awt.BorderLayout;
+import java.awt.Event;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -18,14 +21,16 @@ import javax.swing.*;
  * @author Moritz
  */
 public class LagerGuiMain extends JFrame {
+    
+    public static Lager meinLager;
 
     public LagerGuiMain() {
         setTitle("Lagerverwaltung");
         setSize(650, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         //Label für den Standort anlegen
-        JLabel lagerOrt = new JLabel("Lagerort");
+        JLabel lagerOrt = new JLabel("Lagerort: " + meinLager.getStandort());
 
         //Textarea für die Ausgabe des Lagers, als Scrollpane
         JTextArea textFeld = new JTextArea("Test");
@@ -57,9 +62,7 @@ public class LagerGuiMain extends JFrame {
         neuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //neuen Artikel anlegen
-                //öfnne Artikel anlegen Fenster
-                //int artikelNummer = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Artikelnummer eingeben", "Eingabe Artikelnummer", WIDTH));
-                LagerGuiArtikelAnlegen artikelAnlegen = new LagerGuiArtikelAnlegen();
+                LagerGuiArtikelAnlegen artikelAnlegen = new LagerGuiArtikelAnlegen(meinLager);
                 artikelAnlegen.setVisible(true);
 
             }
@@ -68,6 +71,8 @@ public class LagerGuiMain extends JFrame {
         loeschenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Artikel loeschen
+                LagerGuiArtikelLoeschen artikelLoeschen = new LagerGuiArtikelLoeschen();
+                artikelLoeschen.setVisible(true);
             }
         });
 
@@ -91,52 +96,49 @@ public class LagerGuiMain extends JFrame {
     }
 
     public static void main(String[] args) {
+        LagerGuiLagerAnlegen lagerAnlegen = new LagerGuiLagerAnlegen();
+        lagerAnlegen.setVisible(true);
+        
+        while (lagerAnlegen.isActive()){
+            
+        }
+        
         JFrame mainFrame = new LagerGuiMain();
+        System.out.println("penis");
         mainFrame.setVisible(true);
     }
 
     public class LagerGuiArtikelAnlegen extends JFrame {
         
-        Lager meinLager = null;
-        
-        public LagerGuiArtikelAnlegen(/*Lager _meinLager*/) throws HeadlessException {
-            //meinLager = _meinLager;
+        public LagerGuiArtikelAnlegen(Lager _meinLager) throws HeadlessException {
+            meinLager = _meinLager;
             setTitle("Artikel anlegen");
             setSize(300, 200);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            
-            setLayout(new GridLayout(0, 2));
-            
-            //Artikelnummer
-            JLabel artikelNummerLabel           = new JLabel("Artikelnummer");
-            JTextField artikelNummerFeld        = new JTextField();
-            
-            //Artikelbezeichnung
-            JLabel artikelBezeichnungLabel      = new JLabel("Artikelbezeichnung");
-            JTextField artikelBezeichnungFeld   = new JTextField();
-            
-            //Artikelbestand
-            JLabel artikelBestandLabel          = new JLabel("Artikelbestand");
-            JTextField artikelBestandFeld       = new JTextField();
-            
-            //Artikelpreis
-            JLabel artikelPreisLabel            = new JLabel("Preis");
-            JTextField artikelPreisFeld         = new JTextField();
 
-            //Flowlayout für die unteren Buttons
-            //JPanel buttonFeld = new JPanel(new FlowLayout());
+            setLayout(new GridLayout(0, 2));
+
+            //Artikelnummer
+            JLabel artikelNummerLabel = new JLabel("Artikelnummer");
+            JTextField artikelNummerFeld = new JTextField();
+
+            //Artikelbezeichnung
+            JLabel artikelBezeichnungLabel = new JLabel("Artikelbezeichnung");
+            JTextField artikelBezeichnungFeld = new JTextField();
+
+            //Artikelbestand
+            JLabel artikelBestandLabel = new JLabel("Artikelbestand");
+            JTextField artikelBestandFeld = new JTextField();
+
+            //Artikelpreis
+            JLabel artikelPreisLabel = new JLabel("Preis");
+            JTextField artikelPreisFeld = new JTextField();
 
             //Buttons für das Flowlayout
             JButton okButton = new JButton("Ok");
             JButton abbrechenButton = new JButton("Abbrechen");
 
-            //Buttons zum Flowlayout hinzufügen
-            //buttonFeld.add(okButton);
-            //buttonFeld.add(abbrechenButton);
-
             //Komponenten in den JFrame einfügen        
-            //add(textFeld, BorderLayout.CENTER);
-            //add(buttonFeld, BorderLayout.SOUTH);
             add(artikelNummerLabel);
             add(artikelNummerFeld);
             add(artikelBezeichnungLabel);
@@ -147,7 +149,113 @@ public class LagerGuiMain extends JFrame {
             add(artikelPreisFeld);
             add(okButton);
             add(abbrechenButton);
+
+            okButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    //hinzufuegen
+                }
+            });
+
+            abbrechenButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    //beenden nicht anlegen ins menu
+                }
+            });
+        }
+    }
+
+    private class LagerGuiArtikelLoeschen extends JFrame {
+
+        public LagerGuiArtikelLoeschen() {
+
+            setTitle("Artikel löschen");
+            setSize(300, 200);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            setLayout(new GridLayout(0, 2));
+
+            //Artikelnummer
+            JLabel artikelNummerLabel = new JLabel("Artikelnummer");
+            JTextField artikelNummerFeld = new JTextField();
+
+            //Buttons für das Flowlayout
+            JButton okButton = new JButton("Ok");
+            JButton abbrechenButton = new JButton("Abbrechen");
+
+            //Komponenten in den JFrame einfügen        
+            add(artikelNummerLabel);
+            add(artikelNummerFeld);
+            add(okButton);
+            add(abbrechenButton);
+
+            okButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    //hinzufuegen
+                }
+            });
+
+            abbrechenButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    //beenden nicht anlegen ins menu
+                }
+            });
+        }
+    }
+
+    private static class LagerGuiLagerAnlegen extends JFrame {
+
+        public LagerGuiLagerAnlegen() {
+
+            setTitle("Artikel löschen");
+            setSize(300, 200);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            setLayout(new GridLayout(0, 2));
+
+            //Artikelnummer
+            JLabel lagerNameLabel = new JLabel("Lagername");
+            JTextField lagerNameFeld = new JTextField();
+
+            //Anzahl Plaetze
+            JLabel lagerPlaetzeLabel = new JLabel("Lagerplaetze");
+            JTextField lagerPlaetzeFeld = new JTextField();
+
+            //Buttons für das Flowlayout
+            JButton okButton = new JButton("Ok");
+            JButton abbrechenButton = new JButton("Abbrechen");
+
+            //Komponenten in den JFrame einfügen        
+            add(lagerNameLabel);
+            add(lagerNameFeld);
+            add(lagerPlaetzeLabel);
+            add(lagerPlaetzeFeld);
+            add(okButton);
+            add(abbrechenButton);
+
+            okButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    //hinzufuegen
+                    String standort = lagerNameFeld.getText();
+                    int plaetze = Integer.parseInt(lagerPlaetzeFeld.getText());
+                    try {
+                        meinLager = new Lager(standort, plaetze);
+                    } catch (LagerException ex) {
+                        System.out.println("Fehler beim Lageranlegen: " +ex);
+                    }
+                    //TODO 
+                    //wie komm ich von hier ins Menu?
+                    setVisible(false);
+                }
+            });
+
+            abbrechenButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    //beenden nicht anlegen abbrechen
+                    System.exit(0);
+                }
+            });
         }
 
     }
-}
+
+}// Ende LagerGuiMain
