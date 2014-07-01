@@ -6,14 +6,12 @@
 package lagerverwaltung;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,7 +60,7 @@ public class LagerGuiMain extends JFrame {
                 //öfnne Artikel anlegen Fenster
                 //int artikelNummer = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Artikelnummer eingeben", "Eingabe Artikelnummer", WIDTH));
                 LagerGuiArtikelAnlegen artikelAnlegen = new LagerGuiArtikelAnlegen();
-                artikelAnlegen.getContentPane();
+                artikelAnlegen.setVisible(true);
 
             }
         });
@@ -98,29 +96,57 @@ public class LagerGuiMain extends JFrame {
     }
 
     public class LagerGuiArtikelAnlegen extends JFrame {
-
-        public LagerGuiArtikelAnlegen() throws HeadlessException {
+        
+        Lager meinLager = null;
+        
+        public LagerGuiArtikelAnlegen(/*Lager _meinLager*/) throws HeadlessException {
+            //meinLager = _meinLager;
             setTitle("Artikel anlegen");
             setSize(300, 200);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            //Textfeld zum Eingeben
-            JTextField textFeld = new JTextField();
+            
+            setLayout(new GridLayout(0, 2));
+            
+            //Artikelnummer
+            JLabel artikelNummerLabel           = new JLabel("Artikelnummer");
+            JTextField artikelNummerFeld        = new JTextField();
+            
+            //Artikelbezeichnung
+            JLabel artikelBezeichnungLabel      = new JLabel("Artikelbezeichnung");
+            JTextField artikelBezeichnungFeld   = new JTextField();
+            
+            //Artikelbestand
+            JLabel artikelBestandLabel          = new JLabel("Artikelbestand");
+            JTextField artikelBestandFeld       = new JTextField();
+            
+            //Artikelpreis
+            JLabel artikelPreisLabel            = new JLabel("Preis");
+            JTextField artikelPreisFeld         = new JTextField();
 
             //Flowlayout für die unteren Buttons
-            JPanel buttonFeld = new JPanel(new FlowLayout());
+            //JPanel buttonFeld = new JPanel(new FlowLayout());
 
             //Buttons für das Flowlayout
             JButton okButton = new JButton("Ok");
             JButton abbrechenButton = new JButton("Abbrechen");
 
             //Buttons zum Flowlayout hinzufügen
-            buttonFeld.add(okButton);
-            buttonFeld.add(abbrechenButton);
+            //buttonFeld.add(okButton);
+            //buttonFeld.add(abbrechenButton);
 
             //Komponenten in den JFrame einfügen        
-            add(textFeld, BorderLayout.CENTER);
-            add(buttonFeld, BorderLayout.SOUTH);
+            //add(textFeld, BorderLayout.CENTER);
+            //add(buttonFeld, BorderLayout.SOUTH);
+            add(artikelNummerLabel);
+            add(artikelNummerFeld);
+            add(artikelBezeichnungLabel);
+            add(artikelBezeichnungFeld);
+            add(artikelBestandLabel);
+            add(artikelBestandFeld);
+            add(artikelPreisLabel);
+            add(artikelPreisFeld);
+            add(okButton);
+            add(abbrechenButton);
         }
 
     }
