@@ -30,8 +30,10 @@ public class LagerGuiMain extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Label für den Standort anlegen
-        JLabel lagerOrt = new JLabel("Lagerort: " + meinLager.getStandort());
-
+        //JLabel lagerOrt = new JLabel("Lagerort: " + meinLager.getStandort());
+        
+        JLabel lagerOrt = new JLabel("Lagerort");
+            
         //Textarea für die Ausgabe des Lagers, als Scrollpane
         JTextArea textFeld = new JTextArea("Test");
         JScrollPane scrollPane = new JScrollPane(textFeld);
@@ -98,15 +100,6 @@ public class LagerGuiMain extends JFrame {
                 textFeld.setText(meinLager.toString());
             }
         });
-    }
-
-    public static void main(String[] args) {
-        LagerGuiLagerAnlegen lagerAnlegen = new LagerGuiLagerAnlegen();
-        lagerAnlegen.setVisible(true);
-
-        JFrame mainFrame = new LagerGuiMain();
-        System.out.println("penis");
-        mainFrame.setVisible(true);
     }
 
     public class LagerGuiArtikelAnlegen extends JFrame {
@@ -228,7 +221,7 @@ public class LagerGuiMain extends JFrame {
 
         public LagerGuiLagerAnlegen() {
 
-            setTitle("Artikel löschen");
+            setTitle("Lager anlegen");
             setSize(300, 200);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -383,4 +376,14 @@ public class LagerGuiMain extends JFrame {
         }
     }
 
+    
+    public static void main(String[] args) {
+        LagerGuiLagerAnlegen lagerAnlegen = new LagerGuiLagerAnlegen();
+        lagerAnlegen.setVisible(true);
+
+        JFrame mainFrame = new LagerGuiMain();
+        System.out.println("penis");
+        mainFrame.setVisible(true);
+    }
+    
 }// Ende LagerGuiMain
