@@ -25,7 +25,7 @@ public class LagerGuiMain extends JFrame {
 
     public LagerGuiMain() {
         setTitle("Lagerverwaltung");
-        setSize(650, 400);
+        setSize(790, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
