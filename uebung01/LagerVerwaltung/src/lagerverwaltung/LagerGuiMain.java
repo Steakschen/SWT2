@@ -6,14 +6,11 @@
 package lagerverwaltung;
 
 import java.awt.BorderLayout;
-import java.awt.Event;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -204,7 +201,6 @@ public class LagerGuiMain extends JFrame {
             okButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        //hinzufuegen
                         meinLager.entferneArtikel(Integer.parseInt(artikelNummerFeld.getText()));
                     } catch (ArtikelException ex) {
                         //Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
@@ -223,7 +219,7 @@ public class LagerGuiMain extends JFrame {
         }
     }
 
-    //static weil aus Main aufrufen
+    //static weil aus Main aufgerufen wird
     private static class LagerGuiLagerAnlegen extends JDialog {
 
         public LagerGuiLagerAnlegen() {
@@ -231,10 +227,7 @@ public class LagerGuiMain extends JFrame {
             setTitle("Lager anlegen");
             setSize(300, 200);
             setLocationRelativeTo(null);
-            //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            setLayout(new GridLayout(0, 2));
-            
+            setLayout(new GridLayout(0, 2));          
             setModal(true);
             
             //Artikelnummer
@@ -268,9 +261,6 @@ public class LagerGuiMain extends JFrame {
                         System.out.println("Fehler beim Lageranlegen: " + ex);
                         //new FehlerMeldung(ex.toString());
                     }
-                    //TODO 
-                    //wie komm ich von hier ins Menu?
-                    
                     setVisible(false);
                 }
             });
@@ -282,7 +272,6 @@ public class LagerGuiMain extends JFrame {
                 }
             });
         }
-
     }
 
     private class LagerGuiArtikelZuBuchen extends JFrame {
