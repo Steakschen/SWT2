@@ -52,7 +52,7 @@ public class Artikel implements Comparable, Serializable {
             throws ArtikelException {
         String exMsg = null;
 
-        if (artikelNr < ARTIKELNR_MIN_SIZE && artikelNr < ARTIKELNR_MAX_SIZE) {
+        if (artikelNr > ARTIKELNR_MIN_SIZE && artikelNr < ARTIKELNR_MAX_SIZE) {
             exMsg += ARTIKELNR_SIZE_EX;
         }
         if (bezeichnung == null || bezeichnung.trim().length() == 0) {
