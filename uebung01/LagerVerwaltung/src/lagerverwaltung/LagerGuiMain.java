@@ -23,6 +23,7 @@ import javax.swing.*;
 public class LagerGuiMain extends JFrame {
 
     public static Lager meinLager;
+    public static String lagerName;
 
     public LagerGuiMain() {
         setTitle("Lagerverwaltung");
@@ -35,7 +36,7 @@ public class LagerGuiMain extends JFrame {
         JLabel lagerOrt = new JLabel("Lagerort");
             
         //Textarea für die Ausgabe des Lagers, als Scrollpane
-        JTextArea textFeld = new JTextArea("Test");
+        JTextArea textFeld = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(textFeld);
 
         //Flowlayout für die unteren Buttons
@@ -151,12 +152,14 @@ public class LagerGuiMain extends JFrame {
                     try {
                         artikel = new Artikel(Integer.parseInt(artikelNummerFeld.getText()), artikelBezeichnungFeld.getText(), Integer.parseInt(artikelBestandFeld.getText()), Double.parseDouble(artikelPreisFeld.getText()));
                     } catch (ArtikelException ex) {
-                        Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        //Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        new FehlerMeldung(ex.toString());                        
                     }
                     try {
                         meinLager.erstelleArtikel(artikel);
                     } catch (ArtikelException ex) {
-                        Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        //Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        new FehlerMeldung(ex.toString());                       
                     }
                     setVisible(false);
                 }
@@ -201,7 +204,8 @@ public class LagerGuiMain extends JFrame {
                         //hinzufuegen
                         meinLager.entferneArtikel(Integer.parseInt(artikelNummerFeld.getText()));
                     } catch (ArtikelException ex) {
-                        Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        //Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        new FehlerMeldung(ex.toString());
                     }
                     setVisible(false);
                 }
@@ -258,6 +262,7 @@ public class LagerGuiMain extends JFrame {
                         meinLager = new Lager(standort, plaetze);
                     } catch (LagerException ex) {
                         System.out.println("Fehler beim Lageranlegen: " + ex);
+                        //new FehlerMeldung(ex.toString());
                     }
                     //TODO 
                     //wie komm ich von hier ins Menu?
@@ -312,7 +317,8 @@ public class LagerGuiMain extends JFrame {
                         //hinzufuegen
                         meinLager.bucheZugang(Integer.parseInt(artikelNummerFeld.getText()), Integer.parseInt(anzahlFeld.getText()));
                     } catch (ArtikelException ex) {
-                        Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        //Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        new FehlerMeldung(ex.toString());
                     }
                     setVisible(false);
                 }
@@ -364,7 +370,8 @@ public class LagerGuiMain extends JFrame {
                         //hinzufuegen
                        meinLager.bucheAbgang(Integer.parseInt(artikelNummerFeld.getText()), Integer.parseInt(anzahlFeld.getText()));
                     } catch (ArtikelException ex) {
-                        Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        //Logger.getLogger(LagerGuiMain.class.getName()).log(Level.SEVERE, null, ex);
+                        new FehlerMeldung(ex.toString());
                     }
                     setVisible(false);
                 }
@@ -379,14 +386,25 @@ public class LagerGuiMain extends JFrame {
         }
     }
 
+    private class FehlerMeldung {
+        private String fehlerMeldung;
+        
+        public FehlerMeldung (String _fehlerMeldung) {
+            this.fehlerMeldung = _fehlerMeldung;
+            JOptionPane.showMessageDialog(rootPane, fehlerMeldung, "Fehler",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }
     
     public static void main(String[] args) {
         LagerGuiLagerAnlegen lagerAnlegen = new LagerGuiLagerAnlegen();
         lagerAnlegen.setVisible(true);
 
         JFrame mainFrame = new LagerGuiMain();
-        System.out.println("penis");
         mainFrame.setVisible(true);
     }
+    
     
 }// Ende LagerGuiMain
