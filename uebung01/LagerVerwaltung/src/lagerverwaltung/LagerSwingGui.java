@@ -133,6 +133,7 @@ public class LagerSwingGui extends javax.swing.JFrame {
         jLabel4.setText("Preis");
 
         abbrechen.setText("Abbrechen");
+        abbrechen.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         abbrechen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abbrechenActionPerformed(evt);
