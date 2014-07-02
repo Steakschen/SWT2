@@ -217,16 +217,18 @@ public class LagerGuiMain extends JFrame {
     }
 
     //static weil aus Main aufrufen
-    private static class LagerGuiLagerAnlegen extends JFrame {
+    private static class LagerGuiLagerAnlegen extends JDialog {
 
         public LagerGuiLagerAnlegen() {
 
             setTitle("Lager anlegen");
             setSize(300, 200);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             setLayout(new GridLayout(0, 2));
-
+            
+            setModal(true);
+            
             //Artikelnummer
             JLabel lagerNameLabel = new JLabel("Lagername");
             JTextField lagerNameFeld = new JTextField();
@@ -259,6 +261,7 @@ public class LagerGuiMain extends JFrame {
                     }
                     //TODO 
                     //wie komm ich von hier ins Menu?
+                    
                     setVisible(false);
                 }
             });
