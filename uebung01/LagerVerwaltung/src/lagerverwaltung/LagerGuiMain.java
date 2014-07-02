@@ -29,6 +29,7 @@ public class LagerGuiMain extends JFrame {
         setTitle("Lagerverwaltung");
         setSize(650, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
         //Label für den Standort anlegen
         //JLabel lagerOrt = new JLabel("Lagerort: " + meinLager.getStandort());
@@ -110,6 +111,7 @@ public class LagerGuiMain extends JFrame {
             setTitle("Artikel anlegen");
             setSize(300, 200);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
 
             setLayout(new GridLayout(0, 2));
 
@@ -181,6 +183,7 @@ public class LagerGuiMain extends JFrame {
             setTitle("Artikel löschen");
             setSize(300, 200);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
 
             setLayout(new GridLayout(0, 2));
 
@@ -227,6 +230,7 @@ public class LagerGuiMain extends JFrame {
 
             setTitle("Lager anlegen");
             setSize(300, 200);
+            setLocationRelativeTo(null);
             //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             setLayout(new GridLayout(0, 2));
@@ -288,6 +292,7 @@ public class LagerGuiMain extends JFrame {
             setTitle("Artikel zubuchen");
             setSize(300, 200);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
 
             setLayout(new GridLayout(0, 2));
 
@@ -340,6 +345,7 @@ public class LagerGuiMain extends JFrame {
             setTitle("Artikel abbuchen");
             setSize(300, 200);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
 
             setLayout(new GridLayout(0, 2));
 
