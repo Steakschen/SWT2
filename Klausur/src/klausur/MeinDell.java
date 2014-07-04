@@ -18,7 +18,7 @@ public class MeinDell extends Dell implements Hauptspeicher{
     public static void main(String[] args) {
         Computer md= new MeinDell(5000, 1.7, "Mix");
         md.addRam(2000);
-        md.toString();      //gibt nichts aus :(
+        System.out.println(md.toString());
         System.out.println(md);
     }
     
