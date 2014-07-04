@@ -3,16 +3,23 @@ package klausur;
 public class MeinDell extends Dell implements Hauptspeicher{
 
     public MeinDell() {
-        super(null, 0, null, 0);
+        super(0, typ.Laptop, 0, null);
     }
 
-    public MeinDell(String idString, int ram, typ type, double taktFrequenz) {
-        super(idString, ram, type, taktFrequenz);
+    public MeinDell(int ram, double taktFrequenz, String idString) {
+        super(ram, typ.Laptop, taktFrequenz, idString);
     }
 
     @Override
-    public void addRam(int ram) {
-        super.ram += ram;
+    public String toString() {
+        return super.toString();
+    }
+    
+    public static void main(String[] args) {
+        Computer md= new MeinDell(5000, 1.7, "Mix");
+        md.addRam(2000);
+        md.toString();      //gibt nichts aus :(
+        System.out.println(md);
     }
     
 }
