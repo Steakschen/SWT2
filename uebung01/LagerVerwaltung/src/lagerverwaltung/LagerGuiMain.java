@@ -28,9 +28,6 @@ public class LagerGuiMain extends JFrame {
         setSize(790, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
-        //Label für den Standort anlegen
-        JLabel lagerOrt = new JLabel("Lagerort");
             
         //Textarea für die Ausgabe des Lagers, als Scrollpane
         JTextArea textFeld = new JTextArea();
@@ -55,7 +52,6 @@ public class LagerGuiMain extends JFrame {
 
         //Komponenten in den JFrame einfügen        
         add(scrollPane, BorderLayout.CENTER);
-        add(lagerOrt, BorderLayout.NORTH);
         add(buttonFeld, BorderLayout.SOUTH);
 
         /**
