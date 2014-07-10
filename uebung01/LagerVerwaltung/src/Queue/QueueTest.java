@@ -6,6 +6,7 @@
 package Queue;
 
 import static java.lang.Thread.sleep;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Random;
 import java.util.logging.Level;
@@ -47,25 +48,31 @@ public class QueueTest extends Thread {
     //TODO: Zeitstempel
     //TODO: Ausgabe an die von Pick anpassen
     public void run() {
-        System.out.println(">>>>>>>>> " + name
+        Calendar cal = Calendar.getInstance();
+        String zeit = cal.get(Calendar.HOUR_OF_DAY)
+                + ":" + cal.get(Calendar.MINUTE)
+                + ":" + cal.get(Calendar.SECOND)
+                + "." + cal.get(Calendar.MILLISECOND)
+                + " ";
+        System.out.println(zeit+">>>>>>>>> " + name
                 + " gestartet mit delay = " + delay + " <<<<<<<<<<<<");
         System.out.flush();
         try {
             for (int i = 0; i < 10; ++i) {
                 if (shallGet()) {
                     //System.out.print(name + "\t: \t\tget(): ");
-                    System.out.println(name + ": get("
+                    System.out.println(zeit+name + ": get("
                             + q.get().getContent() + "): " + "\t\tQueue: " + q);
                 } else {
-                    System.out.println(name + ": append("
+                    System.out.println(zeit+name + ": append("
                             + name + i + ") " + "\t\tQueue: " + q);
                     q.append(new Element(name + i));
                 }
 
-                System.out.println(name + ": " + "sleep " + delay + "\t\t\tQueue: " + q);
+                System.out.println(zeit+name + ": " + "sleep " + delay + "\t\t\tQueue: " + q);
                 System.out.flush();
                 sleep(delay); // warten
-                System.out.println(name + ": " + "sleep Ende" + "\t\t\tQueue: " + q);
+                System.out.println(zeit+name + ": " + "sleep Ende" + "\t\t\tQueue: " + q);
                 System.out.flush();
             }
         } catch (InterruptedException e) {
@@ -73,15 +80,16 @@ public class QueueTest extends Thread {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        /* Zeit im Format 17:30:24.584 anlegen */
         Calendar cal = Calendar.getInstance();
-
         String zeit = cal.get(Calendar.HOUR_OF_DAY)
                 + ":" + cal.get(Calendar.MINUTE)
                 + ":" + cal.get(Calendar.SECOND)
-                + ":" + cal.get(Calendar.MILLISECOND);
-        System.out.println(zeit);
+                + "." + cal.get(Calendar.MILLISECOND)
+                + " ";
 
+        System.out.println(zeit + " START ");
         Queue q = new Queue();
         /* Array fuer die verschiedenen Threads, damit man sie spaeter wieder 
          abfragen kann, ist so lang wie die Argumentliste*/
@@ -125,7 +133,7 @@ public class QueueTest extends Thread {
                     }
                 }
                 /* Ausgabe der Zustaende */
-                System.out.println(zustaende);
+                System.out.println(zeit + zustaende);
                 System.out.flush();
 
                 /* Beenden der Schleife, wenn alle Threads beendet sind */
