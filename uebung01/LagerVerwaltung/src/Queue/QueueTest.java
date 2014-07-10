@@ -37,6 +37,8 @@ public class QueueTest extends Thread {
         return (i % 3 != 0);
     }
 
+    //TODO: Zeitstempel
+    //TODO: Ausgabe an die von Pick anpassen
     public void run() {
         System.out.println(">>>>>>>>> "+ name + 
                 " gestartet mit delay = " + delay + " <<<<<<<<<<<<");
