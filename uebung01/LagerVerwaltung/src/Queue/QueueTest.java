@@ -66,40 +66,63 @@ public class QueueTest extends Thread {
 
     public static void main(String[] args) {
         Queue q = new Queue();
+        /* Array fuer die verschiedenen Threads, damit man sie spaeter wieder 
+        abfragen kann, ist so lang wie die Argumentliste*/
         QueueTest [] qt = new QueueTest[args.length];
+        /* Anzahl der wartenden Threads */
         int waitingThreads = 0;
+        /* Anzahl der beendeten Threads */
         int finishedThreads = 0;
+        /* String fuer die Ausgabe der Zustaende */
         String zustaende;
+        /* Variable fuer die Steuerung der Main Schleife */
         boolean mainLoopIsRunning = true;
+        /* Threads erstellen*/
         for (int i = 0; i < args.length; i++) {
             qt[i] = new QueueTest(q, args[i], 100 + i * 50);
-            qt[i].start();
         }
+        /* Threads starten */
+        for (int i = 0; i < args.length; i++) {
+                        qt[i].start();
+        }
+        /* Hauptschleife, die alle 2 Sekunden die Zustaende der Threads checkt und
+        ausgibt.
+        */
         while (mainLoopIsRunning) {
             try {
+                /* Schlafe 2 Sekunden */
                 sleep(2000);
                 zustaende = "ZUSTAENDE: ";
+                /* Durchlaufe alle Threads im Array und baue String fuer Ausgabe */
                 for (int i = 0; i < args.length; i++) {
                     zustaende = zustaende + "  " + qt[i].getMyName() + "=" + qt[i].getState();
+                    /* Wenn der Thread im Zustand Waiting ist, dann zaehle 
+                       waitingThreads hoch */
                    if (qt[i].getState() == Thread.State.WAITING) {
                        waitingThreads++;
                    }
+                   /* Wenn der Thread im Zustand Terminated ist, dann zaehle 
+                      finishedThreads hoch */
                    if (qt[i].getState() == Thread.State.TERMINATED) {
                        finishedThreads++;
                    }
                 }
+                /* Ausgabe der Zustaende */
                 System.out.println(zustaende);
                 System.out.flush();
                 
+                /* Beenden der Schleife, wenn alle Threads beendet sind */
                 if (finishedThreads == args.length) {
                     mainLoopIsRunning = false;
                 }
                 
+                /* Elemente in die Queue wenn alle Threads aus waiting stehn */
                 if (waitingThreads > 0) {
                     for (int i = 0; i <= waitingThreads; i++) {
                         q.append(new Element(":-)" + i));
                     }
                 }
+                /* Zuruecksetzen der Werte fuer waitingThreads, finishedThreads */
                 waitingThreads = 0;
                 finishedThreads = 0;
             } catch (InterruptedException ex) {
