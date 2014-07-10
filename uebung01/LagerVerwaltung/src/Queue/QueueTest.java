@@ -6,13 +6,15 @@
 package Queue;
 
 import static java.lang.Thread.sleep;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Die Klasse QueueTest
  *
- * @author Moritz
+ * @author Moritz / Carsten
  */
 public class QueueTest extends Thread {
 
@@ -26,10 +28,15 @@ public class QueueTest extends Thread {
         delay = delayTime;
     }
 
+    /**
+     * gibt den Namen der Schlange zurück
+     *
+     * @return
+     */
     public String getMyName() {
         return name;
     }
-    
+
     public boolean shallGet() {
         Random r = new Random(System.currentTimeMillis());
         int i = r.nextInt();
@@ -40,8 +47,8 @@ public class QueueTest extends Thread {
     //TODO: Zeitstempel
     //TODO: Ausgabe an die von Pick anpassen
     public void run() {
-        System.out.println(">>>>>>>>> "+ name + 
-                " gestartet mit delay = " + delay + " <<<<<<<<<<<<");
+        System.out.println(">>>>>>>>> " + name
+                + " gestartet mit delay = " + delay + " <<<<<<<<<<<<");
         System.out.flush();
         try {
             for (int i = 0; i < 10; ++i) {
@@ -54,8 +61,8 @@ public class QueueTest extends Thread {
                             + name + i + ") " + "\t\tQueue: " + q);
                     q.append(new Element(name + i));
                 }
-                
-                System.out.println(name + ": " + "sleep " + delay +"\t\t\tQueue: " + q);
+
+                System.out.println(name + ": " + "sleep " + delay + "\t\t\tQueue: " + q);
                 System.out.flush();
                 sleep(delay); // warten
                 System.out.println(name + ": " + "sleep Ende" + "\t\t\tQueue: " + q);
@@ -67,10 +74,18 @@ public class QueueTest extends Thread {
     }
 
     public static void main(String[] args) {
+        Calendar cal = Calendar.getInstance();
+
+        String zeit = cal.get(Calendar.HOUR_OF_DAY)
+                + ":" + cal.get(Calendar.MINUTE)
+                + ":" + cal.get(Calendar.SECOND)
+                + ":" + cal.get(Calendar.MILLISECOND);
+        System.out.println(zeit);
+
         Queue q = new Queue();
         /* Array fuer die verschiedenen Threads, damit man sie spaeter wieder 
-        abfragen kann, ist so lang wie die Argumentliste*/
-        QueueTest [] qt = new QueueTest[args.length];
+         abfragen kann, ist so lang wie die Argumentliste*/
+        QueueTest[] qt = new QueueTest[args.length];
         /* Anzahl der wartenden Threads */
         int waitingThreads = 0;
         /* Anzahl der beendeten Threads */
@@ -85,11 +100,11 @@ public class QueueTest extends Thread {
         }
         /* Threads starten */
         for (int i = 0; i < args.length; i++) {
-                        qt[i].start();
+            qt[i].start();
         }
         /* Hauptschleife, die alle 2 Sekunden die Zustaende der Threads checkt und
-        ausgibt.
-        */
+         ausgibt.
+         */
         while (mainLoopIsRunning) {
             try {
                 /* Schlafe 2 Sekunden */
@@ -99,25 +114,25 @@ public class QueueTest extends Thread {
                 for (int i = 0; i < args.length; i++) {
                     zustaende = zustaende + "  " + qt[i].getMyName() + "=" + qt[i].getState();
                     /* Wenn der Thread im Zustand Waiting ist, dann zaehle 
-                       waitingThreads hoch */
-                   if (qt[i].getState() == Thread.State.WAITING) {
-                       waitingThreads++;
-                   }
-                   /* Wenn der Thread im Zustand Terminated ist, dann zaehle 
-                      finishedThreads hoch */
-                   if (qt[i].getState() == Thread.State.TERMINATED) {
-                       finishedThreads++;
-                   }
+                     waitingThreads hoch */
+                    if (qt[i].getState() == Thread.State.WAITING) {
+                        waitingThreads++;
+                    }
+                    /* Wenn der Thread im Zustand Terminated ist, dann zaehle 
+                     finishedThreads hoch */
+                    if (qt[i].getState() == Thread.State.TERMINATED) {
+                        finishedThreads++;
+                    }
                 }
                 /* Ausgabe der Zustaende */
                 System.out.println(zustaende);
                 System.out.flush();
-                
+
                 /* Beenden der Schleife, wenn alle Threads beendet sind */
                 if (finishedThreads == args.length) {
                     mainLoopIsRunning = false;
                 }
-                
+
                 /* Elemente in die Queue wenn alle Threads aus waiting stehn */
                 if (waitingThreads > 0) {
                     for (int i = 0; i <= waitingThreads; i++) {

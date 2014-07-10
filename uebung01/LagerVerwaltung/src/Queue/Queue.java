@@ -7,26 +7,35 @@
 package Queue;
 
 /**
- *
- * @author Moritz
+ * Queue
+ * @author Moritz / Carsten
  */
 public class Queue {
     // erstes und letztes Element der Schlange
-
     Element head, tail;
 
+    /**
+     * Hängt ein Element in die Schlange ein
+     * @param e 
+     */
     public synchronized void append(Element e) {
         if (tail == null) // Schlange leer ?
         {
             head = e;
         } else {
-            tail.next = e;
+            tail.next = e;  // einreihen
         }
         e.next = null;
-        tail = e;
+        tail = e;   
         notify(); // Wieder was in der Schlange !
     }
 
+    /**
+     * Gibt das erste Element aus der Schlange zurück wenn es existiert
+     * und löscht es heraus, wenn kein Element in der Schlange ist
+     * gibt er warten... zurück
+     * @return e    erstes Element der Schlange
+     */
     public synchronized Element get() {
         try {
             while (head == null) {
@@ -46,6 +55,14 @@ public class Queue {
         return e;
     }
 
+    /**
+     * gibt die Schlange aus
+     * Wenn kein Element in der Schlange ist (head=null) gibt er leer aus
+     * ansonsten legt er ein Element anker an das bis es null (am Ende) ist 
+     * durch die Queue iteriert und den Content der Liste an den String 
+     * anhängt.
+     * @return s    Ausgabe der Schlange
+     */
     public String toString() {
         String s = new String();
         if (head == null) {

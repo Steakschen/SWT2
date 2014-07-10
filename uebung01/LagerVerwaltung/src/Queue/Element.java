@@ -7,8 +7,8 @@
 package Queue;
 
 /**
- *
- * @author Moritz
+ * Klasse Element stellt ein 
+ * @author Carsten / Moritz
  */
 public class Element {
 
