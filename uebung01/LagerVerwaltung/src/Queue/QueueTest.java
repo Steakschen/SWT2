@@ -45,34 +45,39 @@ public class QueueTest extends Thread {
         return (i % 3 != 0);
     }
 
-    //TODO: Zeitstempel
-    //TODO: Ausgabe an die von Pick anpassen
-    public void run() {
+    private String getTimeStamp() {
         Calendar cal = Calendar.getInstance();
         String zeit = cal.get(Calendar.HOUR_OF_DAY)
                 + ":" + cal.get(Calendar.MINUTE)
                 + ":" + cal.get(Calendar.SECOND)
                 + "." + cal.get(Calendar.MILLISECOND)
                 + " ";
-        System.out.println(zeit+">>>>>>>>> " + name
+        return zeit;
+    }
+
+    //TODO: Zeitstempel
+    //TODO: Ausgabe an die von Pick anpassen
+    public void run() {
+
+        System.out.println(getTimeStamp() + ">>>>>>>>> " + name
                 + " gestartet mit delay = " + delay + " <<<<<<<<<<<<");
         System.out.flush();
         try {
             for (int i = 0; i < 10; ++i) {
                 if (shallGet()) {
                     //System.out.print(name + "\t: \t\tget(): ");
-                    System.out.println(zeit+name + ": get("
+                    System.out.println(getTimeStamp() + name + ": get("
                             + q.get().getContent() + "): " + "\t\tQueue: " + q);
                 } else {
-                    System.out.println(zeit+name + ": append("
+                    System.out.println(getTimeStamp() + name + ": append("
                             + name + i + ") " + "\t\tQueue: " + q);
                     q.append(new Element(name + i));
                 }
 
-                System.out.println(zeit+name + ": " + "sleep " + delay + "\t\t\tQueue: " + q);
+                System.out.println(getTimeStamp() + name + ": " + "sleep " + delay + "\t\t\tQueue: " + q);
                 System.out.flush();
                 sleep(delay); // warten
-                System.out.println(zeit+name + ": " + "sleep Ende" + "\t\t\tQueue: " + q);
+                System.out.println(getTimeStamp() + name + ": " + "sleep Ende" + "\t\t\tQueue: " + q);
                 System.out.flush();
             }
         } catch (InterruptedException e) {
@@ -89,7 +94,7 @@ public class QueueTest extends Thread {
                 + "." + cal.get(Calendar.MILLISECOND)
                 + " ";
 
-        System.out.println(zeit + " START ");
+        System.out.println(zeit+ " START ");
         Queue q = new Queue();
         /* Array fuer die verschiedenen Threads, damit man sie spaeter wieder 
          abfragen kann, ist so lang wie die Argumentliste*/
