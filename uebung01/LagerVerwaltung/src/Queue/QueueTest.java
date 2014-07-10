@@ -7,6 +7,8 @@ package Queue;
 
 import static java.lang.Thread.sleep;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,6 +26,10 @@ public class QueueTest extends Thread {
         delay = delayTime;
     }
 
+    public String getMyName() {
+        return name;
+    }
+    
     public boolean shallGet() {
         Random r = new Random(System.currentTimeMillis());
         int i = r.nextInt();
@@ -60,13 +66,45 @@ public class QueueTest extends Thread {
 
     public static void main(String[] args) {
         Queue q = new Queue();
+        QueueTest [] qt = new QueueTest[args.length];
+        int waitingThreads = 0;
+        int finishedThreads = 0;
+        String zustaende;
+        boolean mainLoopIsRunning = true;
         for (int i = 0; i < args.length; i++) {
-            QueueTest qt = new QueueTest(q, args[i], 100+i*50);
-            qt.start();
+            qt[i] = new QueueTest(q, args[i], 100 + i * 50);
+            qt[i].start();
         }
-        //QueueTest tom = new QueueTest(q, "Tom", 100);
-        //QueueTest jerry = new QueueTest(q, "Jerry", 50);
-        //tom.start();
-        //jerry.start();
+        while (mainLoopIsRunning) {
+            try {
+                sleep(2000);
+                zustaende = "ZUSTAENDE: ";
+                for (int i = 0; i < args.length; i++) {
+                    zustaende = zustaende + "  " + qt[i].getMyName() + "=" + qt[i].getState();
+                   if (qt[i].getState() == Thread.State.WAITING) {
+                       waitingThreads++;
+                   }
+                   if (qt[i].getState() == Thread.State.TERMINATED) {
+                       finishedThreads++;
+                   }
+                }
+                System.out.println(zustaende);
+                System.out.flush();
+                
+                if (finishedThreads == args.length) {
+                    mainLoopIsRunning = false;
+                }
+                
+                if (waitingThreads > 0) {
+                    for (int i = 0; i <= waitingThreads; i++) {
+                        q.append(new Element(":-)" + i));
+                    }
+                }
+                waitingThreads = 0;
+                finishedThreads = 0;
+            } catch (InterruptedException ex) {
+                Logger.getLogger(QueueTest.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
