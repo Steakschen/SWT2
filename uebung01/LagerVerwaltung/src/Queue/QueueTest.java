@@ -45,7 +45,7 @@ public class QueueTest extends Thread {
         return (i % 3 != 0);
     }
 
-    public String getTimeStamp() {
+    private String getTimeStamp() {
         Calendar cal = Calendar.getInstance();
         String zeit = cal.get(Calendar.HOUR_OF_DAY)
                 + ":" + cal.get(Calendar.MINUTE)

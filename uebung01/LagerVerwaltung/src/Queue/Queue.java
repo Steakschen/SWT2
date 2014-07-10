@@ -39,7 +39,7 @@ public class Queue {
     public synchronized Element get() {
         try {
             while (head == null) {
-                System.out.println("get ... warten");
+                System.out.println("warten ...");
                 wait(); // Warten auf ein Element
             }
         } catch (InterruptedException x) {
@@ -74,6 +74,7 @@ public class Queue {
                 anker = anker.next;
             }
         }
+
         return s;
     }
 }
