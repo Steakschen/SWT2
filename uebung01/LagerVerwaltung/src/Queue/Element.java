@@ -1,6 +1,6 @@
 /*
  * Softwaretechnik 2 
- * Uebung 1
+ * Uebung 6
  * @author Carsten Gross / Moritz Fey
  */
 

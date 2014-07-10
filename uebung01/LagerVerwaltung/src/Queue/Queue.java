@@ -1,6 +1,6 @@
 /*
  * Softwaretechnik 2 
- * Uebung 1
+ * Uebung 6
  * @author Carsten Gross / Moritz Fey
  */
 
@@ -44,5 +44,15 @@ public class Queue {
             tail = null;
         }
         return e;
+    }
+    
+    public String toString() {
+        String s = new String();
+        Element anker = head;
+        while (anker != null) {
+            s = s + anker.getContent() + " ";
+            anker = anker.next;
+        }
+        return s;
     }
 }
