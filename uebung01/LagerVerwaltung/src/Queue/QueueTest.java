@@ -46,19 +46,19 @@ public class QueueTest extends Thread {
         try {
             for (int i = 0; i < 10; ++i) {
                 if (shallGet()) {
-                    System.out.print(name + "\t: \t\tget(): ");
-                    System.out.println(name + "\t: get():"
-                            + q.get().getContent() + " " + "\tQueue: " + q);
+                    //System.out.print(name + "\t: \t\tget(): ");
+                    System.out.println(name + ": get("
+                            + q.get().getContent() + "): " + "\t\tQueue: " + q);
                 } else {
                     System.out.println(name + ": append("
-                            + name + i + ") " + "\tQueue: " + q);
+                            + name + i + ") " + "\t\tQueue: " + q);
                     q.append(new Element(name + i));
                 }
                 
-                System.out.println(name + ": " + "sleep " + delay +"\tQueue: " + q);
+                System.out.println(name + ": " + "sleep " + delay +"\t\t\tQueue: " + q);
                 System.out.flush();
                 sleep(delay); // warten
-                System.out.println(name + ": " + "sleep Ende" + "\tQueue: " + q);
+                System.out.println(name + ": " + "sleep Ende" + "\t\t\tQueue: " + q);
                 System.out.flush();
             }
         } catch (InterruptedException e) {
@@ -94,7 +94,7 @@ public class QueueTest extends Thread {
             try {
                 /* Schlafe 2 Sekunden */
                 sleep(2000);
-                zustaende = "ZUSTAENDE: ";
+                zustaende = "\nZUSTAENDE: ";
                 /* Durchlaufe alle Threads im Array und baue String fuer Ausgabe */
                 for (int i = 0; i < args.length; i++) {
                     zustaende = zustaende + "  " + qt[i].getMyName() + "=" + qt[i].getState();

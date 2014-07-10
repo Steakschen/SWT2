@@ -45,14 +45,19 @@ public class Queue {
         }
         return e;
     }
-    
+
     public String toString() {
         String s = new String();
-        Element anker = head;
-        while (anker != null) {
-            s = s + anker.getContent() + " ";
-            anker = anker.next;
+        if (head == null) {
+            s = "leer";
+        } else {
+            Element anker = head;
+            while (anker != null) {
+                s = s + anker.getContent() + " ";
+                anker = anker.next;
+            }
         }
+
         return s;
     }
 }
