@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author Moritz / Carsten
  */
 public class QueueTest extends Thread {
-
+    
     Queue q;
     String name;
     int delay; // Wartezeit
@@ -30,7 +30,7 @@ public class QueueTest extends Thread {
     }
 
     /**
-     * gibt den Namen der Schlange zurück
+     * gibt den Namen des Threads zurück
      *
      * @return
      */
@@ -55,8 +55,7 @@ public class QueueTest extends Thread {
         return zeit;
     }
 
-    //TODO: Zeitstempel
-    //TODO: Ausgabe an die von Pick anpassen
+    //TODO: wieso heir kein synchornized ?
     public void run() {
 
         System.out.println(getTimeStamp() + ">>>>>>>>> " + name
@@ -74,10 +73,10 @@ public class QueueTest extends Thread {
                     q.append(new Element(name + i));
                 }
 
-                System.out.println(getTimeStamp() + name + ": " + "sleep " + delay + "\t\t\tQueue: " + q);
+                System.out.println(getTimeStamp() + name + ": " + "sleep " + delay + "\t\tQueue: " + q);
                 System.out.flush();
                 sleep(delay); // warten
-                System.out.println(getTimeStamp() + name + ": " + "sleep Ende" + "\t\t\tQueue: " + q);
+                System.out.println(getTimeStamp() + name + ": " + "sleep Ende" + "\t\tQueue: " + q);
                 System.out.flush();
             }
         } catch (InterruptedException e) {
@@ -95,6 +94,7 @@ public class QueueTest extends Thread {
                 + " ";
 
         System.out.println(zeit+ " START ");
+        /* Schlange anlegen */
         Queue q = new Queue();
         /* Array fuer die verschiedenen Threads, damit man sie spaeter wieder 
          abfragen kann, ist so lang wie die Argumentliste*/
@@ -107,7 +107,7 @@ public class QueueTest extends Thread {
         String zustaende;
         /* Variable fuer die Steuerung der Main Schleife */
         boolean mainLoopIsRunning = true;
-        /* Threads erstellen*/
+        /* Threads erstellen für jedes Argument mit Delay Zeit */
         for (int i = 0; i < args.length; i++) {
             qt[i] = new QueueTest(q, args[i], 100 + i * 50);
         }
@@ -137,8 +137,8 @@ public class QueueTest extends Thread {
                         finishedThreads++;
                     }
                 }
-                /* Ausgabe der Zustaende */
-                System.out.println(zeit + zustaende);
+                /* Ausgabe der Zustaende in rot */
+                System.out.println("\033[1;31m"+zeit + zustaende+"\033[0m");
                 System.out.flush();
 
                 /* Beenden der Schleife, wenn alle Threads beendet sind */
