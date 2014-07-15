@@ -43,10 +43,12 @@ public class Queue {
         try {
             while (head == null) {
                 System.out.println(getTimeStamp() + "warten ...");
+                System.out.flush();
                 wait(); // Warten auf ein Element
             }
         } catch (InterruptedException x) {
             System.out.println(getTimeStamp() + "get() unterbrochen!");
+            System.out.flush();
             return null;
         }
         Element e = head; // erstes Element merken
@@ -85,7 +87,6 @@ public class Queue {
                 anker = anker.next;
             }
         }
-
         return s;
     }
 }
