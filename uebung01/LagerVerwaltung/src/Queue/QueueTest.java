@@ -7,7 +7,6 @@ package Queue;
 
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
@@ -23,6 +22,9 @@ public class QueueTest extends Thread {
     Queue q;
     String name;
     int delay; // Wartezeit
+    public static int appendAufrufe;
+    public static int smileyAppendAufrufe;
+    public static int getAufrufe;
 
     /**
      * Konstruktor der Klasse QueueTest.
@@ -68,16 +70,18 @@ public class QueueTest extends Thread {
      */
     public void run() {
 
-        System.out.println(getTimeStamp() + ">>>>>>>>> " + name
+        System.out.println(getTimeStamp() + ">>>>>>>>>>>> " + name
                 + " gestartet mit delay = " + delay + " <<<<<<<<<<<<");
         System.out.flush();
         try {
             for (int i = 0; i < 10; ++i) {
                 if (shallGet()) {
                     //System.out.print(name + "\t: \t\tget(): ");
+                    getAufrufe++;
                     System.out.println(getTimeStamp() + name + ": get("
                             + q.get().getContent() + "): " + "\t\tQueue: " + q);
                 } else {
+                    appendAufrufe++;
                     System.out.println(getTimeStamp() + name + ": append("
                             + name + i + ") " + "\t\tQueue: " + q);
                     q.append(new Element(name + i));
@@ -92,21 +96,13 @@ public class QueueTest extends Thread {
         } catch (InterruptedException e) {
             return;
         }
-        System.out.println("\n" + getTimeStamp() + ">>>>>>>>> " + name
+        System.out.println("\n" + getTimeStamp() + ">>>>>>>>>>>> " + name
                 + " ist fertig"+ " <<<<<<<<<<<<\n");
         System.out.flush();
     }
 
     public static void main(String[] args) throws InterruptedException {
-        /* Zeit im Format 17:30:24.584 anlegen */
-        Calendar cal = Calendar.getInstance();
-        String zeit = cal.get(Calendar.HOUR_OF_DAY)
-                + ":" + cal.get(Calendar.MINUTE)
-                + ":" + cal.get(Calendar.SECOND)
-                + "." + cal.get(Calendar.MILLISECOND)
-                + " ";
-
-        System.out.println(zeit+ " START ");
+        System.out.println(new SimpleDateFormat("HH:mm:ss:SSS ").format(new Date()) + " START ");
         /* Schlange anlegen */
         Queue q = new Queue();
         /* Array fuer die verschiedenen Threads, damit man sie spaeter wieder 
@@ -151,7 +147,7 @@ public class QueueTest extends Thread {
                     }
                 }
                 /* Ausgabe der Zustaende in rot */
-                System.out.println("\033[1;31m"+zeit + zustaende+"\033[0m");
+                System.out.println("\033[1;31m"+ new SimpleDateFormat("HH:mm:ss:SSS ").format(new Date()) + zustaende+"\033[0m");
                 System.out.flush();
 
                 /* Beenden der Schleife, wenn alle Threads beendet sind */
@@ -162,6 +158,7 @@ public class QueueTest extends Thread {
                 /* Elemente in die Queue wenn alle Threads aus waiting stehn */
                 if (waitingThreads > 0) {
                     for (int i = 0; i <= waitingThreads; i++) {
+                        smileyAppendAufrufe++;
                         q.append(new Element(":-)" + i));
                     }
                 }
@@ -172,5 +169,9 @@ public class QueueTest extends Thread {
                 Logger.getLogger(QueueTest.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        System.out.println(new SimpleDateFormat("HH:mm:ss:SSS ").format(new Date()) + "ENDE");
+        System.out.println("\t" + getAufrufe + " Aufrufe für >get<");
+        System.out.println("\t" + appendAufrufe + " Aufrufe für >append<");
+        System.out.println("\t" + smileyAppendAufrufe + " Aufrufe für >append :-)<");
     }
 }
