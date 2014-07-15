@@ -1,8 +1,5 @@
 package klausur.gui;
 
-import java.awt.Event;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -112,5 +109,4 @@ public class Sortierer extends JFrame {
         JFrame frame = new Sortierer();
         frame.setVisible(true);
     }
-
 }
