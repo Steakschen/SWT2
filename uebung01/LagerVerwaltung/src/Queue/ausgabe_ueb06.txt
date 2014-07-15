@@ -1,0 +1,252 @@
+16:25:54:635  START 
+16:25:54:642 >>>>>>>>>>>> Jim gestartet mit delay = 150 <<<<<<<<<<<<
+16:25:54:642 >>>>>>>>>>>> Tom gestartet mit delay = 300 <<<<<<<<<<<<
+16:25:54:640 >>>>>>>>>>>> Ben gestartet mit delay = 100 <<<<<<<<<<<<
+16:25:54:642 >>>>>>>>>>>> Leo gestartet mit delay = 200 <<<<<<<<<<<<
+16:25:54:642 >>>>>>>>>>>> Uwe gestartet mit delay = 350 <<<<<<<<<<<<
+16:25:54:642 >>>>>>>>>>>> Max gestartet mit delay = 250 <<<<<<<<<<<<
+16:25:54:643 Tom: append(Tom0) 		Queue: leer
+16:25:54:644 Uwe: append(Uwe0) 		Queue: leer
+16:25:54:644 Ben: append(Ben0) 		Queue: leer
+16:25:54:644 warten ...
+16:25:54:645 warten ...
+16:25:54:645 Max: get(Tom0): 		Queue: leer
+16:25:54:645 Tom: sleep 300			Queue: leer
+16:25:54:645 Max: sleep 250			Queue: Uwe0 
+16:25:54:645 Ben: sleep 100			Queue: Uwe0 Ben0 
+16:25:54:645 Uwe: sleep 350			Queue: Uwe0 Ben0 
+16:25:54:644 Jim: get(Uwe0): 		Queue: leer
+16:25:54:644 Leo: get(Ben0): 		Queue: leer
+16:25:54:646 Leo: sleep 200			Queue: leer
+16:25:54:646 Jim: sleep 150			Queue: leer
+16:25:54:746 Ben: sleep Ende		Queue: leer
+16:25:54:746 warten ...
+16:25:54:796 Jim: sleep Ende		Queue: leer
+16:25:54:796 Jim: append(Jim1) 		Queue: leer
+16:25:54:746 Ben: get(Jim1): 		Queue: leer
+16:25:54:796 Jim: sleep 150			Queue: leer
+16:25:54:796 Ben: sleep 100			Queue: leer
+16:25:54:846 Leo: sleep Ende		Queue: leer
+16:25:54:846 Leo: append(Leo1) 		Queue: leer
+16:25:54:846 Leo: sleep 200			Queue: Leo1 
+16:25:54:896 Max: sleep Ende		Queue: Leo1 
+16:25:54:897 Max: get(Leo1): 		Queue: leer
+16:25:54:897 Ben: sleep Ende		Queue: leer
+16:25:54:898 Max: sleep 250			Queue: leer
+16:25:54:899 warten ...
+16:25:54:946 Tom: sleep Ende		Queue: leer
+16:25:54:946 warten ...
+16:25:54:947 Jim: sleep Ende		Queue: leer
+16:25:54:947 Jim: append(Jim2) 		Queue: leer
+16:25:54:898 Ben: get(Jim2): 		Queue: leer
+16:25:54:948 Jim: sleep 150			Queue: leer
+16:25:54:948 Ben: sleep 100			Queue: leer
+16:25:54:996 Uwe: sleep Ende		Queue: leer
+16:25:54:996 warten ...
+16:25:55:047 Leo: sleep Ende		Queue: leer
+16:25:55:047 warten ...
+16:25:55:048 Ben: sleep Ende		Queue: leer
+16:25:55:048 warten ...
+16:25:55:098 Jim: sleep Ende		Queue: leer
+16:25:55:098 warten ...
+16:25:55:149 Max: sleep Ende		Queue: leer
+16:25:55:149 warten ...
+16:25:56:641 
+ZUSTAENDE:   Ben=WAITING  Jim=WAITING  Leo=WAITING  Max=WAITING  Tom=WAITING  Uwe=WAITING
+16:25:54:946 Tom: get(:-)0): 		Queue: leer
+16:25:56:642 Tom: sleep 300			Queue: leer
+16:25:54:996 Uwe: get(:-)1): 		Queue: :-)2 :-)3 :-)4 :-)5 :-)6 
+16:25:55:149 Max: get(:-)2): 		Queue: :-)3 :-)4 :-)5 :-)6 
+16:25:56:644 Max: sleep 250			Queue: :-)3 :-)4 :-)5 :-)6 
+16:25:56:644 Uwe: sleep 350			Queue: :-)3 :-)4 :-)5 :-)6 
+16:25:55:048 Ben: get(:-)4): 		Queue: :-)5 :-)6 
+16:25:56:646 Ben: sleep 100			Queue: :-)5 :-)6 
+16:25:55:098 Jim: get(:-)3): 		Queue: :-)4 :-)5 :-)6 
+16:25:56:647 Jim: sleep 150			Queue: :-)5 :-)6 
+16:25:55:047 Leo: get(:-)5): 		Queue: :-)6 
+16:25:56:648 Leo: sleep 200			Queue: :-)6 
+16:25:56:746 Ben: sleep Ende		Queue: :-)6 
+16:25:56:746 Ben: get(:-)6): 		Queue: leer
+16:25:56:746 Ben: sleep 100			Queue: leer
+16:25:56:797 Jim: sleep Ende		Queue: leer
+16:25:56:797 warten ...
+16:25:56:847 Ben: sleep Ende		Queue: leer
+16:25:56:847 warten ...
+16:25:56:848 Leo: sleep Ende		Queue: leer
+16:25:56:848 warten ...
+16:25:56:894 Max: sleep Ende		Queue: leer
+16:25:56:894 warten ...
+16:25:56:942 Tom: sleep Ende		Queue: leer
+16:25:56:942 Tom: append(Tom2) 		Queue: leer
+16:25:56:797 Jim: get(Tom2): 		Queue: leer
+16:25:56:942 Tom: sleep 300			Queue: leer
+16:25:56:942 Jim: sleep 150			Queue: leer
+16:25:56:995 Uwe: sleep Ende		Queue: leer
+16:25:56:995 warten ...
+16:25:57:092 Jim: sleep Ende		Queue: leer
+16:25:57:092 warten ...
+16:25:57:242 Tom: sleep Ende		Queue: leer
+16:25:57:242 warten ...
+16:25:58:642 
+ZUSTAENDE:   Ben=WAITING  Jim=WAITING  Leo=WAITING  Max=WAITING  Tom=WAITING  Uwe=WAITING
+16:25:56:847 Ben: get(:-)0): 		Queue: :-)1 :-)2 :-)3 :-)4 :-)5 :-)6 
+16:25:58:643 Ben: sleep 100			Queue: :-)2 :-)3 :-)4 :-)5 :-)6 
+16:25:56:995 Uwe: get(:-)1): 		Queue: :-)2 :-)3 :-)4 :-)5 :-)6 
+16:25:58:644 Uwe: sleep 350			Queue: :-)2 :-)3 :-)4 :-)5 :-)6 
+16:25:57:242 Tom: get(:-)2): 		Queue: :-)3 :-)4 :-)5 :-)6 
+16:25:58:644 Tom: sleep 300			Queue: :-)3 :-)4 :-)5 :-)6 
+16:25:57:092 Jim: get(:-)3): 		Queue: :-)4 :-)5 :-)6 
+16:25:58:645 Jim: sleep 150			Queue: :-)4 :-)5 :-)6 
+16:25:56:894 Max: get(:-)4): 		Queue: :-)5 :-)6 
+16:25:58:646 Max: sleep 250			Queue: :-)5 :-)6 
+16:25:56:848 Leo: get(:-)5): 		Queue: :-)6 
+16:25:58:647 Leo: sleep 200			Queue: :-)6 
+16:25:58:744 Ben: sleep Ende		Queue: :-)6 
+16:25:58:744 Ben: get(:-)6): 		Queue: leer
+16:25:58:745 Ben: sleep 100			Queue: leer
+16:25:58:796 Jim: sleep Ende		Queue: leer
+16:25:58:796 warten ...
+16:25:58:845 Ben: sleep Ende		Queue: leer
+16:25:58:845 warten ...
+16:25:58:847 Leo: sleep Ende		Queue: leer
+16:25:58:847 warten ...
+16:25:58:896 Max: sleep Ende		Queue: leer
+16:25:58:896 Max: append(Max4) 		Queue: leer
+16:25:58:796 Jim: get(Max4): 		Queue: leer
+16:25:58:897 Max: sleep 250			Queue: leer
+16:25:58:897 Jim: sleep 150			Queue: leer
+16:25:58:946 Tom: sleep Ende		Queue: leer
+16:25:58:946 Tom: append(Tom4) 		Queue: leer
+16:25:58:845 Ben: get(Tom4): 		Queue: leer
+16:25:58:946 Tom: sleep 300			Queue: leer
+16:25:58:946 Ben: sleep 100			Queue: leer
+16:25:58:994 Uwe: sleep Ende		Queue: leer
+16:25:58:994 warten ...
+16:25:59:047 Jim: sleep Ende		Queue: leer
+16:25:59:047 Ben: sleep Ende		Queue: leer
+16:25:59:048 Ben: append(Ben8) 		Queue: leer
+16:25:58:847 Leo: get(Ben8): 		Queue: leer
+16:25:59:048 Ben: sleep 100			Queue: leer
+16:25:59:048 Leo: sleep 200			Queue: leer
+16:25:59:049 Jim: append(Jim7) 		Queue: leer
+16:25:58:994 Uwe: get(Jim7): 		Queue: leer
+16:25:59:049 Uwe: sleep 350			Queue: leer
+16:25:59:049 Jim: sleep 150			Queue: leer
+16:25:59:147 Max: sleep Ende		Queue: leer
+16:25:59:147 warten ...
+16:25:59:148 Ben: sleep Ende		Queue: leer
+16:25:59:148 warten ...
+16:25:59:199 Jim: sleep Ende		Queue: leer
+16:25:59:199 warten ...
+16:25:59:246 Tom: sleep Ende		Queue: leer
+16:25:59:246 Tom: append(Tom5) 		Queue: leer
+16:25:59:147 Max: get(Tom5): 		Queue: leer
+16:25:59:246 Max: sleep 250			Queue: leer
+16:25:59:246 Tom: sleep 300			Queue: leer
+16:25:59:248 Leo: sleep Ende		Queue: leer
+16:25:59:248 warten ...
+16:25:59:399 Uwe: sleep Ende		Queue: leer
+16:25:59:400 warten ...
+16:25:59:496 Max: sleep Ende		Queue: leer
+16:25:59:496 Max: append(Max6) 		Queue: leer
+16:25:59:148 Ben: get(Max6): 		Queue: leer
+16:25:59:496 Max: sleep 250			Queue: leer
+16:25:59:496 Ben: sleep 100			Queue: leer
+16:25:59:546 Tom: sleep Ende		Queue: leer
+16:25:59:546 Tom: append(Tom6) 		Queue: leer
+16:25:59:199 Jim: get(Tom6): 		Queue: leer
+16:25:59:546 Tom: sleep 300			Queue: leer
+16:25:59:546 Jim: sleep 150			Queue: leer
+16:25:59:596 Ben: sleep Ende		Queue: leer
+
+16:25:59:596 >>>>>>>>>>>> Ben ist fertig <<<<<<<<<<<<
+
+16:25:59:697 Jim: sleep Ende		Queue: leer
+16:25:59:697 warten ...
+16:25:59:746 Max: sleep Ende		Queue: leer
+16:25:59:746 warten ...
+16:25:59:846 Tom: sleep Ende		Queue: leer
+16:25:59:846 Tom: append(Tom7) 		Queue: leer
+16:25:59:248 Leo: get(Tom7): 		Queue: leer
+16:25:59:846 Leo: sleep 200			Queue: leer
+16:25:59:846 Tom: sleep 300			Queue: leer
+16:26:00:046 Leo: sleep Ende		Queue: leer
+16:26:00:046 warten ...
+16:26:00:146 Tom: sleep Ende		Queue: leer
+16:26:00:146 warten ...
+16:26:00:642 
+ZUSTAENDE:   Ben=TERMINATED  Jim=WAITING  Leo=WAITING  Max=WAITING  Tom=WAITING  Uwe=WAITING
+16:25:59:399 Uwe: get(:-)0): 		Queue: leer
+16:25:59:697 Jim: get(:-)1): 		Queue: :-)2 :-)3 :-)4 :-)5 
+16:26:00:642 Uwe: sleep 350			Queue: :-)2 :-)3 :-)4 :-)5 
+16:26:00:642 Jim: sleep 150			Queue: :-)2 :-)3 :-)4 :-)5 
+16:26:00:146 Tom: get(:-)2): 		Queue: :-)3 :-)4 :-)5 
+16:26:00:646 Tom: sleep 300			Queue: :-)3 :-)4 :-)5 
+16:26:00:046 Leo: get(:-)3): 		Queue: :-)4 :-)5 
+16:26:00:647 Leo: sleep 200			Queue: :-)4 :-)5 
+16:25:59:746 Max: get(:-)4): 		Queue: :-)5 
+16:26:00:647 Max: sleep 250			Queue: :-)5 
+16:26:00:794 Jim: sleep Ende		Queue: :-)5 
+
+16:26:00:794 >>>>>>>>>>>> Jim ist fertig <<<<<<<<<<<<
+
+16:26:00:847 Leo: sleep Ende		Queue: :-)5 
+16:26:00:847 Leo: append(Leo7) 		Queue: :-)5 
+16:26:00:847 Leo: sleep 200			Queue: :-)5 Leo7 
+16:26:00:897 Max: sleep Ende		Queue: :-)5 Leo7 
+16:26:00:897 Max: get(:-)5): 		Queue: Leo7 
+16:26:00:897 Max: sleep 250			Queue: Leo7 
+16:26:00:946 Tom: sleep Ende		Queue: Leo7 
+16:26:00:946 Tom: get(Leo7): 		Queue: leer
+16:26:00:946 Tom: sleep 300			Queue: leer
+16:26:00:993 Uwe: sleep Ende		Queue: leer
+16:26:00:993 Uwe: append(Uwe5) 		Queue: leer
+16:26:00:993 Uwe: sleep 350			Queue: Uwe5 
+16:26:01:047 Leo: sleep Ende		Queue: Uwe5 
+16:26:01:047 Leo: get(Uwe5): 		Queue: leer
+16:26:01:047 Leo: sleep 200			Queue: leer
+16:26:01:147 Max: sleep Ende		Queue: leer
+16:26:01:147 warten ...
+16:26:01:246 Tom: sleep Ende		Queue: leer
+
+16:26:01:246 >>>>>>>>>>>> Tom ist fertig <<<<<<<<<<<<
+
+16:26:01:247 Leo: sleep Ende		Queue: leer
+16:26:01:247 warten ...
+16:26:01:343 Uwe: sleep Ende		Queue: leer
+16:26:01:343 warten ...
+16:26:02:642 
+ZUSTAENDE:   Ben=TERMINATED  Jim=TERMINATED  Leo=WAITING  Max=WAITING  Tom=TERMINATED  Uwe=WAITING
+16:26:01:147 Max: get(:-)0): 		Queue: leer
+16:26:01:247 Leo: get(:-)1): 		Queue: leer
+16:26:02:642 Max: sleep 250			Queue: leer
+16:26:02:643 Leo: sleep 200			Queue: leer
+16:26:01:343 Uwe: get(:-)2): 		Queue: :-)3 
+16:26:02:644 Uwe: sleep 350			Queue: :-)3 
+16:26:02:843 Leo: sleep Ende		Queue: :-)3 
+
+16:26:02:843 >>>>>>>>>>>> Leo ist fertig <<<<<<<<<<<<
+
+16:26:02:892 Max: sleep Ende		Queue: :-)3 
+
+16:26:02:892 >>>>>>>>>>>> Max ist fertig <<<<<<<<<<<<
+
+16:26:02:995 Uwe: sleep Ende		Queue: :-)3 
+16:26:02:995 Uwe: append(Uwe7) 		Queue: :-)3 
+16:26:02:995 Uwe: sleep 350			Queue: :-)3 Uwe7 
+16:26:03:346 Uwe: sleep Ende		Queue: :-)3 Uwe7 
+16:26:03:347 Uwe: append(Uwe8) 		Queue: :-)3 Uwe7 
+16:26:03:347 Uwe: sleep 350			Queue: :-)3 Uwe7 Uwe8 
+16:26:03:697 Uwe: sleep Ende		Queue: :-)3 Uwe7 Uwe8 
+16:26:03:697 Uwe: append(Uwe9) 		Queue: :-)3 Uwe7 Uwe8 
+16:26:03:697 Uwe: sleep 350			Queue: :-)3 Uwe7 Uwe8 Uwe9 
+16:26:04:047 Uwe: sleep Ende		Queue: :-)3 Uwe7 Uwe8 Uwe9 
+
+16:26:04:047 >>>>>>>>>>>> Uwe ist fertig <<<<<<<<<<<<
+
+16:26:04:644 
+ZUSTAENDE:   Ben=TERMINATED  Jim=TERMINATED  Leo=TERMINATED  Max=TERMINATED  Tom=TERMINATED  Uwe=TERMINATED
+16:26:04:644 ENDE					Queue: :-)3 Uwe7 Uwe8 Uwe9 
+	40 Aufrufe für >get<
+	20 Aufrufe für >append<
+	24 Aufrufe für >append :-)<
