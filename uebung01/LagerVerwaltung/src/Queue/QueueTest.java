@@ -5,9 +5,10 @@
  */
 package Queue;
 
-import static java.lang.Thread.sleep;
-import java.sql.Timestamp;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,12 @@ public class QueueTest extends Thread {
     String name;
     int delay; // Wartezeit
 
+    /**
+     * Konstruktor der Klasse QueueTest.
+     * @param q Queue zu der hinzugefügt wird
+     * @param n Name
+     * @param delayTime Zeit für den Delay
+     */
     QueueTest(Queue q, String n, int delayTime) {
         this.q = q;
         name = n;
@@ -38,24 +45,27 @@ public class QueueTest extends Thread {
         return name;
     }
 
+    /**
+     * Wird benutzt um Zufälligkeit zu erreichen.
+     * @return 
+     */
     public boolean shallGet() {
         Random r = new Random(System.currentTimeMillis());
         int i = r.nextInt();
         // get soll etwa doppelt so oft wie append aufgerufen werden
         return (i % 3 != 0);
     }
-
+    /**
+     * Liefert einen Timestamp für die Ausgabe zurück.
+     * @return timestamp
+     */
     public String getTimeStamp() {
-        Calendar cal = Calendar.getInstance();
-        String zeit = cal.get(Calendar.HOUR_OF_DAY)
-                + ":" + cal.get(Calendar.MINUTE)
-                + ":" + cal.get(Calendar.SECOND)
-                + "." + cal.get(Calendar.MILLISECOND)
-                + " ";
-        return zeit;
+        return new SimpleDateFormat("HH:mm:ss:SSS ").format(new Date());
     }
 
-    //TODO: wieso heir kein synchornized ?
+    /**
+     * run() Methode des Threads.
+     */
     public void run() {
 
         System.out.println(getTimeStamp() + ">>>>>>>>> " + name
@@ -82,6 +92,9 @@ public class QueueTest extends Thread {
         } catch (InterruptedException e) {
             return;
         }
+        System.out.println("\n" + getTimeStamp() + ">>>>>>>>> " + name
+                + " ist fertig"+ " <<<<<<<<<<<<\n");
+        System.out.flush();
     }
 
     public static void main(String[] args) throws InterruptedException {

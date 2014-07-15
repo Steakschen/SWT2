@@ -6,6 +6,9 @@
 
 package Queue;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Queue
  * @author Moritz / Carsten
@@ -39,11 +42,11 @@ public class Queue {
     public synchronized Element get() {
         try {
             while (head == null) {
-                System.out.println("warten ...");
+                System.out.println(getTimeStamp() + "warten ...");
                 wait(); // Warten auf ein Element
             }
         } catch (InterruptedException x) {
-            System.out.println("get() unterbrochen!");
+            System.out.println(getTimeStamp() + "get() unterbrochen!");
             return null;
         }
         Element e = head; // erstes Element merken
@@ -55,6 +58,14 @@ public class Queue {
         return e;
     }
 
+    /**
+     * Liefert einen Timestamp für die Ausgabe zurück.
+     * @return timestamp
+     */
+    public String getTimeStamp() {
+        return new SimpleDateFormat("HH:mm:ss:SSS ").format(new Date());    
+    }
+    
     /**
      * gibt die Schlange aus
      * Wenn kein Element in der Schlange ist (head=null) gibt er leer aus
