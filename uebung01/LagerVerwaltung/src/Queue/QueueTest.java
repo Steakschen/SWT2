@@ -9,6 +9,7 @@ package Queue;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ public class QueueTest extends Thread {
     Queue q;
     String name;
     int delay; // Wartezeit
+    Semaphore sem;
     public static int appendAufrufe;
     public static int smileyAppendAufrufe;
     public static int getAufrufe;
@@ -32,10 +34,11 @@ public class QueueTest extends Thread {
      * @param n Name
      * @param delayTime Zeit für den Delay
      */
-    QueueTest(Queue q, String n, int delayTime) {
+    QueueTest(Queue q, String n, int delayTime, Semaphore _sem) {
         this.q = q;
-        name = n;
-        delay = delayTime;
+        this.name = n;
+        this.delay = delayTime;
+        this.sem = _sem;
     }
 
     /**
@@ -77,11 +80,15 @@ public class QueueTest extends Thread {
             for (int i = 0; i < 10; ++i) {
                 if (shallGet()) {
                     //System.out.print(name + "\t: \t\tget(): ");
+                    sem.acquire();
                     getAufrufe++;
+                    sem.release();
                     System.out.println(getTimeStamp() + name + ": get("
                             + q.get().getContent() + "): " + "\t\tQueue: " + q);
                 } else {
+                    sem.acquire();
                     appendAufrufe++;
+                    sem.release();
                     System.out.println(getTimeStamp() + name + ": append("
                             + name + i + ") " + "\t\tQueue: " + q);
                     q.append(new Element(name + i));
@@ -103,6 +110,8 @@ public class QueueTest extends Thread {
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println(new SimpleDateFormat("HH:mm:ss:SSS ").format(new Date()) + " START ");
+        
+        Semaphore sem = new Semaphore(1);
         /* Schlange anlegen */
         Queue q = new Queue();
         /* Array fuer die verschiedenen Threads, damit man sie spaeter wieder 
@@ -118,7 +127,7 @@ public class QueueTest extends Thread {
         boolean mainLoopIsRunning = true;
         /* Threads erstellen für jedes Argument mit Delay Zeit */
         for (int i = 0; i < args.length; i++) {
-            qt[i] = new QueueTest(q, args[i], 100 + i * 50);
+            qt[i] = new QueueTest(q, args[i], 100 + i * 50, sem);
         }
         /* Threads starten */
         for (int i = 0; i < args.length; i++) {
@@ -158,8 +167,10 @@ public class QueueTest extends Thread {
                 /* Elemente in die Queue wenn alle Threads aus waiting stehn */
                 if (waitingThreads > 0) {
                     for (int i = 0; i <= waitingThreads; i++) {
+                        sem.acquire();
                         smileyAppendAufrufe++;
                         q.append(new Element(":-)" + i));
+                        sem.release();
                     }
                 }
                 /* Zuruecksetzen der Werte fuer waitingThreads, finishedThreads */
@@ -169,7 +180,7 @@ public class QueueTest extends Thread {
                 Logger.getLogger(QueueTest.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println(new SimpleDateFormat("HH:mm:ss:SSS ").format(new Date()) + "ENDE");
+        System.out.println(new SimpleDateFormat("HH:mm:ss:SSS ").format(new Date()) + "ENDE\t\t\tQueue: " + q);
         System.out.println("\t" + getAufrufe + " Aufrufe für >get<");
         System.out.println("\t" + appendAufrufe + " Aufrufe für >append<");
         System.out.println("\t" + smileyAppendAufrufe + " Aufrufe für >append :-)<");
